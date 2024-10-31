@@ -29,6 +29,7 @@ namespace _25453_TP_POO
         {
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
+            string name = textBoxName.Text;
 
 
 
@@ -39,15 +40,8 @@ namespace _25453_TP_POO
                 return;
             }
 
-            Account newAccount = new Account(username, password);
+            Account newAccount = new Account(username, password, name);
             newAccount.Save();
-
-            Account account = new Account("testeUser", "testePassword");
-            account.Save();
-
-
-
-
 
             MessageBox.Show("Account added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();

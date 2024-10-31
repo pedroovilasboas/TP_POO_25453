@@ -39,7 +39,7 @@
             // 
             // Addbuton
             // 
-            Addbuton.Location = new Point(193, 351);
+            Addbuton.Location = new Point(159, 342);
             Addbuton.Name = "Addbuton";
             Addbuton.Size = new Size(75, 23);
             Addbuton.TabIndex = 0;
@@ -50,7 +50,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(114, 230);
+            label1.Location = new Point(80, 221);
             label1.Name = "label1";
             label1.Size = new Size(57, 15);
             label1.TabIndex = 1;
@@ -59,7 +59,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(114, 139);
+            label2.Location = new Point(80, 130);
             label2.Name = "label2";
             label2.Size = new Size(60, 15);
             label2.TabIndex = 2;
@@ -67,14 +67,14 @@
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(114, 266);
+            textBoxPassword.Location = new Point(80, 257);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(232, 23);
             textBoxPassword.TabIndex = 3;
             // 
             // textBoxUsername
             // 
-            textBoxUsername.Location = new Point(114, 167);
+            textBoxUsername.Location = new Point(80, 158);
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(232, 23);
             textBoxUsername.TabIndex = 4;
@@ -82,7 +82,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(116, 51);
+            label3.Location = new Point(82, 42);
             label3.Name = "label3";
             label3.Size = new Size(39, 15);
             label3.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(114, 80);
+            textBoxName.Location = new Point(80, 71);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(232, 23);
             textBoxName.TabIndex = 6;
@@ -99,7 +99,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(505, 421);
+            ClientSize = new Size(407, 421);
             Controls.Add(textBoxName);
             Controls.Add(label3);
             Controls.Add(textBoxUsername);

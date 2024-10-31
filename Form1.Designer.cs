@@ -121,21 +121,21 @@
             // addAccountToolStripMenuItem2
             // 
             addAccountToolStripMenuItem2.Name = "addAccountToolStripMenuItem2";
-            addAccountToolStripMenuItem2.Size = new Size(180, 22);
+            addAccountToolStripMenuItem2.Size = new Size(163, 22);
             addAccountToolStripMenuItem2.Text = "Add Account";
             addAccountToolStripMenuItem2.Click += addAccountToolStripMenuItem2_Click;
             // 
             // manageAccountToolStripMenuItem2
             // 
             manageAccountToolStripMenuItem2.Name = "manageAccountToolStripMenuItem2";
-            manageAccountToolStripMenuItem2.Size = new Size(180, 22);
+            manageAccountToolStripMenuItem2.Size = new Size(163, 22);
             manageAccountToolStripMenuItem2.Text = "Manage account";
             manageAccountToolStripMenuItem2.Click += manageAccountToolStripMenuItem2_Click;
             // 
             // deleteAccountToolStripMenuItem2
             // 
             deleteAccountToolStripMenuItem2.Name = "deleteAccountToolStripMenuItem2";
-            deleteAccountToolStripMenuItem2.Size = new Size(180, 22);
+            deleteAccountToolStripMenuItem2.Size = new Size(163, 22);
             deleteAccountToolStripMenuItem2.Text = "Delete Account";
             deleteAccountToolStripMenuItem2.Click += deleteAccountToolStripMenuItem2_Click;
             // 
@@ -144,6 +144,7 @@
             ClientSize = new Size(1110, 583);
             Controls.Add(menuStrip1);
             Name = "Form1";
+            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

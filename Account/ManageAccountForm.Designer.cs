@@ -28,12 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ManageAccountForm";
+            textBoxSearch = new TextBox();
+            buttonGo = new Button();
+            Search = new Label();
+            checkedListBoxResults = new CheckedListBox();
+            Edit = new Button();
+            Close = new Button();
+            Delete = new Button();
+            SuspendLayout();
+            // 
+            // textBoxSearch
+            // 
+            textBoxSearch.Location = new Point(105, 32);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(395, 23);
+            textBoxSearch.TabIndex = 7;
+            // 
+            // buttonGo
+            // 
+            buttonGo.Location = new Point(506, 32);
+            buttonGo.Name = "buttonGo";
+            buttonGo.Size = new Size(75, 23);
+            buttonGo.TabIndex = 1;
+            buttonGo.Text = "Go";
+            buttonGo.UseVisualStyleBackColor = true;
+            buttonGo.Click += buttonGo_Click;
+            // 
+            // Search
+            // 
+            Search.AutoSize = true;
+            Search.Location = new Point(57, 36);
+            Search.Name = "Search";
+            Search.Size = new Size(42, 15);
+            Search.TabIndex = 2;
+            Search.Text = "Search";
+            // 
+            // checkedListBoxResults
+            // 
+            checkedListBoxResults.FormattingEnabled = true;
+            checkedListBoxResults.Location = new Point(27, 125);
+            checkedListBoxResults.Name = "checkedListBoxResults";
+            checkedListBoxResults.Size = new Size(606, 148);
+            checkedListBoxResults.TabIndex = 3;
+            checkedListBoxResults.SelectedIndexChanged += checkedListBoxResults_SelectedIndexChanged;
+            // 
+            // Edit
+            // 
+            Edit.Location = new Point(377, 400);
+            Edit.Name = "Edit";
+            Edit.Size = new Size(111, 26);
+            Edit.TabIndex = 4;
+            Edit.Text = "Edit";
+            Edit.UseVisualStyleBackColor = true;
+            // 
+            // Close
+            // 
+            Close.Location = new Point(522, 400);
+            Close.Name = "Close";
+            Close.Size = new Size(111, 23);
+            Close.TabIndex = 5;
+            Close.Text = "Close";
+            Close.UseVisualStyleBackColor = true;
+            // 
+            // Delete
+            // 
+            Delete.Location = new Point(238, 400);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(111, 26);
+            Delete.TabIndex = 6;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            // 
+            // ManageAccountForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(676, 460);
+            Controls.Add(Delete);
+            Controls.Add(Close);
+            Controls.Add(Edit);
+            Controls.Add(checkedListBoxResults);
+            Controls.Add(Search);
+            Controls.Add(buttonGo);
+            Controls.Add(textBoxSearch);
+            Name = "ManageAccountForm";
+            Text = "ManageAccountForm";
+            Load += ManageAccountForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox textBoxSearch;
+        private Button buttonGo;
+        private Label Search;
+        private CheckedListBox checkedListBoxResults;
+        private Button Edit;
+        private Button Close;
+        private Button Delete;
     }
 }

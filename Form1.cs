@@ -21,8 +21,13 @@ namespace _25453_TP_POO
 
         private void deleteAccountToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            DeleteAccountForm deleteAccountForm = new DeleteAccountForm();
-            deleteAccountForm.ShowDialog();
+            //DeleteAccountForm deleteAccountForm = new DeleteAccountForm();
+            //deleteAccountForm.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

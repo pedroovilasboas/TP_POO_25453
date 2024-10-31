@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace _25453_TP_POO
 {
-    public partial class DeleteAccountForm : Form
+    public partial class EditAccountForm : Form
     {
-        public DeleteAccountForm()
+        public EditAccountForm()
         {
             InitializeComponent();
+        }
+
+        private void EditAccountForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
