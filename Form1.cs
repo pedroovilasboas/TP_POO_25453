@@ -6,5 +6,23 @@ namespace _25453_TP_POO
         {
             InitializeComponent();
         }
+
+        private void addAccountToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            AddAccountForm addAccountForm = new AddAccountForm();
+            addAccountForm.ShowDialog();
+        }
+
+        private void manageAccountToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ManageAccountForm manageAccountForm = new ManageAccountForm();
+            manageAccountForm.ShowDialog();
+        }
+
+        private void deleteAccountToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            DeleteAccountForm deleteAccountForm = new DeleteAccountForm();
+            deleteAccountForm.ShowDialog();
+        }
     }
 }
