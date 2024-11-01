@@ -40,6 +40,7 @@ namespace _25453_TP_POO
         }
 
         private void editButton_Click(object sender, EventArgs e)
+        private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (checkedListBoxResults.CheckedItems.Count != 1)
             {
@@ -54,8 +55,8 @@ namespace _25453_TP_POO
 
             if (account != null)
             {
-                // Abre um formulário de edição com as informações do usuário selecionado
-                EditAccountForm editForm = new EditAccountForm();
+                // Passa a conta selecionada para o formulário de edição
+                EditAccountForm editForm = new EditAccountForm(account); // Passando a conta selecionada
                 editForm.ShowDialog();
 
                 // Atualize a lista após a edição
@@ -74,6 +75,4 @@ namespace _25453_TP_POO
             //
         }
 
-       
     }
-}
