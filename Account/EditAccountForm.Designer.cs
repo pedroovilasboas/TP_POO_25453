@@ -95,6 +95,7 @@
             Savebuton.TabIndex = 7;
             Savebuton.Text = "Save";
             Savebuton.UseVisualStyleBackColor = true;
+            Savebuton.Click += Savebuton_Click;
             // 
             // buttonClose
             // 
@@ -104,6 +105,7 @@
             buttonClose.TabIndex = 14;
             buttonClose.Text = "Close";
             buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += buttonClose_Click;
             // 
             // EditAccountForm
             // 

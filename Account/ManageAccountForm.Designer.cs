@@ -32,7 +32,7 @@
             buttonGo = new Button();
             Search = new Label();
             checkedListBoxResults = new CheckedListBox();
-            Edit = new Button();
+            buttonEdit = new Button();
             Close = new Button();
             Delete = new Button();
             SuspendLayout();
@@ -72,14 +72,15 @@
             checkedListBoxResults.TabIndex = 3;
             checkedListBoxResults.SelectedIndexChanged += checkedListBoxResults_SelectedIndexChanged;
             // 
-            // Edit
+            // buttonEdit
             // 
-            Edit.Location = new Point(377, 400);
-            Edit.Name = "Edit";
-            Edit.Size = new Size(111, 26);
-            Edit.TabIndex = 4;
-            Edit.Text = "Edit";
-            Edit.UseVisualStyleBackColor = true;
+            buttonEdit.Location = new Point(377, 400);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Size = new Size(111, 26);
+            buttonEdit.TabIndex = 4;
+            buttonEdit.Text = "Edit";
+            buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += buttonEdit_Click;
             // 
             // Close
             // 
@@ -89,6 +90,7 @@
             Close.TabIndex = 5;
             Close.Text = "Close";
             Close.UseVisualStyleBackColor = true;
+            Close.Click += Close_Click;
             // 
             // Delete
             // 
@@ -98,6 +100,7 @@
             Delete.TabIndex = 6;
             Delete.Text = "Delete";
             Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
             // ManageAccountForm
             // 
@@ -106,7 +109,7 @@
             ClientSize = new Size(676, 460);
             Controls.Add(Delete);
             Controls.Add(Close);
-            Controls.Add(Edit);
+            Controls.Add(buttonEdit);
             Controls.Add(checkedListBoxResults);
             Controls.Add(Search);
             Controls.Add(buttonGo);
@@ -124,7 +127,7 @@
         private Button buttonGo;
         private Label Search;
         private CheckedListBox checkedListBoxResults;
-        private Button Edit;
+        private Button buttonEdit;
         private Button Close;
         private Button Delete;
     }

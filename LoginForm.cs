@@ -35,5 +35,10 @@ namespace _25453_TP_POO
             //    MessageBox.Show("sucess", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
