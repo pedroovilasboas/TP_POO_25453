@@ -1,2 +1,3 @@
 pedro.boas,olamundo,Pedro Vilas Boas
 raquel.vale,1234,Raquel Vale
+teste,123456789,Teste

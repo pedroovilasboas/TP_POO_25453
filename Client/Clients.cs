@@ -60,6 +60,7 @@ namespace _25453_TP_POO
                 }
             }
 
+            Console.WriteLine($"Loaded {clients.Count} clients."); // Debugging
             return clients;
         }
 
@@ -75,7 +76,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para buscar clientes
+        // Método para procurar clientes
         public static List<Client> SearchClients(string query)
         {
             var clients = LoadClients();
@@ -94,14 +95,16 @@ namespace _25453_TP_POO
             {
                 clients[index] = updatedClient;
                 SaveClients(clients);
+                Console.WriteLine($"Updated client: {updatedClient.Username}"); // Debugging
             }
             else
             {
                 MessageBox.Show("Client not found for update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Client not found: {updatedClient.Username}"); // Debugging
             }
         }
 
-        // Método para deletar cliente
+        // Método para eliminar cliente
         public static void DeleteClient(string username)
         {
             var clients = LoadClients();
@@ -111,10 +114,12 @@ namespace _25453_TP_POO
             {
                 clients.Remove(clientToDelete);
                 SaveClients(clients);
+                Console.WriteLine($"Deleted client: {username}"); // Debugging
             }
             else
             {
                 MessageBox.Show("Client not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Client not found: {username}"); // Debugging
             }
         }
     }

@@ -66,6 +66,7 @@ namespace _25453_TP_POO
                 EditClientForm editForm = new EditClientForm(client);
                 editForm.ShowDialog();
 
+                // Atualiza a lista de resultados após a edição
                 string query = textBoxSearch.Text;
                 var results = Client.SearchClients(query);
                 DisplayResults(results);
@@ -73,6 +74,7 @@ namespace _25453_TP_POO
             else
             {
                 MessageBox.Show("Client not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Client not found in buttonEdit_Click: {selectedUsername}"); // Debugging
             }
         }
 

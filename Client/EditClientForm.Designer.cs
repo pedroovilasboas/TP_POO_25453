@@ -26,6 +26,7 @@
             this.textBoxCity = new System.Windows.Forms.TextBox();
             this.textBoxRegion = new System.Windows.Forms.TextBox();
             this.textBoxPostalCode = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.labelEditUsername = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
@@ -33,6 +34,7 @@
             this.labelCity = new System.Windows.Forms.Label();
             this.labelRegion = new System.Windows.Forms.Label();
             this.labelPostalCode = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -149,20 +151,35 @@
             this.labelPostalCode.TabIndex = 15;
             this.labelPostalCode.Text = "Postal Code";
 
+            // textBoxPassword
+            this.textBoxPassword.Location = new System.Drawing.Point(100, 350);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(232, 23);
+            this.textBoxPassword.TabIndex = 16;
+            this.textBoxPassword.PasswordChar = '*';
+
+            // labelPassword
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(30, 350);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(57, 15);
+            this.labelPassword.TabIndex = 17;
+            this.labelPassword.Text = "Password";
+
             // SaveButton
-            this.SaveButton.Location = new System.Drawing.Point(100, 350);
+            this.SaveButton.Location = new System.Drawing.Point(100, 390);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 16;
+            this.SaveButton.TabIndex = 18;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
 
             // ButtonClose
-            this.ButtonClose.Location = new System.Drawing.Point(200, 350);
+            this.ButtonClose.Location = new System.Drawing.Point(200, 390);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(75, 23);
-            this.ButtonClose.TabIndex = 17;
+            this.ButtonClose.TabIndex = 19;
             this.ButtonClose.Text = "Close";
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
@@ -170,10 +187,55 @@
             // EditClientForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "EditClientFormcs";
+            this.ClientSize = new System.Drawing.Size(384, 431);
+            this.Controls.Add(this.ButtonClose);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.textBoxPostalCode);
+            this.Controls.Add(this.labelPostalCode);
+            this.Controls.Add(this.textBoxRegion);
+            this.Controls.Add(this.labelRegion);
+            this.Controls.Add(this.textBoxCity);
+            this.Controls.Add(this.labelCity);
+            this.Controls.Add(this.textBoxAddress);
+            this.Controls.Add(this.labelAddress);
+            this.Controls.Add(this.textBoxPhone);
+            this.Controls.Add(this.labelPhone);
+            this.Controls.Add(this.textBoxEmail);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.textBoxUsername);
+            this.Controls.Add(this.labelEditUsername);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.labelEditName);
+            this.Name = "EditClientForm";
+            this.Text = "Edit Client";
+            this.Load += new System.EventHandler(this.EditClientForm_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.Label labelEditName;
+        private System.Windows.Forms.TextBox textBoxUsername;
+        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.TextBox textBoxPhone;
+        private System.Windows.Forms.TextBox textBoxAddress;
+        private System.Windows.Forms.TextBox textBoxCity;
+        private System.Windows.Forms.TextBox textBoxRegion;
+        private System.Windows.Forms.TextBox textBoxPostalCode;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label labelEditUsername;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.Label labelPhone;
+        private System.Windows.Forms.Label labelAddress;
+        private System.Windows.Forms.Label labelCity;
+        private System.Windows.Forms.Label labelRegion;
+        private System.Windows.Forms.Label labelPostalCode;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button ButtonClose;
     }
 }
