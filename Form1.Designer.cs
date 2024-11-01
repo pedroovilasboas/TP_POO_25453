@@ -43,7 +43,9 @@
             accountToolStripMenuItem2 = new ToolStripMenuItem();
             addAccountToolStripMenuItem2 = new ToolStripMenuItem();
             manageAccountToolStripMenuItem2 = new ToolStripMenuItem();
-            deleteAccountToolStripMenuItem2 = new ToolStripMenuItem();
+            clientToolStripMenuItem = new ToolStripMenuItem();
+            addClientToolStripMenuItem = new ToolStripMenuItem();
+            manageClientToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -104,7 +106,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2, clientToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1110, 24);
@@ -113,7 +115,7 @@
             // 
             // accountToolStripMenuItem2
             // 
-            accountToolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { addAccountToolStripMenuItem2, manageAccountToolStripMenuItem2, deleteAccountToolStripMenuItem2 });
+            accountToolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { addAccountToolStripMenuItem2, manageAccountToolStripMenuItem2 });
             accountToolStripMenuItem2.Name = "accountToolStripMenuItem2";
             accountToolStripMenuItem2.Size = new Size(64, 20);
             accountToolStripMenuItem2.Text = "Account";
@@ -132,12 +134,26 @@
             manageAccountToolStripMenuItem2.Text = "Manage account";
             manageAccountToolStripMenuItem2.Click += manageAccountToolStripMenuItem2_Click;
             // 
-            // deleteAccountToolStripMenuItem2
+            // clientToolStripMenuItem
             // 
-            deleteAccountToolStripMenuItem2.Name = "deleteAccountToolStripMenuItem2";
-            deleteAccountToolStripMenuItem2.Size = new Size(163, 22);
-            deleteAccountToolStripMenuItem2.Text = "Delete Account";
-            deleteAccountToolStripMenuItem2.Click += deleteAccountToolStripMenuItem2_Click;
+            clientToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addClientToolStripMenuItem, manageClientToolStripMenuItem });
+            clientToolStripMenuItem.Name = "clientToolStripMenuItem";
+            clientToolStripMenuItem.Size = new Size(50, 20);
+            clientToolStripMenuItem.Text = "Client";
+            // 
+            // addClientToolStripMenuItem
+            // 
+            addClientToolStripMenuItem.Name = "addClientToolStripMenuItem";
+            addClientToolStripMenuItem.Size = new Size(180, 22);
+            addClientToolStripMenuItem.Text = "Add Client";
+            addClientToolStripMenuItem.Click += addClientToolStripMenuItem_Click;
+            // 
+            // manageClientToolStripMenuItem
+            // 
+            manageClientToolStripMenuItem.Name = "manageClientToolStripMenuItem";
+            manageClientToolStripMenuItem.Size = new Size(180, 22);
+            manageClientToolStripMenuItem.Text = "Manage Client";
+            manageClientToolStripMenuItem.Click += manageClientToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -167,6 +183,8 @@
         private ToolStripMenuItem accountToolStripMenuItem2;
         private ToolStripMenuItem addAccountToolStripMenuItem2;
         private ToolStripMenuItem manageAccountToolStripMenuItem2;
-        private ToolStripMenuItem deleteAccountToolStripMenuItem2;
+        private ToolStripMenuItem clientToolStripMenuItem;
+        private ToolStripMenuItem addClientToolStripMenuItem;
+        private ToolStripMenuItem manageClientToolStripMenuItem;
     }
 }

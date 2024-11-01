@@ -19,15 +19,23 @@ namespace _25453_TP_POO
             manageAccountForm.ShowDialog();
         }
 
-        private void deleteAccountToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            //DeleteAccountForm deleteAccountForm = new DeleteAccountForm();
-            //deleteAccountForm.ShowDialog();
-        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void addClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddClientForm addClientForm = new AddClientForm();
+            addClientForm.ShowDialog();
+        }
+
+        private void manageClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageClientForm manageClientForm = new ManageClientForm();
+            manageClientForm.ShowDialog();
         }
     }
 }
