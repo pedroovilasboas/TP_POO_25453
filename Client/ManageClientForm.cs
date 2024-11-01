@@ -58,13 +58,13 @@ namespace _25453_TP_POO
             }
 
             string selectedUsername = dataGridViewResults.SelectedRows[0].Cells["Username"].Value.ToString();
-
             var client = Client.LoadClients().Find(cli => cli.Username == selectedUsername);
 
             if (client != null)
             {
-                //EditClientForm editForm = new EditClientForm(client);
-               // editForm.ShowDialog();
+                // Abre o formulário de edição de cliente com os dados do cliente selecionado
+                EditClientForm editForm = new EditClientForm(client);
+                editForm.ShowDialog();
 
                 string query = textBoxSearch.Text;
                 var results = Client.SearchClients(query);
