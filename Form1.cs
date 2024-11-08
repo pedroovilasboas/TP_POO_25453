@@ -37,5 +37,17 @@ namespace _25453_TP_POO
             ManageClientForm manageClientForm = new ManageClientForm();
             manageClientForm.ShowDialog();
         }
+
+        private void addBrandToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AddBrandForm addBrandForm = new AddBrandForm();
+            addBrandForm.ShowDialog();
+        }
+
+        private void manageBrandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageBrandForm manageBrandForm = new ManageBrandForm();
+            manageBrandForm.ShowDialog();
+        }
     }
 }

@@ -46,6 +46,9 @@
             clientToolStripMenuItem = new ToolStripMenuItem();
             addClientToolStripMenuItem = new ToolStripMenuItem();
             manageClientToolStripMenuItem = new ToolStripMenuItem();
+            brandToolStripMenuItem1 = new ToolStripMenuItem();
+            addBrandToolStripMenuItem1 = new ToolStripMenuItem();
+            manageBrandToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -106,7 +109,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2, clientToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2, clientToolStripMenuItem, brandToolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1110, 24);
@@ -144,16 +147,37 @@
             // addClientToolStripMenuItem
             // 
             addClientToolStripMenuItem.Name = "addClientToolStripMenuItem";
-            addClientToolStripMenuItem.Size = new Size(180, 22);
+            addClientToolStripMenuItem.Size = new Size(151, 22);
             addClientToolStripMenuItem.Text = "Add Client";
             addClientToolStripMenuItem.Click += addClientToolStripMenuItem_Click;
             // 
             // manageClientToolStripMenuItem
             // 
             manageClientToolStripMenuItem.Name = "manageClientToolStripMenuItem";
-            manageClientToolStripMenuItem.Size = new Size(180, 22);
+            manageClientToolStripMenuItem.Size = new Size(151, 22);
             manageClientToolStripMenuItem.Text = "Manage Client";
             manageClientToolStripMenuItem.Click += manageClientToolStripMenuItem_Click;
+            // 
+            // brandToolStripMenuItem1
+            // 
+            brandToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { addBrandToolStripMenuItem1, manageBrandToolStripMenuItem });
+            brandToolStripMenuItem1.Name = "brandToolStripMenuItem1";
+            brandToolStripMenuItem1.Size = new Size(50, 20);
+            brandToolStripMenuItem1.Text = "Brand";
+            // 
+            // addBrandToolStripMenuItem1
+            // 
+            addBrandToolStripMenuItem1.Name = "addBrandToolStripMenuItem1";
+            addBrandToolStripMenuItem1.Size = new Size(180, 22);
+            addBrandToolStripMenuItem1.Text = "Add Brand";
+            addBrandToolStripMenuItem1.Click += addBrandToolStripMenuItem1_Click;
+            // 
+            // manageBrandToolStripMenuItem
+            // 
+            manageBrandToolStripMenuItem.Name = "manageBrandToolStripMenuItem";
+            manageBrandToolStripMenuItem.Size = new Size(180, 22);
+            manageBrandToolStripMenuItem.Text = "Manage Brand";
+            manageBrandToolStripMenuItem.Click += manageBrandToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -186,5 +210,8 @@
         private ToolStripMenuItem clientToolStripMenuItem;
         private ToolStripMenuItem addClientToolStripMenuItem;
         private ToolStripMenuItem manageClientToolStripMenuItem;
+        private ToolStripMenuItem brandToolStripMenuItem1;
+        private ToolStripMenuItem addBrandToolStripMenuItem1;
+        private ToolStripMenuItem manageBrandToolStripMenuItem;
     }
 }
