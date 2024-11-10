@@ -1,6 +1,6 @@
 ﻿namespace _25453_TP_POO
 {
-    partial class Form1
+    partial class Landpage
     {
         /// <summary>
         ///  Required designer variable.
@@ -112,7 +112,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2, clientToolStripMenuItem, brandToolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1110, 24);
+            menuStrip1.Size = new Size(698, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -147,14 +147,14 @@
             // addClientToolStripMenuItem
             // 
             addClientToolStripMenuItem.Name = "addClientToolStripMenuItem";
-            addClientToolStripMenuItem.Size = new Size(151, 22);
+            addClientToolStripMenuItem.Size = new Size(180, 22);
             addClientToolStripMenuItem.Text = "Add Client";
             addClientToolStripMenuItem.Click += addClientToolStripMenuItem_Click;
             // 
             // manageClientToolStripMenuItem
             // 
             manageClientToolStripMenuItem.Name = "manageClientToolStripMenuItem";
-            manageClientToolStripMenuItem.Size = new Size(151, 22);
+            manageClientToolStripMenuItem.Size = new Size(180, 22);
             manageClientToolStripMenuItem.Text = "Manage Client";
             manageClientToolStripMenuItem.Click += manageClientToolStripMenuItem_Click;
             // 
@@ -164,6 +164,7 @@
             brandToolStripMenuItem1.Name = "brandToolStripMenuItem1";
             brandToolStripMenuItem1.Size = new Size(50, 20);
             brandToolStripMenuItem1.Text = "Brand";
+            brandToolStripMenuItem1.Click += brandToolStripMenuItem1_Click;
             // 
             // addBrandToolStripMenuItem1
             // 
@@ -179,12 +180,13 @@
             manageBrandToolStripMenuItem.Text = "Manage Brand";
             manageBrandToolStripMenuItem.Click += manageBrandToolStripMenuItem_Click;
             // 
-            // Form1
+            // Landpage
             // 
-            ClientSize = new Size(1110, 583);
+            ClientSize = new Size(698, 310);
             Controls.Add(menuStrip1);
-            Name = "Form1";
-            Load += Form1_Load;
+            Name = "Landpage";
+            Text = "Landpage";
+            Load += Landpage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

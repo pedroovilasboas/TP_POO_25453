@@ -1,8 +1,8 @@
-namespace _25453_TP_POO
+﻿namespace _25453_TP_POO
 {
-    public partial class Form1 : Form
+    public partial class Landpage : Form
     {
-        public Form1()
+        public Landpage()
         {
             InitializeComponent();
         }
@@ -21,9 +21,9 @@ namespace _25453_TP_POO
 
 
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Landpage_Load(object sender, EventArgs e)
         {
-
+            menuStrip1.Visible = true;
         }
 
         private void addClientToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,6 +48,11 @@ namespace _25453_TP_POO
         {
             ManageBrandForm manageBrandForm = new ManageBrandForm();
             manageBrandForm.ShowDialog();
+        }
+
+        private void brandToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.menuStrip1.Items.Add(this.brandToolStripMenuItem);
         }
     }
 }
