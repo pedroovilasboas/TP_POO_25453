@@ -13,101 +13,112 @@
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
-            this.buttonGo = new System.Windows.Forms.Button();
-            this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.dataGridViewResults = new System.Windows.Forms.DataGridView();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // buttonGo
-            // 
-            this.buttonGo.Location = new System.Drawing.Point(800, 30);
-            this.buttonGo.Name = "buttonGo";
-            this.buttonGo.Size = new System.Drawing.Size(75, 23);
-            this.buttonGo.TabIndex = 0;
-            this.buttonGo.Text = "Go";
-            this.buttonGo.UseVisualStyleBackColor = true;
-            this.buttonGo.Click += new System.EventHandler(this.buttonGo_Click);
+            textBoxSearch = new TextBox();
+            labelSearch = new Label();
+            dataGridViewResults = new DataGridView();
+            buttonGo = new Button();
+            buttonEdit = new Button();
+            buttonDelete = new Button();
+            buttonClose = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
+            SuspendLayout();
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(30, 30);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(750, 23);
-            this.textBoxSearch.TabIndex = 1;
+            textBoxSearch.Location = new Point(143, 51);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(296, 23);
+            textBoxSearch.TabIndex = 13;
+            // 
+            // labelSearch
+            // 
+            labelSearch.AutoSize = true;
+            labelSearch.Location = new Point(81, 59);
+            labelSearch.Name = "labelSearch";
+            labelSearch.Size = new Size(42, 15);
+            labelSearch.TabIndex = 12;
+            labelSearch.Text = "Search";
             // 
             // dataGridViewResults
             // 
-            this.dataGridViewResults.AllowUserToAddRows = false;
-            this.dataGridViewResults.AllowUserToDeleteRows = false;
-            this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewResults.Location = new System.Drawing.Point(30, 70);
-            this.dataGridViewResults.Name = "dataGridViewResults";
-            this.dataGridViewResults.ReadOnly = true;
-            this.dataGridViewResults.RowTemplate.Height = 25;
-            this.dataGridViewResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewResults.Size = new System.Drawing.Size(845, 300);
-            this.dataGridViewResults.TabIndex = 2;
+            dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewResults.Location = new Point(70, 90);
+            dataGridViewResults.Name = "dataGridViewResults";
+            dataGridViewResults.Size = new Size(450, 150);
+            dataGridViewResults.TabIndex = 11;
+            // 
+            // buttonGo
+            // 
+            buttonGo.Location = new Point(445, 50);
+            buttonGo.Name = "buttonGo";
+            buttonGo.Size = new Size(75, 23);
+            buttonGo.TabIndex = 10;
+            buttonGo.Text = "Go";
+            buttonGo.UseVisualStyleBackColor = true;
+            buttonGo.Click += buttonGo_Click;
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(30, 380);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(75, 23);
-            this.buttonEdit.TabIndex = 3;
-            this.buttonEdit.Text = "Edit";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            buttonEdit.Location = new Point(70, 340);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Size = new Size(75, 23);
+            buttonEdit.TabIndex = 9;
+            buttonEdit.Text = "Edit";
+            buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += buttonEdit_Click;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(120, 380);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 4;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            buttonDelete.Location = new Point(150, 340);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(75, 23);
+            buttonDelete.TabIndex = 8;
+            buttonDelete.Text = "Delete";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(800, 380);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 5;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            buttonClose.Location = new Point(445, 340);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new Size(75, 23);
+            buttonClose.TabIndex = 7;
+            buttonClose.Text = "Close";
+            buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += buttonClose_Click;
             // 
             // ManageBrandForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 450);
-            this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonEdit);
-            this.Controls.Add(this.dataGridViewResults);
-            this.Controls.Add(this.textBoxSearch);
-            this.Controls.Add(this.buttonGo);
-            this.Name = "ManageBrandForm";
-            this.Text = "Manage Brands";
-            this.Load += new System.EventHandler(this.ManageBrandForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(600, 400);
+            Controls.Add(buttonClose);
+            Controls.Add(buttonDelete);
+            Controls.Add(buttonEdit);
+            Controls.Add(buttonGo);
+            Controls.Add(dataGridViewResults);
+            Controls.Add(labelSearch);
+            Controls.Add(textBoxSearch);
+            Name = "ManageBrandForm";
+            Text = "Manage Brands";
+            Load += ManageBrandForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
-        private System.Windows.Forms.Button buttonGo;
-        private System.Windows.Forms.TextBox textBoxSearch;
-        private System.Windows.Forms.DataGridView dataGridViewResults;
-        private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.Button buttonClose;
+        #endregion
+
+        private TextBox textBoxSearch;
+        private Label labelSearch;
+        private DataGridView dataGridViewResults;
+        private Button buttonGo;
+        private Button buttonEdit;
+        private Button buttonDelete;
+        private Button buttonClose;
     }
 }

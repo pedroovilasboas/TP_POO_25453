@@ -1,25 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO.Brand
+namespace _25453_TP_POO
 {
     public partial class EditBrandForm : Form
     {
-        public EditBrandForm()
+        private Brand brand;
+
+        public EditBrandForm(Brand brand)
         {
             InitializeComponent();
+            this.brand = brand;
         }
 
         private void EditBrandForm_Load(object sender, EventArgs e)
         {
+            textBoxName.Text = brand.Name;
+            textBoxDescription.Text = brand.Description;
+        }
 
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            brand.Name = textBoxName.Text;
+            brand.Description = textBoxDescription.Text;
+
+            Brand.UpdateBrand(brand);
+            MessageBox.Show("Brand updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

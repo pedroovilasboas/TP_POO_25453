@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace _25453_TP_POO
@@ -13,28 +14,26 @@ namespace _25453_TP_POO
 
         private void ManageBrandForm_Load(object sender, EventArgs e)
         {
-
+            // Load event handler if needed
         }
 
         private void buttonGo_Click(object sender, EventArgs e)
         {
             string query = textBoxSearch.Text;
-
             var results = Brand.SearchBrands(query);
-
             DisplayResults(results);
         }
 
         private void DisplayResults(List<Brand> results)
         {
             dataGridViewResults.Columns.Clear();
-            dataGridViewResults.Columns.Add("BrandName", "Brand Name");
+            dataGridViewResults.Columns.Add("Name", "Name");
             dataGridViewResults.Columns.Add("Description", "Description");
 
             dataGridViewResults.Rows.Clear();
             foreach (var brand in results)
             {
-                dataGridViewResults.Rows.Add(brand.BrandName, brand.Description);
+                dataGridViewResults.Rows.Add(brand.Name, brand.Description);
             }
         }
 
@@ -46,13 +45,13 @@ namespace _25453_TP_POO
                 return;
             }
 
-            string selectedBrandName = dataGridViewResults.SelectedRows[0].Cells["BrandName"].Value.ToString();
-            var brand = Brand.LoadBrands().Find(br => br.BrandName == selectedBrandName);
+            string selectedName = dataGridViewResults.SelectedRows[0].Cells["Name"].Value.ToString();
+            var brand = Brand.LoadBrands().Find(brd => brd.Name == selectedName);
 
             if (brand != null)
             {
-               // EditBrandForm editForm = new EditBrandForm(brand);
-              //  &&editForm.ShowDialog();
+                EditBrandForm editForm = new EditBrandForm(brand);
+                editForm.ShowDialog();
 
                 string query = textBoxSearch.Text;
                 var results = Brand.SearchBrands(query);
@@ -64,6 +63,16 @@ namespace _25453_TP_POO
             }
         }
 
+        private void dataGridViewResults_SelectionChanged(object sender, EventArgs e)
+        {
+            // SelectionChanged event handler if needed
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewResults.SelectedRows.Count != 1)
@@ -72,7 +81,7 @@ namespace _25453_TP_POO
                 return;
             }
 
-            string selectedBrandName = dataGridViewResults.SelectedRows[0].Cells["BrandName"].Value.ToString();
+            string selectedName = dataGridViewResults.SelectedRows[0].Cells["Name"].Value.ToString();
 
             var confirmResult = MessageBox.Show("Are you sure you want to delete this brand?",
                                                  "Confirm Delete",
@@ -81,7 +90,7 @@ namespace _25453_TP_POO
 
             if (confirmResult == DialogResult.Yes)
             {
-                Brand.DeleteBrand(selectedBrandName);
+                Brand.DeleteBrand(selectedName);
 
                 string query = textBoxSearch.Text;
                 var results = Brand.SearchBrands(query);
@@ -89,11 +98,6 @@ namespace _25453_TP_POO
 
                 MessageBox.Show("Brand deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void buttonClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
