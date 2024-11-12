@@ -100,6 +100,13 @@ namespace _25453_TP_POO
             ).ToList();
         }
 
+
+        public void UpdateStock(int newStock)
+        {
+            StockQuantity = newStock;
+            Alert.CheckAndGenerateAlert(this);
+        }
+
         // Método para atualizar produto
         public static void UpdateProduct(Product updatedProduct)
         {
