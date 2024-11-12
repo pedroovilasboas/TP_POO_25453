@@ -1,29 +1,37 @@
-﻿namespace _25453_TP_POO
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _25453_TP_POO
 {
-    public partial class Landpage : Form
+    public partial class LanPage : Form
     {
-        public Landpage()
+        public LanPage()
         {
             InitializeComponent();
         }
 
-        private void addAccountToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void LanPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddAccountForm addAccountForm = new AddAccountForm();
             addAccountForm.ShowDialog();
         }
 
-        private void manageAccountToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void manageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageAccountForm manageAccountForm = new ManageAccountForm();
             manageAccountForm.ShowDialog();
-        }
-
-
-
-        private void Landpage_Load(object sender, EventArgs e)
-        {
-            menuStrip1.Visible = true;
         }
 
         private void addClientToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,7 +46,18 @@
             manageClientForm.ShowDialog();
         }
 
-        private void addBrandToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void addCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddCategoryForm addCategoryForm = new AddCategoryForm();
+            addCategoryForm.ShowDialog();
+        }
+
+        private void manageCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addBrandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddBrandForm addBrandForm = new AddBrandForm();
             addBrandForm.ShowDialog();
@@ -48,16 +67,6 @@
         {
             ManageBrandForm manageBrandForm = new ManageBrandForm();
             manageBrandForm.ShowDialog();
-        }
-
-        private void brandToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            this.menuStrip1.Items.Add(this.brandToolStripMenuItem);
-        }
-
-        private void productToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.menuStrip1.Items.Add(this.productToolStripMenuItem);
         }
 
         private void addProductToolStripMenuItem_Click(object sender, EventArgs e)

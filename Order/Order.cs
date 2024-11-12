@@ -1,34 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace _25453_TP_POO
 {
     public class Order
     {
-        // Properties of the Order class
+        // Propriedades da classe Order
         public int OrderId { get; set; }
         public Client Client { get; set; }
         public List<Product> Products { get; set; }
-        public decimal TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; }
-        public string Status { get; set; }
 
-        // Path to the orders.txt file
-        private static string ordersFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt");
-
-        // Constructor to initialize an Order object
-        public Order(int orderId, Client client, List<Product> products, decimal totalPrice, DateTime orderDate, string status)
+        // Calcula o preço total dos produtos
+        public decimal TotalPrice
         {
-            OrderId = orderId;
-            Client = client ?? throw new ArgumentNullException(nameof(client));
-            Products = products ?? throw new ArgumentNullException(nameof(products));
-            TotalPrice = totalPrice;
-            OrderDate = orderDate;
-            Status = status ?? throw new ArgumentNullException(nameof(status));
+            get
+            {
+                return Products.Sum(p => p.Price);
+            }
         }
 
-        // Method to save an order to the file
+        public DateTime OrderDate { get; set; }
+        public string Status { get; set; } // Status do pedido, e.g., "Por Enviar", "Concluída"
+
+        // Caminho para o arquivo de pedidos
+        private static string ordersFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "orders.txt");
+
+        // Construtor para inicializar um pedido
+        public Order(int orderId, Client client, List<Product> products, DateTime orderDate, string status = "Por Enviar")
+        {
+            OrderId = orderId;
+            Client = client;
+            Products = products ?? new List<Product>();
+            OrderDate = orderDate;
+            Status = status;
+        }
+
+        // Método para salvar o pedido no arquivo
         public void Save()
         {
             var orders = LoadOrders();
@@ -36,7 +45,7 @@ namespace _25453_TP_POO
             SaveOrders(orders);
         }
 
-        // Method to load orders from the file
+        // Carrega pedidos do arquivo
         public static List<Order> LoadOrders()
         {
             var orders = new List<Order>();
@@ -47,14 +56,12 @@ namespace _25453_TP_POO
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length == 6)
+                    if (parts.Length > 4)
                     {
-                        var client = Client.LoadClients().Find(c => c.Username == parts[1]); // Simplified for example
-                        var products = new List<Product>(); // Simplified for example
-
-                        // Parse the products from a stored format if necessary
-                        // Here we assume the products are stored in a way that allows them to be parsed correctly
-                        orders.Add(new Order(int.Parse(parts[0]), client, products, decimal.Parse(parts[2]), DateTime.Parse(parts[3]), parts[4]));
+                        // Supondo que Client e Product tenham construtores adequados para inicializar com strings
+                        var client = new Client(parts[1]);
+                        var products = new List<Product>(); // Lógica para inicializar produtos
+                        orders.Add(new Order(int.Parse(parts[0]), client, products, DateTime.Parse(parts[2]), parts[3]));
                     }
                 }
             }
@@ -62,59 +69,42 @@ namespace _25453_TP_POO
             return orders;
         }
 
-        // Method to save a list of orders to the file
+        // Salva a lista de pedidos no arquivo
         public static void SaveOrders(List<Order> orders)
         {
             using (var writer = new StreamWriter(ordersFile))
             {
                 foreach (var order in orders)
                 {
-                    // Simplified product saving; you might need to adjust this based on how products should be saved
-                    writer.WriteLine($"{order.OrderId},{order.Client.Username},{order.TotalPrice},{order.OrderDate},{order.Status}");
+                    // Escreve informações básicas dos pedidos no arquivo
+                    writer.WriteLine($"{order.OrderId},{order.Client.Name},{order.OrderDate},{order.Status}");
                 }
             }
         }
 
-        // Method to search for orders by a query
+        // Pesquisa pedidos pelo nome do cliente ou status
         public static List<Order> SearchOrders(string query)
         {
             var orders = LoadOrders();
             query = query.ToLower();
 
-            return orders.FindAll(o => o.Client.Name.ToLower().Contains(query) || o.Status.ToLower().Contains(query));
+            return orders.Where(o => o.Client.Name.ToLower().Contains(query) || o.Status.ToLower().Contains(query)).ToList();
         }
 
-        // Method to update an existing order
-        public static void UpdateOrder(Order updatedOrder)
+        // Atualiza o status do pedido para "Concluída"
+        public static void CompleteOrder(int orderId)
         {
             var orders = LoadOrders();
-            var index = orders.FindIndex(ord => ord.OrderId == updatedOrder.OrderId);
+            var order = orders.FirstOrDefault(o => o.OrderId == orderId);
 
-            if (index != -1)
+            if (order != null)
             {
-                orders[index] = updatedOrder;
+                order.Status = "Concluída";
                 SaveOrders(orders);
             }
             else
             {
-                Console.WriteLine("Order not found for update.");
-            }
-        }
-
-        // Method to delete an order by its ID
-        public static void DeleteOrder(int orderId)
-        {
-            var orders = LoadOrders();
-            var orderToDelete = orders.Find(ord => ord.OrderId == orderId);
-
-            if (orderToDelete != null)
-            {
-                orders.Remove(orderToDelete);
-                SaveOrders(orders);
-            }
-            else
-            {
-                Console.WriteLine("Order not found for deletion.");
+                Console.WriteLine("Pedido não encontrado para conclusão.");
             }
         }
     }

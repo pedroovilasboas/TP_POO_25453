@@ -28,9 +28,7 @@ namespace _25453_TP_POO
             StockQuantity = stockQuantity;
         }
 
-        public Product()
-        {
-        }
+     
 
         // Método para salvar produto
         public void Save()

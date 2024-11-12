@@ -1,18 +1,16 @@
-namespace 25453_TP_POO
+using System;
+using System.Windows.Forms;
+
+namespace _25453_TP_POO
 {
-    internal static class Program
+    static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new Landpage());
+            Application.Run(new LandPageAccountForm());
         }
     }
-
 }
