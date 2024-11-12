@@ -1,4 +1,4 @@
-namespace _25453_TP_POO
+namespace 25453_TP_POO
 {
     internal static class Program
     {
