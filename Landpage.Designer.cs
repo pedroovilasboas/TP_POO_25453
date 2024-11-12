@@ -49,6 +49,9 @@
             brandToolStripMenuItem1 = new ToolStripMenuItem();
             addBrandToolStripMenuItem1 = new ToolStripMenuItem();
             manageBrandToolStripMenuItem = new ToolStripMenuItem();
+            productToolStripMenuItem = new ToolStripMenuItem();
+            addProductToolStripMenuItem = new ToolStripMenuItem();
+            manageProductToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -109,7 +112,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2, clientToolStripMenuItem, brandToolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem2, clientToolStripMenuItem, brandToolStripMenuItem1, productToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(698, 24);
@@ -147,14 +150,14 @@
             // addClientToolStripMenuItem
             // 
             addClientToolStripMenuItem.Name = "addClientToolStripMenuItem";
-            addClientToolStripMenuItem.Size = new Size(180, 22);
+            addClientToolStripMenuItem.Size = new Size(151, 22);
             addClientToolStripMenuItem.Text = "Add Client";
             addClientToolStripMenuItem.Click += addClientToolStripMenuItem_Click;
             // 
             // manageClientToolStripMenuItem
             // 
             manageClientToolStripMenuItem.Name = "manageClientToolStripMenuItem";
-            manageClientToolStripMenuItem.Size = new Size(180, 22);
+            manageClientToolStripMenuItem.Size = new Size(151, 22);
             manageClientToolStripMenuItem.Text = "Manage Client";
             manageClientToolStripMenuItem.Click += manageClientToolStripMenuItem_Click;
             // 
@@ -169,16 +172,38 @@
             // addBrandToolStripMenuItem1
             // 
             addBrandToolStripMenuItem1.Name = "addBrandToolStripMenuItem1";
-            addBrandToolStripMenuItem1.Size = new Size(180, 22);
+            addBrandToolStripMenuItem1.Size = new Size(151, 22);
             addBrandToolStripMenuItem1.Text = "Add Brand";
             addBrandToolStripMenuItem1.Click += addBrandToolStripMenuItem1_Click;
             // 
             // manageBrandToolStripMenuItem
             // 
             manageBrandToolStripMenuItem.Name = "manageBrandToolStripMenuItem";
-            manageBrandToolStripMenuItem.Size = new Size(180, 22);
+            manageBrandToolStripMenuItem.Size = new Size(151, 22);
             manageBrandToolStripMenuItem.Text = "Manage Brand";
             manageBrandToolStripMenuItem.Click += manageBrandToolStripMenuItem_Click;
+            // 
+            // productToolStripMenuItem
+            // 
+            productToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addProductToolStripMenuItem, manageProductToolStripMenuItem });
+            productToolStripMenuItem.Name = "productToolStripMenuItem";
+            productToolStripMenuItem.Size = new Size(61, 20);
+            productToolStripMenuItem.Text = "Product";
+            productToolStripMenuItem.Click += productToolStripMenuItem_Click;
+            // 
+            // addProductToolStripMenuItem
+            // 
+            addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
+            addProductToolStripMenuItem.Size = new Size(180, 22);
+            addProductToolStripMenuItem.Text = "Add Product";
+            addProductToolStripMenuItem.Click += addProductToolStripMenuItem_Click;
+            // 
+            // manageProductToolStripMenuItem
+            // 
+            manageProductToolStripMenuItem.Name = "manageProductToolStripMenuItem";
+            manageProductToolStripMenuItem.Size = new Size(180, 22);
+            manageProductToolStripMenuItem.Text = "Manage Product";
+            manageProductToolStripMenuItem.Click += manageProductToolStripMenuItem_Click;
             // 
             // Landpage
             // 
@@ -215,5 +240,8 @@
         private ToolStripMenuItem brandToolStripMenuItem1;
         private ToolStripMenuItem addBrandToolStripMenuItem1;
         private ToolStripMenuItem manageBrandToolStripMenuItem;
+        private ToolStripMenuItem productToolStripMenuItem;
+        private ToolStripMenuItem addProductToolStripMenuItem;
+        private ToolStripMenuItem manageProductToolStripMenuItem;
     }
 }

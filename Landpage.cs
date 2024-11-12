@@ -54,5 +54,22 @@
         {
             this.menuStrip1.Items.Add(this.brandToolStripMenuItem);
         }
+
+        private void productToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.menuStrip1.Items.Add(this.productToolStripMenuItem);
+        }
+
+        private void addProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddProductForm addProductForm = new AddProductForm();
+            addProductForm.ShowDialog();
+        }
+
+        private void manageProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageProductForm manageProductForm = new ManageProductForm();
+            manageProductForm.ShowDialog();
+        }
     }
 }

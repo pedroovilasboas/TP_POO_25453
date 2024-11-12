@@ -111,6 +111,11 @@ namespace _25453_TP_POO
                 MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

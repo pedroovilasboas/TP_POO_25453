@@ -17,92 +17,101 @@
 
         private void InitializeComponent()
         {
-            this.buttonGo = new System.Windows.Forms.Button();
-            this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.dataGridViewResults = new System.Windows.Forms.DataGridView();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
-            this.SuspendLayout();
+            buttonGo = new Button();
+            textBoxSearch = new TextBox();
+            dataGridViewResults = new DataGridView();
+            buttonEdit = new Button();
+            buttonDelete = new Button();
+            buttonClose = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
+            SuspendLayout();
             // 
             // buttonGo
             // 
-            this.buttonGo.Location = new System.Drawing.Point(800, 30);
-            this.buttonGo.Name = "buttonGo";
-            this.buttonGo.Size = new System.Drawing.Size(75, 23);
-            this.buttonGo.TabIndex = 0;
-            this.buttonGo.Text = "Go";
-            this.buttonGo.UseVisualStyleBackColor = true;
-            this.buttonGo.Click += new System.EventHandler(this.buttonGo_Click);
+            buttonGo.Location = new Point(914, 40);
+            buttonGo.Margin = new Padding(3, 4, 3, 4);
+            buttonGo.Name = "buttonGo";
+            buttonGo.Size = new Size(86, 31);
+            buttonGo.TabIndex = 0;
+            buttonGo.Text = "Go";
+            buttonGo.UseVisualStyleBackColor = true;
+            buttonGo.Click += buttonGo_Click;
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(30, 30);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(750, 23);
-            this.textBoxSearch.TabIndex = 1;
+            textBoxSearch.Location = new Point(34, 40);
+            textBoxSearch.Margin = new Padding(3, 4, 3, 4);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(857, 27);
+            textBoxSearch.TabIndex = 1;
             // 
             // dataGridViewResults
             // 
-            this.dataGridViewResults.AllowUserToAddRows = false;
-            this.dataGridViewResults.AllowUserToDeleteRows = false;
-            this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewResults.Location = new System.Drawing.Point(30, 70);
-            this.dataGridViewResults.Name = "dataGridViewResults";
-            this.dataGridViewResults.ReadOnly = true;
-            this.dataGridViewResults.RowTemplate.Height = 25;
-            this.dataGridViewResults.Size = new System.Drawing.Size(845, 380);
-            this.dataGridViewResults.TabIndex = 2;
-            this.dataGridViewResults.SelectionChanged += new System.EventHandler(this.dataGridViewResults_SelectionChanged);
+            dataGridViewResults.AllowUserToAddRows = false;
+            dataGridViewResults.AllowUserToDeleteRows = false;
+            dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewResults.Location = new Point(34, 93);
+            dataGridViewResults.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewResults.Name = "dataGridViewResults";
+            dataGridViewResults.ReadOnly = true;
+            dataGridViewResults.RowHeadersWidth = 51;
+            dataGridViewResults.RowTemplate.Height = 25;
+            dataGridViewResults.Size = new Size(966, 507);
+            dataGridViewResults.TabIndex = 2;
+            dataGridViewResults.CellContentClick += dataGridViewResults_CellContentClick;
+            dataGridViewResults.SelectionChanged += dataGridViewResults_SelectionChanged;
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(30, 470);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(75, 23);
-            this.buttonEdit.TabIndex = 3;
-            this.buttonEdit.Text = "Edit";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            buttonEdit.Location = new Point(34, 627);
+            buttonEdit.Margin = new Padding(3, 4, 3, 4);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Size = new Size(86, 31);
+            buttonEdit.TabIndex = 3;
+            buttonEdit.Text = "Edit";
+            buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += buttonEdit_Click;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(120, 470);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 4;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.Delete_Click);
+            buttonDelete.Location = new Point(137, 627);
+            buttonDelete.Margin = new Padding(3, 4, 3, 4);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(86, 31);
+            buttonDelete.TabIndex = 4;
+            buttonDelete.Text = "Delete";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += Delete_Click;
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(800, 470);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 5;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.Close_Click);
+            buttonClose.Location = new Point(914, 627);
+            buttonClose.Margin = new Padding(3, 4, 3, 4);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new Size(86, 31);
+            buttonClose.TabIndex = 5;
+            buttonClose.Text = "Close";
+            buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += Close_Click;
             // 
             // ManageClientForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 540);
-            this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonEdit);
-            this.Controls.Add(this.dataGridViewResults);
-            this.Controls.Add(this.textBoxSearch);
-            this.Controls.Add(this.buttonGo);
-            this.Name = "ManageClientForm";
-            this.Text = "Manage Clients";
-            this.Load += new System.EventHandler(this.ManageClientForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1040, 720);
+            Controls.Add(buttonClose);
+            Controls.Add(buttonDelete);
+            Controls.Add(buttonEdit);
+            Controls.Add(dataGridViewResults);
+            Controls.Add(textBoxSearch);
+            Controls.Add(buttonGo);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "ManageClientForm";
+            Text = "Manage Clients";
+            Load += ManageClientForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

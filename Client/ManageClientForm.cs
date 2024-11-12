@@ -114,5 +114,10 @@ namespace _25453_TP_POO
                 MessageBox.Show("Client deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void dataGridViewResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

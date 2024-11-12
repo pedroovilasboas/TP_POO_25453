@@ -51,7 +51,7 @@
             // 
             // AddButton
             // 
-            AddButton.Location = new Point(159, 520);
+            AddButton.Location = new Point(237, 515);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(75, 23);
             AddButton.TabIndex = 0;
