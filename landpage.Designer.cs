@@ -1,6 +1,6 @@
 ﻿namespace _25453_TP_POO
 {
-    partial class LanPage
+    partial class LandPage
     {
         /// <summary>
         /// Required designer variable.
@@ -152,14 +152,14 @@
             // addProductToolStripMenuItem
             // 
             addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
-            addProductToolStripMenuItem.Size = new Size(180, 22);
+            addProductToolStripMenuItem.Size = new Size(162, 22);
             addProductToolStripMenuItem.Text = "Add Product";
             addProductToolStripMenuItem.Click += addProductToolStripMenuItem_Click;
             // 
             // manageProductToolStripMenuItem
             // 
             manageProductToolStripMenuItem.Name = "manageProductToolStripMenuItem";
-            manageProductToolStripMenuItem.Size = new Size(180, 22);
+            manageProductToolStripMenuItem.Size = new Size(162, 22);
             manageProductToolStripMenuItem.Text = "Manage Product";
             manageProductToolStripMenuItem.Click += manageProductToolStripMenuItem_Click;
             // 
@@ -176,15 +176,15 @@
             manageOrdersToolStripMenuItem.Size = new Size(155, 22);
             manageOrdersToolStripMenuItem.Text = "Manage Orders";
             // 
-            // LanPage
+            // LandPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "LanPage";
-            Text = "LanPage";
+            Name = "LandPage";
+            Text = "LandPage";
             Load += LanPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

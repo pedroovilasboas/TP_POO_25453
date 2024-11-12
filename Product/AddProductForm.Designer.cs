@@ -30,7 +30,6 @@
             labelPrice = new Label();
             labelStock = new Label();
             buttonSave = new Button();
-            buttonClose = new Button();
             SuspendLayout();
             // 
             // comboBoxBrand
@@ -130,7 +129,7 @@
             labelStock.TabIndex = 11;
             labelStock.Text = "Stock";
             // 
-            // AddButton
+            // buttonSave
             // 
             buttonSave.Location = new Point(131, 350);
             buttonSave.Name = "buttonSave";
@@ -139,14 +138,12 @@
             buttonSave.Text = "Save";
             buttonSave.UseVisualStyleBackColor = true;
             buttonSave.Click += AddButton_Click;
-            
             // 
             // AddProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(386, 451);
-            Controls.Add(buttonClose);
             Controls.Add(buttonSave);
             Controls.Add(labelStock);
             Controls.Add(labelPrice);
@@ -182,6 +179,5 @@
         private Label labelPrice;
         private Label labelStock;
         private Button buttonSave;
-        private Button buttonClose;
     }
 }

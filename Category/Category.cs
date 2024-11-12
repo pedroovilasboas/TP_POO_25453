@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace _25453_TP_POO
 {
     public class Category
     {
-        // Properties for Category
+        // Propriedades para Category
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        // Path to the file where categories will be saved
-        private static string categoriesFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "categories.txt");
+        // Caminho para o arquivo categories.txt
+        private static string categoriesFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Category\category.txt");
 
-        // Constructor to initialize Category with ID, Name, and Description
+        // Construtor para inicializar Category
         public Category(int categoryId, string name, string description)
         {
             CategoryId = categoryId;
@@ -22,7 +24,7 @@ namespace _25453_TP_POO
             Description = description;
         }
 
-        // Method to save a new category to the file
+        // Método para salvar uma categoria
         public void Save()
         {
             var categories = LoadCategories();
@@ -30,7 +32,7 @@ namespace _25453_TP_POO
             SaveCategories(categories);
         }
 
-        // Method to load categories from the file
+        // Método para carregar categorias
         public static List<Category> LoadCategories()
         {
             var categories = new List<Category>();
@@ -41,11 +43,12 @@ namespace _25453_TP_POO
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length >= 3)
+                    if (parts.Length == 3)
                     {
                         int categoryId = int.Parse(parts[0]);
                         string name = parts[1];
                         string description = parts[2];
+
                         categories.Add(new Category(categoryId, name, description));
                     }
                 }
@@ -54,7 +57,7 @@ namespace _25453_TP_POO
             return categories;
         }
 
-        // Method to save all categories to the file
+        // Método para salvar lista de categorias
         public static void SaveCategories(List<Category> categories)
         {
             using (var writer = new StreamWriter(categoriesFile))
@@ -63,6 +66,52 @@ namespace _25453_TP_POO
                 {
                     writer.WriteLine($"{category.CategoryId},{category.Name},{category.Description}");
                 }
+            }
+        }
+
+        // Método para procurar categorias
+        public static List<Category> SearchCategories(string query)
+        {
+            var categories = LoadCategories();
+            query = query.ToLower();
+
+            return categories.Where(c =>
+                c.Name.ToLower().Contains(query) ||
+                c.Description.ToLower().Contains(query)
+            ).ToList();
+        }
+
+        // Método para atualizar uma categoria
+        public static void UpdateCategory(Category updatedCategory)
+        {
+            var categories = LoadCategories();
+            var index = categories.FindIndex(c => c.CategoryId == updatedCategory.CategoryId);
+
+            if (index != -1)
+            {
+                categories[index] = updatedCategory;
+                SaveCategories(categories);
+            }
+            else
+            {
+                MessageBox.Show("Category not found for update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Método para eliminar uma categoria
+        public static void DeleteCategory(int categoryId)
+        {
+            var categories = LoadCategories();
+            var categoryToDelete = categories.FirstOrDefault(c => c.CategoryId == categoryId);
+
+            if (categoryToDelete != null)
+            {
+                categories.Remove(categoryToDelete);
+                SaveCategories(categories);
+            }
+            else
+            {
+                MessageBox.Show("Category not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

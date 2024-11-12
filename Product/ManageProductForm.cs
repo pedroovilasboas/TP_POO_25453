@@ -10,6 +10,11 @@ namespace _25453_TP_POO
         {
             InitializeComponent();
         }
+        private void ManageProductForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void buttonGo_Click(object sender, EventArgs e)
         {
@@ -61,41 +66,12 @@ namespace _25453_TP_POO
             }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewResults.SelectedRows.Count != 1)
-            {
-                MessageBox.Show("Please select exactly one product to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string selectedName = dataGridViewResults.SelectedRows[0].Cells["Name"].Value.ToString();
-
-            var confirmResult = MessageBox.Show("Are you sure you want to delete this product?",
-                                                 "Confirm Delete",
-                                                 MessageBoxButtons.YesNo,
-                                                 MessageBoxIcon.Warning);
-
-            if (confirmResult == DialogResult.Yes)
-            {
-                Product.DeleteProduct(selectedName);
-
-                string query = textBoxSearch.Text;
-                var results = Product.SearchProducts(query);
-                DisplayResults(results);
-
-                MessageBox.Show("Product deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void ManageProductForm_Load(object sender, EventArgs e)
-        {
-
-        }
+    
+        
     }
 }

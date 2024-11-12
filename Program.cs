@@ -10,7 +10,7 @@ namespace _25453_TP_POO
         {
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LandPageAccountForm());
+            Application.Run(new LandPage());
         }
     }
 }

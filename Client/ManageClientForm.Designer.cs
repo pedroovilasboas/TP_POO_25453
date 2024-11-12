@@ -21,17 +21,16 @@
             textBoxSearch = new TextBox();
             dataGridViewResults = new DataGridView();
             buttonEdit = new Button();
-            buttonDelete = new Button();
+            Delete = new Button();
             buttonClose = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
             // 
             // buttonGo
             // 
-            buttonGo.Location = new Point(914, 40);
-            buttonGo.Margin = new Padding(3, 4, 3, 4);
+            buttonGo.Location = new Point(800, 30);
             buttonGo.Name = "buttonGo";
-            buttonGo.Size = new Size(86, 31);
+            buttonGo.Size = new Size(75, 23);
             buttonGo.TabIndex = 0;
             buttonGo.Text = "Go";
             buttonGo.UseVisualStyleBackColor = true;
@@ -39,10 +38,9 @@
             // 
             // textBoxSearch
             // 
-            textBoxSearch.Location = new Point(34, 40);
-            textBoxSearch.Margin = new Padding(3, 4, 3, 4);
+            textBoxSearch.Location = new Point(30, 30);
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(857, 27);
+            textBoxSearch.Size = new Size(750, 23);
             textBoxSearch.TabIndex = 1;
             // 
             // dataGridViewResults
@@ -50,45 +48,40 @@
             dataGridViewResults.AllowUserToAddRows = false;
             dataGridViewResults.AllowUserToDeleteRows = false;
             dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewResults.Location = new Point(34, 93);
-            dataGridViewResults.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewResults.Location = new Point(30, 70);
             dataGridViewResults.Name = "dataGridViewResults";
             dataGridViewResults.ReadOnly = true;
             dataGridViewResults.RowHeadersWidth = 51;
-            dataGridViewResults.RowTemplate.Height = 25;
-            dataGridViewResults.Size = new Size(966, 507);
+            dataGridViewResults.Size = new Size(845, 380);
             dataGridViewResults.TabIndex = 2;
             dataGridViewResults.CellContentClick += dataGridViewResults_CellContentClick;
             dataGridViewResults.SelectionChanged += dataGridViewResults_SelectionChanged;
             // 
             // buttonEdit
             // 
-            buttonEdit.Location = new Point(34, 627);
-            buttonEdit.Margin = new Padding(3, 4, 3, 4);
+            buttonEdit.Location = new Point(30, 470);
             buttonEdit.Name = "buttonEdit";
-            buttonEdit.Size = new Size(86, 31);
+            buttonEdit.Size = new Size(75, 23);
             buttonEdit.TabIndex = 3;
             buttonEdit.Text = "Edit";
             buttonEdit.UseVisualStyleBackColor = true;
             buttonEdit.Click += buttonEdit_Click;
             // 
-            // buttonDelete
+            // Delete
             // 
-            buttonDelete.Location = new Point(137, 627);
-            buttonDelete.Margin = new Padding(3, 4, 3, 4);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(86, 31);
-            buttonDelete.TabIndex = 4;
-            buttonDelete.Text = "Delete";
-            buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += Delete_Click;
+            Delete.Location = new Point(120, 470);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(75, 23);
+            Delete.TabIndex = 4;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
             // buttonClose
             // 
-            buttonClose.Location = new Point(914, 627);
-            buttonClose.Margin = new Padding(3, 4, 3, 4);
+            buttonClose.Location = new Point(800, 470);
             buttonClose.Name = "buttonClose";
-            buttonClose.Size = new Size(86, 31);
+            buttonClose.Size = new Size(75, 23);
             buttonClose.TabIndex = 5;
             buttonClose.Text = "Close";
             buttonClose.UseVisualStyleBackColor = true;
@@ -96,16 +89,15 @@
             // 
             // ManageClientForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1040, 720);
+            ClientSize = new Size(910, 540);
             Controls.Add(buttonClose);
-            Controls.Add(buttonDelete);
+            Controls.Add(Delete);
             Controls.Add(buttonEdit);
             Controls.Add(dataGridViewResults);
             Controls.Add(textBoxSearch);
             Controls.Add(buttonGo);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "ManageClientForm";
             Text = "Manage Clients";
             Load += ManageClientForm_Load;
@@ -120,7 +112,7 @@
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.DataGridView dataGridViewResults;
         private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Button buttonClose;
     }
 }

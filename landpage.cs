@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace _25453_TP_POO
 {
-    public partial class LanPage : Form
+    public partial class LandPage : Form
     {
-        public LanPage()
+        public LandPage()
         {
             InitializeComponent();
         }

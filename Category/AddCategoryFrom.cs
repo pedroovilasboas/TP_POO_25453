@@ -23,7 +23,6 @@ namespace _25453_TP_POO
                 MessageBox.Show("Please enter a valid numeric ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             string categoryName = textBoxCategoryName.Text;
             string description = textBoxDescription.Text;
 

@@ -22,7 +22,6 @@
             dataGridViewResults = new DataGridView();
             buttonGo = new Button();
             buttonEdit = new Button();
-            buttonDelete = new Button();
             buttonClose = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
@@ -71,16 +70,6 @@
             buttonEdit.UseVisualStyleBackColor = true;
             buttonEdit.Click += buttonEdit_Click;
             // 
-            // buttonDelete
-            // 
-            buttonDelete.Location = new Point(143, 308);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(75, 23);
-            buttonDelete.TabIndex = 8;
-            buttonDelete.Text = "Delete";
-            buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += buttonDelete_Click;
-            // 
             // buttonClose
             // 
             buttonClose.Location = new Point(478, 308);
@@ -97,7 +86,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(600, 400);
             Controls.Add(buttonClose);
-            Controls.Add(buttonDelete);
             Controls.Add(buttonEdit);
             Controls.Add(buttonGo);
             Controls.Add(dataGridViewResults);
@@ -118,7 +106,6 @@
         private DataGridView dataGridViewResults;
         private Button buttonGo;
         private Button buttonEdit;
-        private Button buttonDelete;
         private Button buttonClose;
     }
 }
