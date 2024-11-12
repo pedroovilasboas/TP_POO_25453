@@ -8,6 +8,7 @@ namespace _25453_TP_POO
 {
     public class Brand
     {
+        public int ID {  get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 

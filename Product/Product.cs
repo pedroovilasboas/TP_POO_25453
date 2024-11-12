@@ -8,6 +8,7 @@ namespace _25453_TP_POO
 {
     public class Product
     {
+        public Category Category { get; set; }
         public Brand Brand { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -18,8 +19,9 @@ namespace _25453_TP_POO
         // Caminho para o arquivo products.txt
         private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Product\products.txt");
 
-        public Product(Brand brand, string name, string description, string type, decimal price, int stockQuantity)
+        public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
+            Category = category;
             Brand = brand;
             Name = name;
             Description = description;
