@@ -75,29 +75,7 @@ namespace _25453_TP_POO
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (dataGridViewResults.SelectedRows.Count != 1)
-            {
-                MessageBox.Show("Please select exactly one brand to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string selectedName = dataGridViewResults.SelectedRows[0].Cells["Name"].Value.ToString();
-
-            var confirmResult = MessageBox.Show("Are you sure you want to delete this brand?",
-                                                 "Confirm Delete",
-                                                 MessageBoxButtons.YesNo,
-                                                 MessageBoxIcon.Warning);
-
-            if (confirmResult == DialogResult.Yes)
-            {
-                Brand.DeleteBrand(selectedName);
-
-                string query = textBoxSearch.Text;
-                var results = Brand.SearchBrands(query);
-                DisplayResults(results);
-
-                MessageBox.Show("Brand deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+           
         }
     }
 }
