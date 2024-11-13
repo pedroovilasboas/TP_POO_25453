@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace _25453_TP_POO
 {
     public class Category
     {
-        // Propriedades para Category
+        // Properties for Category
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        // Caminho para o arquivo categories.txt
+        // File path for categories.txt
         private static string categoriesFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Category\category.txt");
 
-        // Construtor para inicializar Category
+        // Constructor to initialize Category
         public Category(int categoryId, string name, string description)
         {
             CategoryId = categoryId;
@@ -24,7 +26,7 @@ namespace _25453_TP_POO
             Description = description;
         }
 
-        // Método para salvar uma categoria
+        // Method to save a category
         public void Save()
         {
             var categories = LoadCategories();
@@ -32,7 +34,7 @@ namespace _25453_TP_POO
             SaveCategories(categories);
         }
 
-        // Método para carregar categorias
+        // Method to load categories from file
         public static List<Category> LoadCategories()
         {
             var categories = new List<Category>();
@@ -57,7 +59,7 @@ namespace _25453_TP_POO
             return categories;
         }
 
-        // Método para salvar lista de categorias
+        // Method to save a list of categories to file
         public static void SaveCategories(List<Category> categories)
         {
             using (var writer = new StreamWriter(categoriesFile))
@@ -69,7 +71,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para procurar categorias
+        // Method to search categories by name or description
         public static List<Category> SearchCategories(string query)
         {
             var categories = LoadCategories();
@@ -81,7 +83,7 @@ namespace _25453_TP_POO
             ).ToList();
         }
 
-        // Método para atualizar uma categoria
+        // Method to update an existing category
         public static void UpdateCategory(Category updatedCategory)
         {
             var categories = LoadCategories();
@@ -98,7 +100,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para eliminar uma categoria
+        // Method to delete a category by ID
         public static void DeleteCategory(int categoryId)
         {
             var categories = LoadCategories();
@@ -116,3 +118,4 @@ namespace _25453_TP_POO
         }
     }
 }
+

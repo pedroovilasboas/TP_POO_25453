@@ -7,7 +7,7 @@ namespace _25453_TP_POO
 {
     public class Order
     {
-        // Atributos da classe Order
+        // Order class attributes
         public int OrderId { get; set; }
         public Client Client { get; set; }
         public List<Product> Products { get; set; } = new List<Product>();
@@ -15,11 +15,11 @@ namespace _25453_TP_POO
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }
 
-        // Caminho para o arquivo orders.txt para persistência
+        // File path for orders.txt for persistence
         private static string ordersFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt");
 
-        // Construtor
-        public Order(int orderId, Client client, DateTime orderDate, string status = "Por Enviar")
+        // Constructor
+        public Order(int orderId, Client client, DateTime orderDate, string status = "To Ship")
         {
             OrderId = orderId;
             Client = client;
@@ -28,26 +28,26 @@ namespace _25453_TP_POO
             CalculateTotal();
         }
 
-        // Método para adicionar produto ao pedido
+        // Method to add a product to the order
         public void AddProduct(Product product)
         {
             Products.Add(product);
             CalculateTotal();
         }
 
-        // Método para calcular o preço total do pedido
+        // Method to calculate the total price of the order
         public void CalculateTotal()
         {
             TotalPrice = Products.Sum(p => p.Price);
         }
 
-        // Método para atualizar o status do pedido
+        // Method to update the order status
         public void UpdateStatus(string newStatus)
         {
             Status = newStatus;
         }
 
-        // Método para salvar pedido no arquivo
+        // Method to save the order to file
         public void Save()
         {
             var orders = LoadOrders();
@@ -55,7 +55,7 @@ namespace _25453_TP_POO
             SaveOrders(orders);
         }
 
-        // Método para carregar pedidos a partir do arquivo
+        // Method to load orders from file
         public static List<Order> LoadOrders()
         {
             var orders = new List<Order>();
@@ -82,7 +82,7 @@ namespace _25453_TP_POO
             return orders;
         }
 
-        // Método para salvar uma lista de pedidos no arquivo
+        // Method to save a list of orders to file
         public static void SaveOrders(List<Order> orders)
         {
             using (var writer = new StreamWriter(ordersFile))
@@ -94,7 +94,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para atualizar um pedido
+        // Method to update an existing order
         public static void UpdateOrder(Order updatedOrder)
         {
             var orders = LoadOrders();
@@ -107,7 +107,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para eliminar um pedido
+        // Method to delete an order by ID
         public static void DeleteOrder(int orderId)
         {
             var orders = LoadOrders();
@@ -121,4 +121,3 @@ namespace _25453_TP_POO
         }
     }
 }
-

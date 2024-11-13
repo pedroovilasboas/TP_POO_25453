@@ -7,16 +7,16 @@ namespace _25453_TP_POO
 {
     public class Alert
     {
-        // Atributos da classe Alert
+        // Class attributes
         public int AlertId { get; set; }
         public string Message { get; set; }
         public int ProductId { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        // Caminho para o arquivo alerts.txt para persistência
+        // File path for alerts.txt for persistence
         private static string alertsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Alert\alerts.txt");
 
-        // Construtor
+        // Constructor
         public Alert(int alertId, string message, int productId)
         {
             AlertId = alertId;
@@ -25,12 +25,12 @@ namespace _25453_TP_POO
             CreatedAt = DateTime.Now;
         }
 
-        // Método para criar um alerta para um produto específico
+        // Method to create an alert for a specific product
         public static void CreateAlert(Product product, string message)
         {
             var alerts = LoadAlerts();
 
-            // Verifica se já existe um alerta para esse produto
+            // Checks if an alert already exists for this product
             if (!alerts.Any(a => a.ProductId == product.ProductId))
             {
                 int newAlertId = alerts.Count > 0 ? alerts.Max(a => a.AlertId) + 1 : 1;
@@ -40,7 +40,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para remover alerta para um produto específico
+        // Method to remove an alert for a specific product
         public static void RemoveAlert(int productId)
         {
             var alerts = LoadAlerts();
@@ -53,12 +53,12 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para verificar se um alerta deve ser criado ou removido com base no stock
+        // Method to check and create or remove an alert based on stock level
         public static void CheckAndGenerateAlert(Product product)
         {
             if (product.StockQuantity < 5)
             {
-                CreateAlert(product, $"Stock baixo para o produto {product.Name}. Apenas {product.StockQuantity} unidades restantes.");
+                CreateAlert(product, $"Low stock for product {product.Name}. Only {product.StockQuantity} units remaining.");
             }
             else
             {
@@ -66,7 +66,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para carregar alertas a partir do arquivo
+        // Method to load alerts from file
         public static List<Alert> LoadAlerts()
         {
             var alerts = new List<Alert>();
@@ -92,7 +92,7 @@ namespace _25453_TP_POO
             return alerts;
         }
 
-        // Método para salvar uma lista de alertas no arquivo
+        // Method to save a list of alerts to file
         public static void SaveAlerts(List<Alert> alerts)
         {
             using (var writer = new StreamWriter(alertsFile))
@@ -104,7 +104,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para obter todos os alertas ativos
+        // Method to get all active alerts
         public static List<Alert> GetActiveAlerts()
         {
             return LoadAlerts();

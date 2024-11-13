@@ -7,16 +7,16 @@ namespace _25453_TP_POO
 {
     public class Cart
     {
-        // Atributos da classe Cart
+        // Cart class attributes
         public int CartId { get; set; }
         public Client Client { get; set; }
         public List<Product> Products { get; set; } = new List<Product>();
         public decimal TotalPrice { get; private set; }
 
-        // Caminho para o arquivo cart.txt para persistência
+        // File path for cart.txt for persistence
         private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Cart\cart.txt");
 
-        // Construtor
+        // Constructor
         public Cart(int cartId, Client client)
         {
             CartId = cartId;
@@ -24,50 +24,50 @@ namespace _25453_TP_POO
             CalculateTotal();
         }
 
-        // Método para adicionar produto ao carrinho
+        // Method to add a product to the cart
         public void AddToCart(Product product)
         {
             Products.Add(product);
             CalculateTotal();
         }
 
-        // Método para remover produto do carrinho
+        // Method to remove a product from the cart
         public void RemoveFromCart(Product product)
         {
             Products.Remove(product);
             CalculateTotal();
         }
 
-        // Método para calcular o preço total do carrinho
+        // Method to calculate the total price of the cart
         public void CalculateTotal()
         {
             TotalPrice = Products.Sum(p => p.Price);
         }
 
-        // Método para limpar o carrinho
+        // Method to clear the cart
         public void ClearCart()
         {
             Products.Clear();
             CalculateTotal();
         }
 
-        // Método para finalizar a compra (checkout)
+        // Method to complete purchase (checkout)
         public Order Checkout()
         {
-            var order = new Order(GetNextOrderId(), Client, DateTime.Now, "Por Enviar")
+            var order = new Order(GetNextOrderId(), Client, DateTime.Now, "To Ship")
             {
                 Products = new List<Product>(Products)
             };
             order.CalculateTotal();
             order.Save();
 
-            // Limpar o carrinho após a finalização da compra
+            // Clear the cart after checkout
             ClearCart();
 
             return order;
         }
 
-        // Método para salvar o estado do carrinho no arquivo
+        // Method to save the cart state to file
         public void Save()
         {
             var carts = LoadCart();
@@ -75,7 +75,7 @@ namespace _25453_TP_POO
             SaveCarts(carts);
         }
 
-        // Método para carregar o carrinho do arquivo
+        // Method to load the cart from file
         public static List<Cart> LoadCart()
         {
             var carts = new List<Cart>();
@@ -89,7 +89,7 @@ namespace _25453_TP_POO
                     if (parts.Length > 2)
                     {
                         int cartId = int.Parse(parts[0]);
-                        var client = new Client(parts[1]); // Simplificado para exemplo
+                        var client = new Client(parts[1]); // Simplified for example
                         var cart = new Cart(cartId, client);
                         carts.Add(cart);
                     }
@@ -99,7 +99,7 @@ namespace _25453_TP_POO
             return carts;
         }
 
-        // Método para salvar uma lista de carrinhos no arquivo
+        // Method to save a list of carts to file
         public static void SaveCarts(List<Cart> carts)
         {
             using (var writer = new StreamWriter(cartFile))
@@ -111,7 +111,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para obter o próximo ID de ordem (simples para exemplo)
+        // Method to get the next order ID (simple example)
         private static int GetNextOrderId()
         {
             var orders = Order.LoadOrders();

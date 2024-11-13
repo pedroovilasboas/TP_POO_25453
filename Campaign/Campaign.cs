@@ -7,7 +7,7 @@ namespace _25453_TP_POO
 {
     public class Campaign
     {
-        // Atributos da classe Campaign
+        // Campaign class attributes
         public int CampaignId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,15 +15,15 @@ namespace _25453_TP_POO
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        // IDs para definir o escopo da campanha
+        // IDs to define campaign scope
         public int? ProductId { get; set; }
         public int? BrandId { get; set; }
         public int? CategoryId { get; set; }
 
-        // Caminho para o arquivo campaigns.txt para persistência
+        // File path for campaigns.txt for persistence
         private static string campaignsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Campaign\campaigns.txt");
 
-        // Construtor
+        // Constructor
         public Campaign(int campaignId, string name, string description, float discountPercentage, DateTime startDate, DateTime endDate,
                         int? productId = null, int? brandId = null, int? categoryId = null)
         {
@@ -38,14 +38,14 @@ namespace _25453_TP_POO
             CategoryId = categoryId;
         }
 
-        // Método para verificar se a campanha é aplicável a um produto
+        // Method to check if the campaign is applicable to a product
         public bool IsApplicable(Product product)
         {
-            // Verifica se a campanha está ativa
+            // Checks if the campaign is active
             if (!IsCampaignActive())
                 return false;
 
-            // Verifica o escopo da campanha: produto específico, marca ou categoria
+            // Checks campaign scope: specific product, brand, or category
             if (ProductId.HasValue && product.ProductId == ProductId.Value)
                 return true;
             if (BrandId.HasValue && product.Brand.BrandId == BrandId.Value)
@@ -56,7 +56,7 @@ namespace _25453_TP_POO
             return false;
         }
 
-        // Método para aplicar a campanha ao produto, se aplicável
+        // Method to apply the campaign discount to a product if applicable
         public bool ApplyToProduct(Product product)
         {
             if (IsApplicable(product))
@@ -67,14 +67,14 @@ namespace _25453_TP_POO
             return false;
         }
 
-        // Método para verificar se a campanha está ativa
+        // Method to check if the campaign is currently active
         public bool IsCampaignActive()
         {
             var currentDate = DateTime.Now;
             return currentDate >= StartDate && currentDate <= EndDate;
         }
 
-        // Método para salvar a campanha no arquivo
+        // Method to save the campaign to file
         public void Save()
         {
             var campaigns = LoadCampaigns();
@@ -82,7 +82,7 @@ namespace _25453_TP_POO
             SaveCampaigns(campaigns);
         }
 
-        // Método para carregar campanhas a partir do arquivo
+        // Method to load all campaigns from file
         public static List<Campaign> LoadCampaigns()
         {
             var campaigns = new List<Campaign>();
@@ -114,7 +114,7 @@ namespace _25453_TP_POO
             return campaigns;
         }
 
-        // Método para salvar uma lista de campanhas no arquivo
+        // Method to save a list of campaigns to file
         public static void SaveCampaigns(List<Campaign> campaigns)
         {
             using (var writer = new StreamWriter(campaignsFile))

@@ -8,11 +8,11 @@ namespace _25453_TP_POO
 {
     public class Brand
     {
-        public int ID {  get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        // Caminho para o arquivo brands.txt
+        // File path for brands.txt
         private static string brandsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Brand\brands.txt");
 
         public Brand(string name, string description)
@@ -21,7 +21,7 @@ namespace _25453_TP_POO
             Description = description;
         }
 
-        // Método para salvar marca
+        // Method to save a brand
         public void Save()
         {
             var brands = LoadBrands();
@@ -29,7 +29,7 @@ namespace _25453_TP_POO
             SaveBrands(brands);
         }
 
-        // Método para carregar marcas
+        // Method to load all brands from file
         public static List<Brand> LoadBrands()
         {
             var brands = new List<Brand>();
@@ -50,7 +50,7 @@ namespace _25453_TP_POO
             return brands;
         }
 
-        // Método para salvar lista de marcas
+        // Method to save a list of brands to file
         public static void SaveBrands(List<Brand> brands)
         {
             using (var writer = new StreamWriter(brandsFile))
@@ -62,7 +62,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para procurar marcas
+        // Method to search brands by name or description
         public static List<Brand> SearchBrands(string query)
         {
             var brands = LoadBrands();
@@ -71,7 +71,7 @@ namespace _25453_TP_POO
             return brands.Where(b => b.Name.ToLower().Contains(query) || b.Description.ToLower().Contains(query)).ToList();
         }
 
-        // Método para atualizar marca
+        // Method to update a brand
         public static void UpdateBrand(Brand updatedBrand)
         {
             var brands = LoadBrands();
@@ -88,7 +88,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para eliminar marca
+        // Method to delete a brand by name
         public static void DeleteBrand(string name)
         {
             var brands = LoadBrands();

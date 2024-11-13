@@ -7,7 +7,7 @@ namespace _25453_TP_POO
 {
     public class Payment
     {
-        // Atributos da classe Payment
+        // Payment class attributes
         public int PaymentId { get; set; }
         public int OrderId { get; set; }
         public decimal Amount { get; set; }
@@ -15,10 +15,10 @@ namespace _25453_TP_POO
         public string PaymentMethod { get; set; }
         public bool IsConfirmed { get; set; }
 
-        // Caminho para o arquivo payments.txt para persistência
+        // File path for payments.txt for persistence
         private static string paymentsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Payment\payments.txt");
 
-        // Construtor
+        // Constructor
         public Payment(int paymentId, int orderId, decimal amount, DateTime paymentDate, string paymentMethod, bool isConfirmed = false)
         {
             PaymentId = paymentId;
@@ -29,7 +29,7 @@ namespace _25453_TP_POO
             IsConfirmed = isConfirmed;
         }
 
-        // Método para processar um pagamento
+        // Method to process a payment
         public static void ProcessPayment(Order order, decimal amount, string paymentMethod)
         {
             var payments = LoadPayments();
@@ -40,7 +40,7 @@ namespace _25453_TP_POO
             SavePayments(payments);
         }
 
-        // Método para confirmar o pagamento
+        // Method to confirm the payment
         public void ConfirmPayment()
         {
             IsConfirmed = true;
@@ -53,7 +53,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para carregar pagamentos a partir do arquivo
+        // Method to load payments from file
         public static List<Payment> LoadPayments()
         {
             var payments = new List<Payment>();
@@ -81,7 +81,7 @@ namespace _25453_TP_POO
             return payments;
         }
 
-        // Método para salvar uma lista de pagamentos no arquivo
+        // Method to save a list of payments to file
         public static void SavePayments(List<Payment> payments)
         {
             using (var writer = new StreamWriter(paymentsFile))
@@ -93,7 +93,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para obter o pagamento por ID de pedido
+        // Method to get payment by order ID
         public static Payment GetPaymentByOrderId(int orderId)
         {
             var payments = LoadPayments();

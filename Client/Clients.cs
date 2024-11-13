@@ -18,7 +18,7 @@ namespace _25453_TP_POO
         public string Region { get; set; }
         public string PostalCode { get; set; }
 
-        // Caminho para o arquivo clients.txt
+        // File path for clients.txt
         private static string clientsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Client\clients.txt");
 
         public Client(string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
@@ -34,7 +34,7 @@ namespace _25453_TP_POO
             PostalCode = postalCode;
         }
 
-        // Método para salvar cliente
+        // Method to save a client
         public void Save()
         {
             var clients = LoadClients();
@@ -42,7 +42,7 @@ namespace _25453_TP_POO
             SaveClients(clients);
         }
 
-        // Método para carregar clientes
+        // Method to load all clients from file
         public static List<Client> LoadClients()
         {
             var clients = new List<Client>();
@@ -64,7 +64,7 @@ namespace _25453_TP_POO
             return clients;
         }
 
-        // Método para salvar lista de clientes
+        // Method to save a list of clients to file
         public static void SaveClients(List<Client> clients)
         {
             using (var writer = new StreamWriter(clientsFile))
@@ -76,7 +76,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para procurar clientes
+        // Method to search clients by name, username, or email
         public static List<Client> SearchClients(string query)
         {
             var clients = LoadClients();
@@ -85,7 +85,7 @@ namespace _25453_TP_POO
             return clients.Where(c => c.Name.ToLower().Contains(query) || c.Username.ToLower().Contains(query) || c.Email.ToLower().Contains(query)).ToList();
         }
 
-        // Método para atualizar cliente
+        // Method to update a client
         public static void UpdateClient(Client updatedClient)
         {
             var clients = LoadClients();
@@ -104,7 +104,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para eliminar cliente
+        // Method to delete a client by username
         public static void DeleteClient(string username)
         {
             var clients = LoadClients();

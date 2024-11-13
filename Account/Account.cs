@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace _25453_TP_POO
 {
@@ -12,23 +14,17 @@ namespace _25453_TP_POO
         public string Password { get; set; }
         public string Name { get; set; }
 
-        // Caminho para o arquivo accounts.txt
-        //private static string accountsFile = Path.Combine(Environment.CurrentDirectory, "accounts.txt");
-
-
-        // Caminho para o arquivo absuluto para saccounts.txt
+        // Absolute file path for accounts.txt
         private static string accountsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Account\accounts.txt");
-
 
         public Account(string username, string password, string name)
         {
             Username = username;
             Password = password;
             Name = name;
-
         }
 
-        // Save file method
+        // Method to save account to file
         public void Save()
         {
             var accounts = LoadAccounts();
@@ -36,7 +32,7 @@ namespace _25453_TP_POO
             SaveAccounts(accounts);
         }
 
-        // Load Accounts method
+        // Method to load all accounts from file
         public static List<Account> LoadAccounts()
         {
             var accounts = new List<Account>();
@@ -57,7 +53,7 @@ namespace _25453_TP_POO
             return accounts;
         }
 
-        // Save accounts
+        // Method to save a list of accounts to file
         public static void SaveAccounts(List<Account> accounts)
         {
             using (var writer = new StreamWriter(accountsFile))
@@ -69,7 +65,7 @@ namespace _25453_TP_POO
             }
         }
 
-        //Search accounts
+        // Method to search accounts by name or username
         public static List<Account> SearchAccounts(string query)
         {
             var accounts = LoadAccounts();
@@ -78,41 +74,41 @@ namespace _25453_TP_POO
             return accounts.Where(a => a.Name.ToLower().Contains(query) || a.Username.ToLower().Contains(query)).ToList();
         }
 
-
+        // Method to update account information
         public static void UpdateAccount(Account updatedAccount)
         {
-            // Carregar todas as contas
             var accounts = LoadAccounts();
 
-            // Encontrar a conta a ser atualizada pelo Username
+            // Find account to update by username
             var index = accounts.FindIndex(acc => acc.Username == updatedAccount.Username);
 
             if (index != -1)
             {
-                // Atualizar a conta na lista
+                // Update account in the list
                 accounts[index] = updatedAccount;
 
-                // Salvar todas as contas de volta no arquivo
+                // Save all accounts back to file
                 SaveAccounts(accounts);
             }
             else
             {
-                // Se não encontrar a conta, pode adicionar um erro ou mensagem
+                // Show error if account not found
                 MessageBox.Show("Account not found for update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Method to delete an account by username
         public static void DeleteAccount(string username)
         {
             var accounts = LoadAccounts();
 
-            // Encontrar a conta a ser excluída
+            // Find account to delete
             var accountToDelete = accounts.FirstOrDefault(acc => acc.Username == username);
 
             if (accountToDelete != null)
             {
-                accounts.Remove(accountToDelete); // Remover a conta da lista
-                SaveAccounts(accounts); // Salvar a lista atualizada no arquivo
+                accounts.Remove(accountToDelete); // Remove account from list
+                SaveAccounts(accounts); // Save updated list to file
             }
             else
             {
@@ -120,5 +116,4 @@ namespace _25453_TP_POO
             }
         }
     }
-
 }

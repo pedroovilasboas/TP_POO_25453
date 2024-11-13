@@ -16,7 +16,7 @@ namespace _25453_TP_POO
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
 
-        // Caminho para o arquivo products.txt
+        // File path for products.txt
         private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Product\products.txt");
 
         public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
@@ -30,9 +30,7 @@ namespace _25453_TP_POO
             StockQuantity = stockQuantity;
         }
 
-     
-
-        // Método para salvar produto
+        // Method to save a product
         public void Save()
         {
             var products = LoadProducts();
@@ -40,7 +38,7 @@ namespace _25453_TP_POO
             SaveProducts(products);
         }
 
-        // Método para carregar produtos
+        // Method to load products from file
         public static List<Product> LoadProducts()
         {
             var products = new List<Product>();
@@ -58,14 +56,8 @@ namespace _25453_TP_POO
 
                         if (brand != null)
                         {
-                            products.Add(new Product(
-                                brand,
-                                parts[1],
-                                parts[2],
-                                parts[3],
-                                decimal.Parse(parts[4]),
-                                int.Parse(parts[5])
-                            ));
+                            products.Add(new Product(brand, parts[1], parts[2], parts[3], decimal.Parse(parts[4]), int.Parse(parts[5])));
+
                         }
                     }
                 }
@@ -74,7 +66,7 @@ namespace _25453_TP_POO
             return products;
         }
 
-        // Método para salvar lista de produtos
+        // Method to save a list of products to file
         public static void SaveProducts(List<Product> products)
         {
             using (var writer = new StreamWriter(productsFile))
@@ -86,28 +78,23 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para procurar produtos
+        // Method to search products by name, description, type, or brand
         public static List<Product> SearchProducts(string query)
         {
             var products = LoadProducts();
             query = query.ToLower();
 
-            return products.Where(p =>
-                p.Name.ToLower().Contains(query) ||
-                p.Description.ToLower().Contains(query) ||
-                p.Type.ToLower().Contains(query) ||
-                p.Brand.Name.ToLower().Contains(query)
-            ).ToList();
+            return products.Where(p => p.Name.ToLower().Contains(query) || p.Description.ToLower().Contains(query) || p.Type.ToLower().Contains(query) || p.Brand.Name.ToLower().Contains(query)).ToList();
         }
 
-
+        // Method to update stock quantity
         public void UpdateStock(int newStock)
         {
             StockQuantity = newStock;
             Alert.CheckAndGenerateAlert(this);
         }
 
-        // Método para atualizar produto
+        // Method to update a product
         public static void UpdateProduct(Product updatedProduct)
         {
             var products = LoadProducts();
@@ -124,7 +111,7 @@ namespace _25453_TP_POO
             }
         }
 
-        // Método para eliminar produto
+        // Method to delete a product by name and brand
         public static void DeleteProduct(string name, string brandName)
         {
             var products = LoadProducts();
