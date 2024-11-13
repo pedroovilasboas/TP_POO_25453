@@ -8,6 +8,7 @@ namespace _25453_TP_POO
 {
     public class Product
     {
+        public int ProductID { get; private set; } // Unique ID for each product
         public Category Category { get; set; }
         public Brand Brand { get; set; }
         public string Name { get; set; }
@@ -19,8 +20,32 @@ namespace _25453_TP_POO
         // File path for products.txt
         private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Product\products.txt");
 
+        // Static variable to track the last used ProductID
+        private static int lastProductID = 0;
+
+        // Constructor for loading products from file (with ProductID)
+        public Product(int productId, Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
+        {
+            ProductID = productId;
+            Category = category;
+            Brand = brand;
+            Name = name;
+            Description = description;
+            Type = type;
+            Price = price;
+            StockQuantity = stockQuantity;
+
+            // Update lastProductID to ensure unique IDs for new products
+            if (productId > lastProductID)
+            {
+                lastProductID = productId;
+            }
+        }
+
+        // Constructor for creating a new product with an auto-incremented ProductID
         public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
+            ProductID = ++lastProductID; // Increment ProductID for each new product
             Category = category;
             Brand = brand;
             Name = name;
@@ -49,15 +74,25 @@ namespace _25453_TP_POO
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length == 6)
+                    if (parts.Length == 7) // Ensure we have all fields including ProductID
                     {
-                        var brandName = parts[0];
+                        int productId = int.Parse(parts[0]);
+                        var brandName = parts[1];
                         var brand = Brand.LoadBrands().FirstOrDefault(b => b.Name == brandName);
 
                         if (brand != null)
                         {
-                            products.Add(new Product(brand, parts[1], parts[2], parts[3], decimal.Parse(parts[4]), int.Parse(parts[5])));
-
+                            var product = new Product(
+                                productId,
+                                null, // Assuming Category is handled elsewhere
+                                brand,
+                                parts[2], // Name
+                                parts[3], // Description
+                                parts[4], // Type
+                                decimal.Parse(parts[5]), // Price
+                                int.Parse(parts[6]) // StockQuantity
+                            );
+                            products.Add(product);
                         }
                     }
                 }
@@ -73,7 +108,7 @@ namespace _25453_TP_POO
             {
                 foreach (var product in products)
                 {
-                    writer.WriteLine($"{product.Brand.Name},{product.Name},{product.Description},{product.Type},{product.Price},{product.StockQuantity}");
+                    writer.WriteLine($"{product.ProductID},{product.Brand.Name},{product.Name},{product.Description},{product.Type},{product.Price},{product.StockQuantity}");
                 }
             }
         }
@@ -98,7 +133,7 @@ namespace _25453_TP_POO
         public static void UpdateProduct(Product updatedProduct)
         {
             var products = LoadProducts();
-            var index = products.FindIndex(p => p.Name == updatedProduct.Name && p.Brand.Name == updatedProduct.Brand.Name);
+            var index = products.FindIndex(p => p.ProductID == updatedProduct.ProductID);
 
             if (index != -1)
             {
@@ -111,11 +146,11 @@ namespace _25453_TP_POO
             }
         }
 
-        // Method to delete a product by name and brand
-        public static void DeleteProduct(string name, string brandName)
+        // Method to delete a product by ID
+        public static void DeleteProduct(int productId)
         {
             var products = LoadProducts();
-            var productToDelete = products.FirstOrDefault(p => p.Name == name && p.Brand.Name == brandName);
+            var productToDelete = products.FirstOrDefault(p => p.ProductID == productId);
 
             if (productToDelete != null)
             {
@@ -126,6 +161,11 @@ namespace _25453_TP_POO
             {
                 MessageBox.Show("Product not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}:{Price}"; // Save as "Name:Price" for each product
         }
     }
 }

@@ -10,18 +10,18 @@ namespace _25453_TP_POO
         // Class attributes
         public int AlertId { get; set; }
         public string Message { get; set; }
-        public int ProductId { get; set; }
+        public int ProductID { get; set; } // Updated to match the `ProductID` naming convention
         public DateTime CreatedAt { get; set; }
 
         // File path for alerts.txt for persistence
         private static string alertsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Alert\alerts.txt");
 
         // Constructor
-        public Alert(int alertId, string message, int productId)
+        public Alert(int alertId, string message, int productID)
         {
             AlertId = alertId;
             Message = message;
-            ProductId = productId;
+            ProductID = productID;
             CreatedAt = DateTime.Now;
         }
 
@@ -31,20 +31,20 @@ namespace _25453_TP_POO
             var alerts = LoadAlerts();
 
             // Checks if an alert already exists for this product
-            if (!alerts.Any(a => a.ProductId == product.ProductId))
+            if (!alerts.Any(a => a.ProductID == product.ProductID))
             {
                 int newAlertId = alerts.Count > 0 ? alerts.Max(a => a.AlertId) + 1 : 1;
-                var newAlert = new Alert(newAlertId, message, product.ProductId);
+                var newAlert = new Alert(newAlertId, message, product.ProductID);
                 alerts.Add(newAlert);
                 SaveAlerts(alerts);
             }
         }
 
         // Method to remove an alert for a specific product
-        public static void RemoveAlert(int productId)
+        public static void RemoveAlert(int productID)
         {
             var alerts = LoadAlerts();
-            var alertToRemove = alerts.FirstOrDefault(a => a.ProductId == productId);
+            var alertToRemove = alerts.FirstOrDefault(a => a.ProductID == productID);
 
             if (alertToRemove != null)
             {
@@ -62,7 +62,7 @@ namespace _25453_TP_POO
             }
             else
             {
-                RemoveAlert(product.ProductId);
+                RemoveAlert(product.ProductID);
             }
         }
 
@@ -81,10 +81,10 @@ namespace _25453_TP_POO
                     {
                         int alertId = int.Parse(parts[0]);
                         string message = parts[1];
-                        int productId = int.Parse(parts[2]);
+                        int productID = int.Parse(parts[2]);
                         DateTime createdAt = DateTime.Parse(parts[3]);
 
-                        alerts.Add(new Alert(alertId, message, productId) { CreatedAt = createdAt });
+                        alerts.Add(new Alert(alertId, message, productID) { CreatedAt = createdAt });
                     }
                 }
             }
@@ -99,7 +99,7 @@ namespace _25453_TP_POO
             {
                 foreach (var alert in alerts)
                 {
-                    writer.WriteLine($"{alert.AlertId},{alert.Message},{alert.ProductId},{alert.CreatedAt}");
+                    writer.WriteLine($"{alert.AlertId},{alert.Message},{alert.ProductID},{alert.CreatedAt}");
                 }
             }
         }

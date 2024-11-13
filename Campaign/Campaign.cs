@@ -16,9 +16,9 @@ namespace _25453_TP_POO
         public DateTime EndDate { get; set; }
 
         // IDs to define campaign scope
-        public int? ProductId { get; set; }
-        public int? BrandId { get; set; }
-        public int? CategoryId { get; set; }
+        public int? ProductID { get; set; }   // Renamed to match Product class convention
+        public int? BrandID { get; set; }     // Renamed to match Brand class convention
+        public int? CategoryID { get; set; }  // Renamed to match Category class convention
 
         // File path for campaigns.txt for persistence
         private static string campaignsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Campaign\campaigns.txt");
@@ -33,9 +33,9 @@ namespace _25453_TP_POO
             DiscountPercentage = discountPercentage;
             StartDate = startDate;
             EndDate = endDate;
-            ProductId = productId;
-            BrandId = brandId;
-            CategoryId = categoryId;
+            ProductID = productId;
+            BrandID = brandId;
+            CategoryID = categoryId;
         }
 
         // Method to check if the campaign is applicable to a product
@@ -45,18 +45,18 @@ namespace _25453_TP_POO
             if (!IsCampaignActive())
                 return false;
 
-            // Checks campaign scope: specific product, brand, or category
-            if (ProductId.HasValue && product.ProductId == ProductId.Value)
+            // Checks campaign scope: specific product brand or category
+            if (ProductID.HasValue && product.ProductID == ProductID.Value)
                 return true;
-            if (BrandId.HasValue && product.Brand.BrandId == BrandId.Value)
+            if (BrandID.HasValue && product.Brand.BrandID == BrandID.Value)
                 return true;
-            if (CategoryId.HasValue && product.Category.CategoryId == CategoryId.Value)
+            if (CategoryID.HasValue && product.Category.CategoryId == CategoryID.Value)
                 return true;
 
             return false;
         }
 
-        // Method to apply the campaign discount to a product if applicable
+        // Method to apply the campaign discount to a product 
         public bool ApplyToProduct(Product product)
         {
             if (IsApplicable(product))
@@ -121,7 +121,7 @@ namespace _25453_TP_POO
             {
                 foreach (var campaign in campaigns)
                 {
-                    writer.WriteLine($"{campaign.CampaignId},{campaign.Name},{campaign.Description},{campaign.DiscountPercentage},{campaign.StartDate},{campaign.EndDate},{campaign.ProductId},{campaign.BrandId},{campaign.CategoryId}");
+                    writer.WriteLine($"{campaign.CampaignId},{campaign.Name},{campaign.Description},{campaign.DiscountPercentage},{campaign.StartDate},{campaign.EndDate},{campaign.ProductID},{campaign.BrandID},{campaign.CategoryID}");
                 }
             }
         }

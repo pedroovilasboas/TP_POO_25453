@@ -61,7 +61,7 @@ namespace _25453_TP_POO
                 }
 
                 // Criar novo produto
-                Product newProduct = new Product(brand, name, description, type, price, stock);
+                Product newProduct = new Product(brandName, name, description, type, price, stock);
                 newProduct.Save();
 
                 MessageBox.Show("Product added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

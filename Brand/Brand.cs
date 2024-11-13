@@ -8,17 +8,36 @@ namespace _25453_TP_POO
 {
     public class Brand
     {
-        public int ID { get; set; }
+        public int BrandID { get; set; } // Unique identifier for each brand
         public string Name { get; set; }
         public string Description { get; set; }
 
         // File path for brands.txt
         private static string brandsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Brand\brands.txt");
 
+        // Static field to keep track of the last used ID, ensuring uniqueness
+        private static int lastBrandID = 0;
+
+        // Constructor for creating a new brand with a unique ID
         public Brand(string name, string description)
         {
+            BrandID = ++lastBrandID; // Increment lastBrandID for each new brand
             Name = name;
             Description = description;
+        }
+
+        // Constructor for loading an existing brand from file with a specific ID
+        public Brand(int id, string name, string description)
+        {
+            BrandID = id;
+            Name = name;
+            Description = description;
+
+            // Update lastBrandID to ensure unique IDs for future brands
+            if (id > lastBrandID)
+            {
+                lastBrandID = id;
+            }
         }
 
         // Method to save a brand
@@ -40,9 +59,14 @@ namespace _25453_TP_POO
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length == 2)
+                    if (parts.Length == 3) // Ensure all fields are present: ID, Name, Description
                     {
-                        brands.Add(new Brand(parts[0], parts[1]));
+                        int id = int.Parse(parts[0]);
+                        string name = parts[1];
+                        string description = parts[2];
+
+                        // Create a brand with the specified ID
+                        brands.Add(new Brand(id, name, description));
                     }
                 }
             }
@@ -57,7 +81,8 @@ namespace _25453_TP_POO
             {
                 foreach (var brand in brands)
                 {
-                    writer.WriteLine($"{brand.Name},{brand.Description}");
+                    // Save each brand as "ID,Name,Description"
+                    writer.WriteLine($"{brand.BrandID},{brand.Name},{brand.Description}");
                 }
             }
         }
@@ -68,17 +93,19 @@ namespace _25453_TP_POO
             var brands = LoadBrands();
             query = query.ToLower();
 
+            // Return brands where name or description contains the search query
             return brands.Where(b => b.Name.ToLower().Contains(query) || b.Description.ToLower().Contains(query)).ToList();
         }
 
-        // Method to update a brand
+        // Method to update a brand by ID
         public static void UpdateBrand(Brand updatedBrand)
         {
             var brands = LoadBrands();
-            var index = brands.FindIndex(brd => brd.Name == updatedBrand.Name);
+            var index = brands.FindIndex(brd => brd.BrandID == updatedBrand.BrandID);
 
             if (index != -1)
             {
+                // Replace the old brand with the updated one
                 brands[index] = updatedBrand;
                 SaveBrands(brands);
             }
@@ -88,11 +115,11 @@ namespace _25453_TP_POO
             }
         }
 
-        // Method to delete a brand by name
-        public static void DeleteBrand(string name)
+        // Method to delete a brand by ID
+        public static void DeleteBrand(int id)
         {
             var brands = LoadBrands();
-            var brandToDelete = brands.FirstOrDefault(brd => brd.Name == name);
+            var brandToDelete = brands.FirstOrDefault(brd => brd.BrandID == id);
 
             if (brandToDelete != null)
             {

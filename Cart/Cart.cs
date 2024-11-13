@@ -70,13 +70,13 @@ namespace _25453_TP_POO
         // Method to save the cart state to file
         public void Save()
         {
-            var carts = LoadCart();
+            var carts = LoadCarts();
             carts.Add(this);
             SaveCarts(carts);
         }
 
-        // Method to load the cart from file
-        public static List<Cart> LoadCart()
+        // Method to load all carts from file
+        public static List<Cart> LoadCarts()
         {
             var carts = new List<Cart>();
 
@@ -86,12 +86,35 @@ namespace _25453_TP_POO
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length > 2)
+                    if (parts.Length >= 3)
                     {
                         int cartId = int.Parse(parts[0]);
-                        var client = new Client(parts[1]); // Simplified for example
-                        var cart = new Cart(cartId, client);
-                        carts.Add(cart);
+                        string clientUsername = parts[1];
+
+                        // Load the client using a method like `Client.LoadClients()`
+                        var client = Client.LoadClients().FirstOrDefault(c => c.Username == clientUsername);
+
+                        if (client != null)
+                        {
+                            var cart = new Cart(cartId, client);
+
+                            // Load products (assuming products are saved as IDs in a semicolon-separated format in parts[2])
+                            var productIds = parts[2].Split(';');
+                            foreach (var productIdStr in productIds)
+                            {
+                                if (int.TryParse(productIdStr, out int productId))
+                                {
+                                    // Load each product using a method like `Product.LoadProducts()`
+                                    var product = Product.LoadProducts().FirstOrDefault(p => p.ProductID == productId);
+                                    if (product != null)
+                                    {
+                                        cart.Products.Add(product);
+                                    }
+                                }
+                            }
+                            cart.CalculateTotal();
+                            carts.Add(cart);
+                        }
                     }
                 }
             }
@@ -106,7 +129,9 @@ namespace _25453_TP_POO
             {
                 foreach (var cart in carts)
                 {
-                    writer.WriteLine($"{cart.CartId},{cart.Client},{cart.TotalPrice}");
+                    // Save each product ID in the cart as a semicolon-separated string
+                    string productIds = string.Join(";", cart.Products.Select(p => p.ProductID));
+                    writer.WriteLine($"{cart.CartId},{cart.Client.Username},{productIds},{cart.TotalPrice}");
                 }
             }
         }
