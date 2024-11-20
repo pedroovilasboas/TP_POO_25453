@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Campaign
     {
@@ -21,7 +21,7 @@ namespace _25453_TP_POO
         public int? CategoryID { get; set; }  // Renamed to match Category class convention
 
         // File path for campaigns.txt for persistence
-        private static string campaignsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Campaign\campaigns.txt");
+        private static string campaignsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Campaign\campaigns.txt");
 
         // Constructor
         public Campaign(int campaignId, string name, string description, float discountPercentage, DateTime startDate, DateTime endDate,

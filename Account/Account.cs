@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Account
     {
@@ -15,7 +15,7 @@ namespace _25453_TP_POO
         public string Name { get; set; }
 
         // Absolute file path for accounts.txt
-        private static string accountsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Account\accounts.txt");
+        private static string accountsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Account\accounts.txt");
 
         public Account(string username, string password, string name)
         {

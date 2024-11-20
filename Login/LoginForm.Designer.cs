@@ -1,4 +1,4 @@
-﻿namespace _25453_TP_POO
+﻿namespace POO_25453_TP.Login
 {
     partial class LoginForm
     {
@@ -28,77 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
+            buttonClient = new Button();
+            buttonAccount = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
-            // button1
+            // buttonClient
             // 
-            button1.Location = new Point(334, 341);
-            button1.Name = "button1";
-            button1.Size = new Size(137, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
+            buttonClient.Location = new Point(105, 148);
+            buttonClient.Name = "buttonClient";
+            buttonClient.Size = new Size(121, 34);
+            buttonClient.TabIndex = 0;
+            buttonClient.Text = "Client";
+            buttonClient.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // buttonAccount
             // 
-            textBox1.Location = new Point(286, 175);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(239, 23);
-            textBox1.TabIndex = 1;
+            buttonAccount.Location = new Point(105, 285);
+            buttonAccount.Name = "buttonAccount";
+            buttonAccount.Size = new Size(121, 34);
+            buttonAccount.TabIndex = 1;
+            buttonAccount.Text = "button2";
+            buttonAccount.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // button3
             // 
-            textBox2.Location = new Point(286, 270);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(239, 23);
-            textBox2.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(286, 143);
-            label1.Name = "label1";
-            label1.Size = new Size(60, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Username";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(286, 241);
-            label2.Name = "label2";
-            label2.Size = new Size(57, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Password";
+            button3.Location = new Point(224, 427);
+            button3.Name = "button3";
+            button3.Size = new Size(121, 34);
+            button3.TabIndex = 2;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            ClientSize = new Size(357, 473);
+            Controls.Add(button3);
+            Controls.Add(buttonAccount);
+            Controls.Add(buttonClient);
             Name = "LoginForm";
-            Text = "LoginForm";
-            Load += LoginForm_Load;
+            Text = "Form1";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Label label1;
-        private Label label2;
+        private Button buttonClient;
+        private Button buttonAccount;
+        private Button button3;
     }
 }

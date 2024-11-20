@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Alert
     {
@@ -14,7 +14,7 @@ namespace _25453_TP_POO
         public DateTime CreatedAt { get; set; }
 
         // File path for alerts.txt for persistence
-        private static string alertsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Alert\alerts.txt");
+        private static string alertsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Alert\alerts.txt");
 
         // Constructor
         public Alert(int alertId, string message, int productID)

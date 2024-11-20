@@ -1,4 +1,4 @@
-﻿namespace _25453_TP_POO
+﻿namespace POO_25453_TP
 {
     partial class ManageProductForm
     {

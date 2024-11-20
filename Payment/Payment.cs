@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Payment
     {
@@ -16,7 +16,7 @@ namespace _25453_TP_POO
         public bool IsConfirmed { get; set; }
 
         // File path for payments.txt for persistence
-        private static string paymentsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Payment\payments.txt");
+        private static string paymentsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Payment\payments.txt");
 
         // Constructor
         public Payment(int paymentId, int orderId, decimal amount, DateTime paymentDate, string paymentMethod, bool isConfirmed = false)

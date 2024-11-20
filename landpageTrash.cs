@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
-    public partial class LandPage : Form
+    public partial class landpageTrash : Form
     {
-        public LandPage()
+        public landpageTrash()
         {
             InitializeComponent();
         }

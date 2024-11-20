@@ -1,4 +1,4 @@
-﻿using _25453_TP_POO;
+﻿using POO_25453_TP;
 
 public class Order
 {
@@ -11,7 +11,7 @@ public class Order
     public string Status { get; set; }
 
     // File path for orders.txt for persistence
-    private static string ordersFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt");
+    private static string ordersFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Order\orders.txt");
 
     // Constructor
     public Order(int orderId, Client client, DateTime orderDate, string status = "To Ship")

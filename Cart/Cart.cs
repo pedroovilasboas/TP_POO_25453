@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Cart
     {
@@ -14,7 +14,7 @@ namespace _25453_TP_POO
         public decimal TotalPrice { get; private set; }
 
         // File path for cart.txt for persistence
-        private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Cart\cart.txt");
+        private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Cart\cart.txt");
 
         // Constructor
         public Cart(int cartId, Client client)

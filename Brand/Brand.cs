@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Brand
     {
@@ -13,7 +13,7 @@ namespace _25453_TP_POO
         public string Description { get; set; }
 
         // File path for brands.txt
-        private static string brandsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Brand\brands.txt");
+        private static string brandsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Brand\brands.txt");
 
         // Static field to keep track of the last used ID, ensuring uniqueness
         private static int lastBrandID = 0;

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Product
     {
@@ -18,7 +18,7 @@ namespace _25453_TP_POO
         public int StockQuantity { get; set; }
 
         // File path for products.txt
-        private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Product\products.txt");
+        private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Product\products.txt");
 
         // Static variable to track the last used ProductID
         private static int lastProductID = 0;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public partial class EditProductForm : Form
     {

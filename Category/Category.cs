@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Category
     {
@@ -16,7 +16,7 @@ namespace _25453_TP_POO
         public string Description { get; set; }
 
         // File path for categories.txt
-        private static string categoriesFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Category\category.txt");
+        private static string categoriesFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Category\category.txt");
 
         // Constructor to initialize Category
         public Category(int categoryId, string name, string description)

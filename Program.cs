@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     static class Program
     {
@@ -10,7 +10,7 @@ namespace _25453_TP_POO
         {
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LandPage());
+            Application.Run(new landpageTrash());
         }
     }
 }

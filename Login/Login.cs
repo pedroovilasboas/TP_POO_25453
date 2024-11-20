@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Collections.Generic;
 
-namespace _25453_TP_POO
+namespace POO_25453_TP
 {
     public class Login
     {
