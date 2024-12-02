@@ -8,7 +8,8 @@ namespace POO_25453_TP
 {
     public class Product
     {
-        public int ProductID { get; private set; } // Unique ID for each product
+        // Properties for Product
+        public int ProductID { get; private set; }
         public Category Category { get; set; }
         public Brand Brand { get; set; }
         public string Name { get; set; }
@@ -17,13 +18,11 @@ namespace POO_25453_TP
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
 
-        // File path for products.txt
-        private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Product\products.txt");
-
-        // Static variable to track the last used ProductID
+        // File path for storing products
+        private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "products.txt");
         private static int lastProductID = 0;
 
-        // Constructor for loading products from file (with ProductID)
+        // Constructor for an existing product
         public Product(int productId, Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
             ProductID = productId;
@@ -34,18 +33,13 @@ namespace POO_25453_TP
             Type = type;
             Price = price;
             StockQuantity = stockQuantity;
-
-            // Update lastProductID to ensure unique IDs for new products
-            if (productId > lastProductID)
-            {
-                lastProductID = productId;
-            }
+            lastProductID = Math.Max(lastProductID, productId);
         }
 
-        // Constructor for creating a new product with an auto-incremented ProductID
+        // Constructor for a new product
         public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
-            ProductID = ++lastProductID; // Increment ProductID for each new product
+            ProductID = ++lastProductID;
             Category = category;
             Brand = brand;
             Name = name;
@@ -55,7 +49,7 @@ namespace POO_25453_TP
             StockQuantity = stockQuantity;
         }
 
-        // Method to save a product
+        // Method to save the product
         public void Save()
         {
             var products = LoadProducts();
@@ -63,73 +57,68 @@ namespace POO_25453_TP
             SaveProducts(products);
         }
 
-        // Method to load products from file
+        // Method to load all products
         public static List<Product> LoadProducts()
         {
             var products = new List<Product>();
+            if (!File.Exists(productsFile)) return products;
 
-            if (File.Exists(productsFile))
+            var lines = File.ReadAllLines(productsFile);
+            foreach (var line in lines)
             {
-                var lines = File.ReadAllLines(productsFile);
-                foreach (var line in lines)
-                {
-                    var parts = line.Split(',');
-                    if (parts.Length == 7) // Ensure we have all fields including ProductID
-                    {
-                        int productId = int.Parse(parts[0]);
-                        var brandName = parts[1];
-                        var brand = Brand.LoadBrands().FirstOrDefault(b => b.Name == brandName);
+                var parts = line.Split(',');
+                if (parts.Length != 8) continue;
 
-                        if (brand != null)
-                        {
-                            var product = new Product(
-                                productId,
-                                null, // Assuming Category is handled elsewhere
-                                brand,
-                                parts[2], // Name
-                                parts[3], // Description
-                                parts[4], // Type
-                                decimal.Parse(parts[5]), // Price
-                                int.Parse(parts[6]) // StockQuantity
-                            );
-                            products.Add(product);
-                        }
-                    }
-                }
+                int productId = int.Parse(parts[0]);
+                string brandName = parts[1];
+                string categoryName = parts[2];
+                var brand = Brand.LoadBrands().FirstOrDefault(b => b.Name == brandName);
+                var category = Category.LoadCategories().FirstOrDefault(c => c.Name == categoryName);
+
+                products.Add(new Product(productId, category, brand, parts[3], parts[4], parts[5], decimal.Parse(parts[6]), int.Parse(parts[7])));
             }
-
             return products;
         }
 
-        // Method to save a list of products to file
+        // Method to save all products
         public static void SaveProducts(List<Product> products)
         {
             using (var writer = new StreamWriter(productsFile))
             {
                 foreach (var product in products)
                 {
-                    writer.WriteLine($"{product.ProductID},{product.Brand.Name},{product.Name},{product.Description},{product.Type},{product.Price},{product.StockQuantity}");
+                    writer.WriteLine($"{product.ProductID},{product.Brand?.Name},{product.Category?.Name},{product.Name},{product.Description},{product.Type},{product.Price},{product.StockQuantity}");
                 }
             }
         }
 
-        // Method to search products by name, description, type, or brand
+        // Method to search products
         public static List<Product> SearchProducts(string query)
         {
             var products = LoadProducts();
             query = query.ToLower();
-
-            return products.Where(p => p.Name.ToLower().Contains(query) || p.Description.ToLower().Contains(query) || p.Type.ToLower().Contains(query) || p.Brand.Name.ToLower().Contains(query)).ToList();
+            return products.Where(p =>
+                (p.Name != null && p.Name.ToLower().Contains(query)) ||
+                (p.Brand?.Name != null && p.Brand.Name.ToLower().Contains(query)) ||
+                (p.Category?.Name != null && p.Category.Name.ToLower().Contains(query))
+            ).ToList();
         }
 
         // Method to update stock quantity
         public void UpdateStock(int newStock)
         {
             StockQuantity = newStock;
-            Alert.CheckAndGenerateAlert(this);
+
+            var products = LoadProducts();
+            var index = products.FindIndex(p => p.ProductID == ProductID);
+            if (index != -1)
+            {
+                products[index] = this;
+                SaveProducts(products);
+            }
         }
 
-        // Method to update a product
+        // Method to update product details
         public static void UpdateProduct(Product updatedProduct)
         {
             var products = LoadProducts();
@@ -142,30 +131,8 @@ namespace POO_25453_TP
             }
             else
             {
-                MessageBox.Show("Product not found for update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Product not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        // Method to delete a product by ID
-        public static void DeleteProduct(int productId)
-        {
-            var products = LoadProducts();
-            var productToDelete = products.FirstOrDefault(p => p.ProductID == productId);
-
-            if (productToDelete != null)
-            {
-                products.Remove(productToDelete);
-                SaveProducts(products);
-            }
-            else
-            {
-                MessageBox.Show("Product not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}:{Price}"; // Save as "Name:Price" for each product
         }
     }
 }

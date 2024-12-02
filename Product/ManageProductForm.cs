@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
@@ -10,33 +10,65 @@ namespace POO_25453_TP
         {
             InitializeComponent();
         }
+
         private void ManageProductForm_Load(object sender, EventArgs e)
         {
-
+            RefreshProductList();
         }
 
-
-        private void buttonGo_Click(object sender, EventArgs e)
+        private void RefreshProductList()
         {
-            string query = textBoxSearch.Text;
+            var products = Product.LoadProducts();
+            DisplayResults(products);
+        }
+
+        private void DisplayResults(System.Collections.Generic.List<Product> products)
+        {
+            // Clear the existing rows and columns
+            dataGridViewResults.Rows.Clear();
+            dataGridViewResults.Columns.Clear();
+
+            // Add columns if not already defined
+            dataGridViewResults.Columns.Add("ProductID", "Product ID");
+            dataGridViewResults.Columns.Add("Name", "Name");
+            dataGridViewResults.Columns.Add("Brand", "Brand");
+            dataGridViewResults.Columns.Add("Category", "Category");
+            dataGridViewResults.Columns.Add("Price", "Price");
+            dataGridViewResults.Columns.Add("StockQuantity", "Stock Quantity");
+
+            // Add rows
+            foreach (var product in products)
+            {
+                dataGridViewResults.Rows.Add(
+                    product.ProductID,
+                    product.Name,
+                    product.Brand?.Name ?? "N/A", // Handle null brands
+                    product.Category?.Name ?? "N/A", // Handle null categories
+                    product.Price,
+                    product.StockQuantity
+                );
+            }
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            var query = textBoxSearch.Text.ToLower();
             var results = Product.SearchProducts(query);
             DisplayResults(results);
         }
 
-        private void DisplayResults(List<Product> results)
+        private void buttonStock_Click(object sender, EventArgs e)
         {
-            dataGridViewResults.Columns.Clear();
-            dataGridViewResults.Columns.Add("Brand", "Brand");
-            dataGridViewResults.Columns.Add("Name", "Name");
-            dataGridViewResults.Columns.Add("Description", "Description");
-            dataGridViewResults.Columns.Add("Type", "Type");
-            dataGridViewResults.Columns.Add("Price", "Price");
-            dataGridViewResults.Columns.Add("StockQuantity", "Stock Quantity");
+            if (dataGridViewResults.SelectedRows.Count != 1) return;
 
-            dataGridViewResults.Rows.Clear();
-            foreach (var product in results)
+            var productId = int.Parse(dataGridViewResults.SelectedRows[0].Cells[0].Value.ToString());
+            var product = Product.LoadProducts().FirstOrDefault(p => p.ProductID == productId);
+
+            if (product != null)
             {
-                dataGridViewResults.Rows.Add(product.Brand.Name, product.Name, product.Description, product.Type, product.Price, product.StockQuantity);
+                using var stockForm = new UpdateStockForm(product);
+                stockForm.ShowDialog();
+                RefreshProductList();
             }
         }
 
@@ -44,34 +76,21 @@ namespace POO_25453_TP
         {
             if (dataGridViewResults.SelectedRows.Count != 1)
             {
-                MessageBox.Show("Please select exactly one product to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select one product to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string selectedName = dataGridViewResults.SelectedRows[0].Cells["Name"].Value.ToString();
-            var product = Product.LoadProducts().Find(prod => prod.Name == selectedName);
+            var productId = int.Parse(dataGridViewResults.SelectedRows[0].Cells[0].Value.ToString());
+            var product = Product.LoadProducts().FirstOrDefault(p => p.ProductID == productId);
 
             if (product != null)
             {
-                AddProductForm editForm = new AddProductForm(product);
-                editForm.ShowDialog();
-
-                string query = textBoxSearch.Text;
-                var results = Product.SearchProducts(query);
-                DisplayResults(results);
-            }
-            else
-            {
-                MessageBox.Show("Product not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                using (var editForm = new EditProductForm(product))
+                {
+                    editForm.ShowDialog();
+                }
+                RefreshProductList();
             }
         }
-
-        private void buttonClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-    
-        
     }
 }

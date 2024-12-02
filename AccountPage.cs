@@ -74,7 +74,7 @@ namespace POO_25453_TP
 
         private void addProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddProductForm addProductForm = new AddProductForm();
+           AddProductForm addProductForm = new AddProductForm();
             LoadFormIntoPanel(addProductForm);
         }
 
@@ -86,8 +86,14 @@ namespace POO_25453_TP
 
         private void addCategoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddCategoryForm addCategoryForm = new AddCategoryForm();   
+            AddCategoryForm addCategoryForm = new AddCategoryForm();
             LoadFormIntoPanel(addCategoryForm);
+        }
+
+        private void manageCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageCategoryForm manageCategoryForm = new ManageCategoryForm();
+            LoadFormIntoPanel(manageCategoryForm);
         }
     }
 }

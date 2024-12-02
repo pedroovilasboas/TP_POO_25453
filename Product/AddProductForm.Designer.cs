@@ -17,160 +17,93 @@
 
         private void InitializeComponent()
         {
-            comboBoxBrand = new ComboBox();
             textBoxName = new TextBox();
             textBoxDescription = new TextBox();
             textBoxType = new TextBox();
             textBoxPrice = new TextBox();
             textBoxStock = new TextBox();
-            labelBrand = new Label();
-            labelName = new Label();
-            labelDescription = new Label();
-            labelType = new Label();
-            labelPrice = new Label();
-            labelStock = new Label();
+            comboBoxBrand = new ComboBox();
+            comboBoxCategory = new ComboBox();
             buttonSave = new Button();
-            buttonClose = new Button();
             SuspendLayout();
-            // 
-            // comboBoxBrand
-            // 
-            comboBoxBrand.FormattingEnabled = true;
-            comboBoxBrand.Location = new Point(70, 50);
-            comboBoxBrand.Name = "comboBoxBrand";
-            comboBoxBrand.Size = new Size(232, 23);
-            comboBoxBrand.TabIndex = 0;
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(70, 100);
+            textBoxName.Location = new Point(30, 30);
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(232, 23);
-            textBoxName.TabIndex = 1;
+            textBoxName.PlaceholderText = "Product Name";
+            textBoxName.Size = new Size(300, 27);
+            textBoxName.TabIndex = 0;
             // 
             // textBoxDescription
             // 
-            textBoxDescription.Location = new Point(70, 150);
+            textBoxDescription.Location = new Point(30, 70);
             textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.Size = new Size(232, 23);
-            textBoxDescription.TabIndex = 2;
+            textBoxDescription.PlaceholderText = "Description";
+            textBoxDescription.Size = new Size(300, 27);
+            textBoxDescription.TabIndex = 1;
             // 
             // textBoxType
             // 
-            textBoxType.Location = new Point(70, 200);
+            textBoxType.Location = new Point(30, 110);
             textBoxType.Name = "textBoxType";
-            textBoxType.Size = new Size(232, 23);
-            textBoxType.TabIndex = 3;
+            textBoxType.PlaceholderText = "Type";
+            textBoxType.Size = new Size(300, 27);
+            textBoxType.TabIndex = 2;
             // 
             // textBoxPrice
             // 
-            textBoxPrice.Location = new Point(70, 250);
+            textBoxPrice.Location = new Point(30, 150);
             textBoxPrice.Name = "textBoxPrice";
-            textBoxPrice.Size = new Size(232, 23);
-            textBoxPrice.TabIndex = 4;
+            textBoxPrice.PlaceholderText = "Price";
+            textBoxPrice.Size = new Size(300, 27);
+            textBoxPrice.TabIndex = 3;
             // 
             // textBoxStock
             // 
-            textBoxStock.Location = new Point(70, 300);
+            textBoxStock.Location = new Point(30, 190);
             textBoxStock.Name = "textBoxStock";
-            textBoxStock.Size = new Size(232, 23);
-            textBoxStock.TabIndex = 5;
+            textBoxStock.PlaceholderText = "Stock Quantity";
+            textBoxStock.Size = new Size(300, 27);
+            textBoxStock.TabIndex = 4;
             // 
-            // labelBrand
+            // comboBoxBrand
             // 
-            labelBrand.AutoSize = true;
-            labelBrand.Location = new Point(70, 30);
-            labelBrand.Name = "labelBrand";
-            labelBrand.Size = new Size(38, 15);
-            labelBrand.TabIndex = 6;
-            labelBrand.Text = "Brand";
+            comboBoxBrand.Location = new Point(30, 230);
+            comboBoxBrand.Name = "comboBoxBrand";
+            comboBoxBrand.Size = new Size(300, 28);
+            comboBoxBrand.TabIndex = 5;
             // 
-            // labelName
+            // comboBoxCategory
             // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(70, 80);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(39, 15);
-            labelName.TabIndex = 7;
-            labelName.Text = "Name";
-            // 
-            // labelDescription
-            // 
-            labelDescription.AutoSize = true;
-            labelDescription.Location = new Point(70, 130);
-            labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(67, 15);
-            labelDescription.TabIndex = 8;
-            labelDescription.Text = "Description";
-            // 
-            // labelType
-            // 
-            labelType.AutoSize = true;
-            labelType.Location = new Point(70, 180);
-            labelType.Name = "labelType";
-            labelType.Size = new Size(31, 15);
-            labelType.TabIndex = 9;
-            labelType.Text = "Type";
-            // 
-            // labelPrice
-            // 
-            labelPrice.AutoSize = true;
-            labelPrice.Location = new Point(70, 230);
-            labelPrice.Name = "labelPrice";
-            labelPrice.Size = new Size(33, 15);
-            labelPrice.TabIndex = 10;
-            labelPrice.Text = "Price";
-            // 
-            // labelStock
-            // 
-            labelStock.AutoSize = true;
-            labelStock.Location = new Point(70, 280);
-            labelStock.Name = "labelStock";
-            labelStock.Size = new Size(36, 15);
-            labelStock.TabIndex = 11;
-            labelStock.Text = "Stock";
+            comboBoxCategory.Location = new Point(30, 270);
+            comboBoxCategory.Name = "comboBoxCategory";
+            comboBoxCategory.Size = new Size(300, 28);
+            comboBoxCategory.TabIndex = 6;
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(131, 350);
+            buttonSave.Location = new Point(30, 320);
             buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(75, 23);
-            buttonSave.TabIndex = 12;
+            buttonSave.Size = new Size(80, 28);
+            buttonSave.TabIndex = 7;
             buttonSave.Text = "Save";
             buttonSave.UseVisualStyleBackColor = true;
             buttonSave.Click += buttonSave_Click;
             // 
-            // buttonClose
-            // 
-            buttonClose.Location = new Point(227, 350);
-            buttonClose.Name = "buttonClose";
-            buttonClose.Size = new Size(75, 23);
-            buttonClose.TabIndex = 13;
-            buttonClose.Text = "Close";
-            buttonClose.UseVisualStyleBackColor = true;
-            buttonClose.Click += buttonClose_Click;
-            // 
             // AddProductForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(386, 451);
-            Controls.Add(buttonClose);
-            Controls.Add(buttonSave);
-            Controls.Add(labelStock);
-            Controls.Add(labelPrice);
-            Controls.Add(labelType);
-            Controls.Add(labelDescription);
-            Controls.Add(labelName);
-            Controls.Add(labelBrand);
-            Controls.Add(textBoxStock);
-            Controls.Add(textBoxPrice);
-            Controls.Add(textBoxType);
-            Controls.Add(textBoxDescription);
+            ClientSize = new Size(400, 400);
             Controls.Add(textBoxName);
+            Controls.Add(textBoxDescription);
+            Controls.Add(textBoxType);
+            Controls.Add(textBoxPrice);
+            Controls.Add(textBoxStock);
             Controls.Add(comboBoxBrand);
+            Controls.Add(comboBoxCategory);
+            Controls.Add(buttonSave);
             Name = "AddProductForm";
-            Text = "AddProductForm";
+            Text = "Add Product";
             Load += AddProductForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -178,19 +111,13 @@
 
         #endregion
 
-        private ComboBox comboBoxBrand;
-        private TextBox textBoxName;
-        private TextBox textBoxDescription;
-        private TextBox textBoxType;
-        private TextBox textBoxPrice;
-        private TextBox textBoxStock;
-        private Label labelBrand;
-        private Label labelName;
-        private Label labelDescription;
-        private Label labelType;
-        private Label labelPrice;
-        private Label labelStock;
-        private Button buttonSave;
-        private Button buttonClose;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.TextBox textBoxType;
+        private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.TextBox textBoxStock;
+        private System.Windows.Forms.ComboBox comboBoxBrand;
+        private System.Windows.Forms.ComboBox comboBoxCategory;
+        private System.Windows.Forms.Button buttonSave;
     }
 }

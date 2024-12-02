@@ -18,81 +18,72 @@
         private void InitializeComponent()
         {
             textBoxSearch = new TextBox();
-            labelSearch = new Label();
+            buttonSearch = new Button();
             dataGridViewResults = new DataGridView();
-            buttonGo = new Button();
+            buttonStock = new Button();
             buttonEdit = new Button();
-            buttonClose = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
             // 
             // textBoxSearch
             // 
-            textBoxSearch.Location = new Point(101, 47);
+            textBoxSearch.Location = new Point(30, 10);
             textBoxSearch.Name = "textBoxSearch";
-            textBoxSearch.Size = new Size(371, 23);
-            textBoxSearch.TabIndex = 13;
+            textBoxSearch.PlaceholderText = "Search Products";
+            textBoxSearch.Size = new Size(600, 27);
+            textBoxSearch.TabIndex = 0;
             // 
-            // labelSearch
+            // buttonSearch
             // 
-            labelSearch.AutoSize = true;
-            labelSearch.Location = new Point(53, 50);
-            labelSearch.Name = "labelSearch";
-            labelSearch.Size = new Size(42, 15);
-            labelSearch.TabIndex = 12;
-            labelSearch.Text = "Search";
+            buttonSearch.Location = new Point(636, 10);
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.Size = new Size(108, 35);
+            buttonSearch.TabIndex = 1;
+            buttonSearch.Text = "Search";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Click += buttonSearch_Click;
             // 
             // dataGridViewResults
             // 
+            dataGridViewResults.AllowUserToAddRows = false;
+            dataGridViewResults.AllowUserToDeleteRows = false;
             dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewResults.Location = new Point(53, 88);
+            dataGridViewResults.Location = new Point(30, 54);
             dataGridViewResults.Name = "dataGridViewResults";
-            dataGridViewResults.Size = new Size(500, 200);
-            dataGridViewResults.TabIndex = 11;
+            dataGridViewResults.ReadOnly = true;
+            dataGridViewResults.RowHeadersWidth = 51;
+            dataGridViewResults.Size = new Size(750, 350);
+            dataGridViewResults.TabIndex = 2;
             // 
-            // buttonGo
+            // buttonStock
             // 
-            buttonGo.Location = new Point(478, 47);
-            buttonGo.Name = "buttonGo";
-            buttonGo.Size = new Size(75, 23);
-            buttonGo.TabIndex = 10;
-            buttonGo.Text = "Go";
-            buttonGo.UseVisualStyleBackColor = true;
-            buttonGo.Click += buttonGo_Click;
+            buttonStock.Location = new Point(30, 420);
+            buttonStock.Name = "buttonStock";
+            buttonStock.Size = new Size(108, 35);
+            buttonStock.TabIndex = 3;
+            buttonStock.Text = "Stock";
+            buttonStock.UseVisualStyleBackColor = true;
+            buttonStock.Click += buttonStock_Click;
             // 
             // buttonEdit
             // 
-            buttonEdit.Location = new Point(53, 308);
+            buttonEdit.Location = new Point(164, 420);
             buttonEdit.Name = "buttonEdit";
-            buttonEdit.Size = new Size(75, 23);
-            buttonEdit.TabIndex = 9;
+            buttonEdit.Size = new Size(108, 35);
+            buttonEdit.TabIndex = 4;
             buttonEdit.Text = "Edit";
             buttonEdit.UseVisualStyleBackColor = true;
-            buttonEdit.Click += buttonEdit_Click;
-            // 
-            // buttonClose
-            // 
-            buttonClose.Location = new Point(478, 308);
-            buttonClose.Name = "buttonClose";
-            buttonClose.Size = new Size(75, 23);
-            buttonClose.TabIndex = 14;
-            buttonClose.Text = "Close";
-            buttonClose.UseVisualStyleBackColor = true;
-            buttonClose.Click += buttonClose_Click;
             // 
             // ManageProductForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(600, 400);
-            Controls.Add(buttonClose);
-            Controls.Add(buttonEdit);
-            Controls.Add(buttonGo);
-            Controls.Add(dataGridViewResults);
-            Controls.Add(labelSearch);
+            ClientSize = new Size(820, 480);
             Controls.Add(textBoxSearch);
+            Controls.Add(buttonSearch);
+            Controls.Add(dataGridViewResults);
+            Controls.Add(buttonStock);
+            Controls.Add(buttonEdit);
             Name = "ManageProductForm";
-            Text = "ManageProductForm";
+            Text = "Manage Products";
             Load += ManageProductForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
             ResumeLayout(false);
@@ -101,11 +92,10 @@
 
         #endregion
 
-        private TextBox textBoxSearch;
-        private Label labelSearch;
-        private DataGridView dataGridViewResults;
-        private Button buttonGo;
-        private Button buttonEdit;
-        private Button buttonClose;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.DataGridView dataGridViewResults;
+        private System.Windows.Forms.Button buttonStock;
+        private System.Windows.Forms.Button buttonEdit; // Declare buttonEdit
     }
 }

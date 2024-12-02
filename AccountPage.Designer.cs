@@ -133,14 +133,14 @@
             // addBrandToolStripMenuItem
             // 
             addBrandToolStripMenuItem.Name = "addBrandToolStripMenuItem";
-            addBrandToolStripMenuItem.Size = new Size(180, 22);
+            addBrandToolStripMenuItem.Size = new Size(147, 22);
             addBrandToolStripMenuItem.Text = "Add Brand";
             addBrandToolStripMenuItem.Click += addBrandToolStripMenuItem_Click;
             // 
             // manageBandToolStripMenuItem
             // 
             manageBandToolStripMenuItem.Name = "manageBandToolStripMenuItem";
-            manageBandToolStripMenuItem.Size = new Size(180, 22);
+            manageBandToolStripMenuItem.Size = new Size(147, 22);
             manageBandToolStripMenuItem.Text = "Manage Band";
             manageBandToolStripMenuItem.Click += manageBandToolStripMenuItem_Click;
             // 
@@ -175,15 +175,16 @@
             // addCategoryToolStripMenuItem
             // 
             addCategoryToolStripMenuItem.Name = "addCategoryToolStripMenuItem";
-            addCategoryToolStripMenuItem.Size = new Size(180, 22);
+            addCategoryToolStripMenuItem.Size = new Size(168, 22);
             addCategoryToolStripMenuItem.Text = "Add Category";
             addCategoryToolStripMenuItem.Click += addCategoryToolStripMenuItem_Click;
             // 
             // manageCategoryToolStripMenuItem
             // 
             manageCategoryToolStripMenuItem.Name = "manageCategoryToolStripMenuItem";
-            manageCategoryToolStripMenuItem.Size = new Size(180, 22);
+            manageCategoryToolStripMenuItem.Size = new Size(168, 22);
             manageCategoryToolStripMenuItem.Text = "Manage Category";
+            manageCategoryToolStripMenuItem.Click += manageCategoryToolStripMenuItem_Click;
             // 
             // ordersToolStripMenuItem
             // 
@@ -207,13 +208,13 @@
             // addCampaingToolStripMenuItem
             // 
             addCampaingToolStripMenuItem.Name = "addCampaingToolStripMenuItem";
-            addCampaingToolStripMenuItem.Size = new Size(180, 22);
+            addCampaingToolStripMenuItem.Size = new Size(175, 22);
             addCampaingToolStripMenuItem.Text = "Add Campaign";
             // 
             // manageCampaingToolStripMenuItem
             // 
             manageCampaingToolStripMenuItem.Name = "manageCampaingToolStripMenuItem";
-            manageCampaingToolStripMenuItem.Size = new Size(180, 22);
+            manageCampaingToolStripMenuItem.Size = new Size(175, 22);
             manageCampaingToolStripMenuItem.Text = "Manage Campaign";
             // 
             // panel1
