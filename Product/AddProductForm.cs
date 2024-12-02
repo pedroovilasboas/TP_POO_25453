@@ -11,7 +11,7 @@ namespace POO_25453_TP
             InitializeComponent();
         }
 
-        private void AddProductForm_Load(object sender, EventArgs e)
+        private void EditProductForm_Load(object sender, EventArgs e)
         {
             // Carregar as marcas no ComboBox
             comboBoxBrand.Items.Clear();
@@ -28,18 +28,12 @@ namespace POO_25453_TP
                 comboBoxBrand.Items.Add(brand.Name);
             }
 
-            comboBoxBrand.SelectedIndex = 0; // Seleciona a primeira marca como padrão
-        }
-
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            // Verificar se todos os campos foram preenchidos
-            if (comboBoxBrand.SelectedItem == null || string.IsNullOrEmpty(textBoxName.Text) ||
-                string.IsNullOrEmpty(textBoxDescription.Text) || string.IsNullOrEmpty(textBoxType.Text) ||
-                string.IsNullOrEmpty(textBoxPrice.Text) || string.IsNullOrEmpty(textBoxStock.Text))
-            {
-                MessageBox.Show("All fields must be filled out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+            comboBoxBrand.SelectedItem = product.Brand.Name;
+            textBoxName.Text = product.Name;
+            textBoxDescription.Text = product.Description;
+            textBoxType.Text = product.Type;
+            textBoxPrice.Text = product.Price.ToString();
+            textBoxStock.Text = product.StockQuantity.ToString();
             }
 
             try
