@@ -36,7 +36,7 @@ namespace POO_25453_TP
             labelUsername.AutoSize = true;
             labelUsername.Location = new Point(70, 30);
             labelUsername.Name = "labelUsername";
-            labelUsername.Size = new Size(63, 15);
+            labelUsername.Size = new Size(60, 15);
             labelUsername.TabIndex = 0;
             labelUsername.Text = "Username";
             // 
@@ -121,6 +121,7 @@ namespace POO_25453_TP
             Controls.Add(labelUsername);
             Name = "LoginForm";
             Text = "Login Form";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

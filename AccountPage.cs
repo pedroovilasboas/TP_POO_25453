@@ -10,75 +10,84 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
-    public partial class landpageTrash : Form
+    public partial class AccountPage : Form
     {
-        public landpageTrash()
+        public AccountPage()
         {
             InitializeComponent();
         }
 
-        private void LanPage_Load(object sender, EventArgs e)
+        // Method to load a form into the panel1
+        private void LoadFormIntoPanel(Form form)
         {
+            // Set the panel size to match the form's size
+            form.Width = panel1.Width;
+            form.Height = panel1.Height;
 
+            // Load the form into the panel
+            panel1.Controls.Clear();
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panel1.Controls.Add(form);
+            form.Show();
         }
 
         private void addAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Reuse the existing AddAccountForm
             AddAccountForm addAccountForm = new AddAccountForm();
-            addAccountForm.ShowDialog();
+
+            // Load it into the panel
+            LoadFormIntoPanel(addAccountForm);
         }
 
         private void manageAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageAccountForm manageAccountForm = new ManageAccountForm();
-            manageAccountForm.ShowDialog();
+            LoadFormIntoPanel(manageAccountForm);
         }
 
         private void addClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddClientForm addClientForm = new AddClientForm();
-            addClientForm.ShowDialog();
+            LoadFormIntoPanel(addClientForm);
         }
 
         private void manageClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageClientForm manageClientForm = new ManageClientForm();
-            manageClientForm.ShowDialog();
-        }
-
-        private void addCategoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddCategoryForm addCategoryForm = new AddCategoryForm();
-            addCategoryForm.ShowDialog();
-        }
-
-        private void manageCategoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            LoadFormIntoPanel(manageClientForm);
         }
 
         private void addBrandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddBrandForm addBrandForm = new AddBrandForm();
-            addBrandForm.ShowDialog();
+            LoadFormIntoPanel(addBrandForm);
         }
 
-        private void manageBrandToolStripMenuItem_Click(object sender, EventArgs e)
+        private void manageBandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageBrandForm manageBrandForm = new ManageBrandForm();
-            manageBrandForm.ShowDialog();
+            LoadFormIntoPanel(manageBrandForm);
         }
 
         private void addProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddProductForm addProductForm = new AddProductForm();
-            addProductForm.ShowDialog();
+            LoadFormIntoPanel(addProductForm);
         }
 
         private void manageProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ManageProductForm manageProductForm = new ManageProductForm();
-            manageProductForm.ShowDialog();
+            LoadFormIntoPanel(manageProductForm);
+        }
+
+        private void addCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddCategoryForm addCategoryForm = new AddCategoryForm();   
+            LoadFormIntoPanel(addCategoryForm);
         }
     }
 }

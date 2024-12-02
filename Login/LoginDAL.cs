@@ -4,32 +4,50 @@ using System.IO;
 
 namespace POO_25453_TP.DAL
 {
-    public static class LoginDAL
+    public static class Login
     {
-        // Retrieves the list of client records from the file
-        public static List<string> GetClients()
+        public static bool ValidateClientLogin(string username, string password)
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Client", "clients.txt");
-            return GetDataFromFile(filePath);
+            // Use the absolute path directly
+            string filePath = @"C:\PROGRAM_CS\25453_TP_POO\Client\clients.txt";
+            return ValidateCredentials(username, password, filePath);
         }
 
-        // Retrieves the list of account records from the file
-        public static List<string> GetAccounts()
+        public static bool ValidateAccountLogin(string username, string password)
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Account", "accounts.txt");
-            return GetDataFromFile(filePath);
+            // Use the absolute path directly
+            string filePath = @"C:\PROGRAM_CS\25453_TP_POO\Account\accounts.txt";
+            return ValidateCredentials(username, password, filePath);
         }
 
-        // Generic method to retrieve data from a file
-        private static List<string> GetDataFromFile(string filePath)
+        // General credential validation logic
+        private static bool ValidateCredentials(string username, string password, string filePath)
         {
+            // Check if the file exists
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException($"File not found: {filePath}");
+                throw new FileNotFoundException($"Credentials file not found: {filePath}");
             }
 
-            // Read all lines from the file and return as a list
-            return new List<string>(File.ReadAllLines(filePath));
+            // Read all lines from the file
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines)
+            {
+                // Split the line into parts (assuming ';' as the delimiter)
+                var parts = line.Split(',');
+
+                // Check if the line contains enough fields
+                // For Clients: username;password;name;email;phone;address;city;region;postalcode
+                // For Accounts: username;password;name
+                if (parts.Length >= 3 && parts[0] == username && parts[1] == password)
+                {
+                    // Valid credentials
+                    return true;
+                }
+            }
+
+            // No match found
+            return false;
         }
     }
 }

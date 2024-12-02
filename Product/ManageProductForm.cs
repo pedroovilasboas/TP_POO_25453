@@ -53,7 +53,7 @@ namespace POO_25453_TP
 
             if (product != null)
             {
-                EditProductForm editForm = new EditProductForm(product);
+                AddProductForm editForm = new AddProductForm(product);
                 editForm.ShowDialog();
 
                 string query = textBoxSearch.Text;

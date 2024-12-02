@@ -1,3 +1,1 @@
-apple,Mobile Phones and Laptops
-Samsung,Mobile Phones 
-edgerg,efgwre
+1,Apple,apple

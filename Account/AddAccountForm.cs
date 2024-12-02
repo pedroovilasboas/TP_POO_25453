@@ -34,7 +34,7 @@ namespace POO_25453_TP
 
 
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(name)) 
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Username and Password cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -48,9 +48,6 @@ namespace POO_25453_TP
 
         }
 
-
-
-       
     }
 
 

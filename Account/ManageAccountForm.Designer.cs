@@ -39,14 +39,14 @@
             // 
             // textBoxSearch
             // 
-            textBoxSearch.Location = new Point(105, 32);
+            textBoxSearch.Location = new Point(157, 32);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(395, 23);
             textBoxSearch.TabIndex = 7;
             // 
             // buttonGo
             // 
-            buttonGo.Location = new Point(506, 32);
+            buttonGo.Location = new Point(558, 31);
             buttonGo.Name = "buttonGo";
             buttonGo.Size = new Size(75, 23);
             buttonGo.TabIndex = 1;
@@ -57,7 +57,7 @@
             // Search
             // 
             Search.AutoSize = true;
-            Search.Location = new Point(57, 36);
+            Search.Location = new Point(109, 40);
             Search.Name = "Search";
             Search.Size = new Size(42, 15);
             Search.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             // buttonEdit
             // 
-            buttonEdit.Location = new Point(377, 400);
+            buttonEdit.Location = new Point(377, 332);
             buttonEdit.Name = "buttonEdit";
             buttonEdit.Size = new Size(111, 26);
             buttonEdit.TabIndex = 4;
@@ -84,17 +84,17 @@
             // 
             // Close
             // 
-            Close.Location = new Point(522, 400);
+            Close.Location = new Point(522, 332);
             Close.Name = "Close";
             Close.Size = new Size(111, 23);
             Close.TabIndex = 5;
-            Close.Text = "Close";
+            Close.Text = "Back";
             Close.UseVisualStyleBackColor = true;
             Close.Click += Close_Click;
             // 
             // Delete
             // 
-            Delete.Location = new Point(238, 400);
+            Delete.Location = new Point(238, 332);
             Delete.Name = "Delete";
             Delete.Size = new Size(111, 26);
             Delete.TabIndex = 6;
@@ -106,7 +106,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(676, 460);
+            ClientSize = new Size(678, 388);
             Controls.Add(Delete);
             Controls.Add(Close);
             Controls.Add(buttonEdit);

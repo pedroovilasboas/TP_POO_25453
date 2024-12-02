@@ -30,6 +30,7 @@
             labelPrice = new Label();
             labelStock = new Label();
             buttonSave = new Button();
+            buttonClose = new Button();
             SuspendLayout();
             // 
             // comboBoxBrand
@@ -137,13 +138,24 @@
             buttonSave.TabIndex = 12;
             buttonSave.Text = "Save";
             buttonSave.UseVisualStyleBackColor = true;
-            buttonSave.Click += AddButton_Click;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // buttonClose
+            // 
+            buttonClose.Location = new Point(227, 350);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new Size(75, 23);
+            buttonClose.TabIndex = 13;
+            buttonClose.Text = "Close";
+            buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += buttonClose_Click;
             // 
             // AddProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(386, 451);
+            Controls.Add(buttonClose);
             Controls.Add(buttonSave);
             Controls.Add(labelStock);
             Controls.Add(labelPrice);
@@ -179,5 +191,6 @@
         private Label labelPrice;
         private Label labelStock;
         private Button buttonSave;
+        private Button buttonClose;
     }
 }
