@@ -19,7 +19,7 @@ namespace POO_25453_TP
         public string PostalCode { get; set; }
 
         // File path for clients.txt
-        private static string clientsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Client\clients.txt");
+        private static string clientsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Client\clients.txt");
 
         public Client(string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
         {

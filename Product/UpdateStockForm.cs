@@ -15,21 +15,18 @@ namespace POO_25453_TP
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxStock.Text, out int newStock))
+            try
             {
-                _product.UpdateStock(newStock);
+                var addedStock = int.Parse(textBoxStock.Text);
+                _product.UpdateStock(_product.StockQuantity + addedStock);
+
                 MessageBox.Show("Stock updated successfully!", "Success", MessageBoxButtons.OK);
                 Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid stock quantity.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK);
             }
-        }
-
-        private void UpdateStockForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

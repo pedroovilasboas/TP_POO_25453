@@ -1,2 +1,3 @@
 teste,12345,pedro pedro,olamundo@email.com,1234567890,rua,barcelos,braga,4750-691
 pedroboas,1234567,Pedro Vilas Boas,olamundo@email.com,1234567890,rua rua,barcelos,Braga,4750-691
+client1,client1,client 1,client1@email.pt,987654321,rua da estrada n1,Barcelos,Braga,12345
