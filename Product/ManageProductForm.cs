@@ -28,22 +28,24 @@ namespace POO_25453_TP
             dataGridViewResults.Rows.Clear();
             dataGridViewResults.Columns.Clear();
 
-            // Add columns if not already defined
+            // Add columns including Description
             dataGridViewResults.Columns.Add("ProductID", "Product ID");
             dataGridViewResults.Columns.Add("Name", "Name");
+            dataGridViewResults.Columns.Add("Description", "Description");
             dataGridViewResults.Columns.Add("Brand", "Brand");
             dataGridViewResults.Columns.Add("Category", "Category");
             dataGridViewResults.Columns.Add("Price", "Price");
             dataGridViewResults.Columns.Add("StockQuantity", "Stock Quantity");
 
-            // Add rows
+            
             foreach (var product in products)
             {
                 dataGridViewResults.Rows.Add(
                     product.ProductID,
                     product.Name,
-                    product.Brand?.Name ?? "N/A", // Handle null brands
-                    product.Category?.Name ?? "N/A", // Handle null categories
+                    product.Description, 
+                    product.Brand?.Name ?? "N/A", 
+                    product.Category?.Name ?? "N/A", 
                     product.Price,
                     product.StockQuantity
                 );
@@ -90,6 +92,31 @@ namespace POO_25453_TP
                     editForm.ShowDialog();
                 }
                 RefreshProductList();
+            }
+        }
+
+        private void buttonEdit_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewResults.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Please select one product to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var productId = int.Parse(dataGridViewResults.SelectedRows[0].Cells[0].Value.ToString());
+            var product = Product.LoadProducts().FirstOrDefault(p => p.ProductID == productId);
+
+            if (product != null)
+            {
+                using (var editForm = new EditProductForm(product))
+                {
+                    editForm.ShowDialog();
+                }
+                RefreshProductList(); // Atualiza a tabela após a edição
+            }
+            else
+            {
+                MessageBox.Show("Product not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

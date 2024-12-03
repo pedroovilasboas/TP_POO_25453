@@ -28,7 +28,7 @@ namespace POO_25453_TP
             if (category == null || brand == null)
                 throw new ArgumentNullException("Category and Brand cannot be null");
 
-            this.ProductID = productId;
+            this.ProductID = ++lastProductID;
             this.Category = category;
             this.Brand = brand;
             this.Name = name;
@@ -80,8 +80,21 @@ namespace POO_25453_TP
 
                 products.Add(new Product(productId, category, brand, parts[3], parts[4], parts[5], decimal.Parse(parts[6]), int.Parse(parts[7])));
             }
+
+            // update lastProductID with bigger ID found
+            if (products.Any())
+            {
+                lastProductID = products.Max(p => p.ProductID);
+            }
+            else
+            {
+                lastProductID = 0; // Caso não haja produtos, inicializa em 0
+            }
+
             return products;
         }
+
+
 
         // Method to save all products
         public static void SaveProducts(List<Product> products)

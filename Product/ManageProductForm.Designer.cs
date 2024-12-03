@@ -30,7 +30,7 @@
             textBoxSearch.Location = new Point(30, 10);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.PlaceholderText = "Search Products";
-            textBoxSearch.Size = new Size(600, 27);
+            textBoxSearch.Size = new Size(600, 23);
             textBoxSearch.TabIndex = 0;
             // 
             // buttonSearch
@@ -73,6 +73,7 @@
             buttonEdit.TabIndex = 4;
             buttonEdit.Text = "Edit";
             buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += buttonEdit_Click_1;
             // 
             // ManageProductForm
             // 

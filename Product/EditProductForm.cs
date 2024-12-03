@@ -10,7 +10,7 @@ namespace POO_25453_TP
         public EditProductForm(Product product)
         {
             InitializeComponent();
-            _product = product;
+           _product = product;
         }
 
         private void EditProductForm_Load(object sender, EventArgs e)
@@ -23,6 +23,7 @@ namespace POO_25453_TP
                 textBoxPrice.Text = _product.Price.ToString();
                 textBoxStock.Text = _product.StockQuantity.ToString();
 
+                // Populate the brand dropdown
                 comboBoxBrand.Items.Clear();
                 var brands = Brand.LoadBrands();
                 foreach (var brand in brands)
@@ -31,12 +32,20 @@ namespace POO_25453_TP
                 }
                 comboBoxBrand.SelectedItem = _product.Brand?.Name;
             }
+            else
+            {
+                MessageBox.Show("Error loading product data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+             
         }
+        
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
+                // update product data
                 _product.Name = textBoxName.Text;
                 _product.Description = textBoxDescription.Text;
                 _product.Type = textBoxType.Text;
@@ -46,6 +55,7 @@ namespace POO_25453_TP
                 var brandName = comboBoxBrand.SelectedItem?.ToString();
                 _product.Brand = Brand.LoadBrands().FirstOrDefault(b => b.Name == brandName);
 
+                // Save the updated product
                 Product.UpdateProduct(_product);
 
                 MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK);
@@ -53,7 +63,7 @@ namespace POO_25453_TP
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK);
+                MessageBox.Show($"Error saving product: {ex.Message}", "Error", MessageBoxButtons.OK);
             }
         }
     }
