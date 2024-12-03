@@ -12,31 +12,32 @@ namespace POO_25453_TP
 
         private void AddCategoryForm_Load(object sender, EventArgs e)
         {
-            // Code to load the form, if necessary
+            
+            var categories = Category.LoadCategories();
+            var nextId = categories.Any() ? categories.Max(c => c.CategoryId) + 1 : 1;
+            textBoxCategoryId.Text = nextId.ToString();
+            textBoxCategoryId.ReadOnly = true;
         }
+
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            // Capture the values for ID, Name, and Description
-            if (!int.TryParse(textBoxCategoryId.Text, out int categoryId))
-            {
-                MessageBox.Show("Please enter a valid numeric ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // Retrieve input values
             string categoryName = textBoxCategoryName.Text;
             string description = textBoxDescription.Text;
 
-            // Check if any field is empty
+            // Validate that required fields are filled
             if (string.IsNullOrEmpty(categoryName) || string.IsNullOrEmpty(description))
             {
                 MessageBox.Show("All fields must be filled out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Create a new instance of Category and save it
-            Category newCategory = new Category(categoryId, categoryName, description);
+            // Create a new category (ID is auto-generated)
+            var newCategory = new Category(categoryName, description);
             newCategory.Save();
 
+            // Notify the user and close the form
             MessageBox.Show("Category added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }

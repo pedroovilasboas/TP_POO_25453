@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
@@ -11,14 +9,17 @@ namespace POO_25453_TP
     public class Category
     {
         // Properties for Category
-        public int CategoryId { get; set; }
+        public int CategoryId { get; private set; } // ID is now read-only
         public string Name { get; set; }
         public string Description { get; set; }
 
         // File path for categories.txt
         private static string categoriesFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Category\category.txt");
 
-        // Constructor to initialize Category
+        // Static field to store the last used ID
+        private static int lastCategoryId = 0;
+
+        // Constructor for creating an existing categor
         public Category(int categoryId, string name, string description)
         {
             CategoryId = categoryId;
@@ -26,15 +27,31 @@ namespace POO_25453_TP
             Description = description;
         }
 
+
+        // Constructor for creating an new category
+        public Category(string name, string description)
+        {
+            // Increment lastCategoryId based on the current value
+            if (lastCategoryId == 0)
+            {
+                var categories = LoadCategories();
+                lastCategoryId = categories.Any() ? categories.Max(c => c.CategoryId) : 0;
+            }
+
+            CategoryId = ++lastCategoryId; // Assign the next available ID
+            Name = name;
+            Description = description;
+        }
+
+
         // Method to save a category
         public void Save()
         {
             var categories = LoadCategories();
-            categories.Add(this);
+            categories.Add(this); // Add the new category to the list
             SaveCategories(categories);
         }
 
-        // Method to load categories from file
         public static List<Category> LoadCategories()
         {
             var categories = new List<Category>();
@@ -51,13 +68,17 @@ namespace POO_25453_TP
                         string name = parts[1];
                         string description = parts[2];
 
-                        categories.Add(new Category(categoryId, name, description));
+                        categories.Add(new Category(categoryId, name, description)); // Use o construtor com 3 argumentos
                     }
                 }
+
+                // Atualiza o último ID usado
+                lastCategoryId = categories.Any() ? categories.Max(c => c.CategoryId) : 0;
             }
 
             return categories;
         }
+
 
         // Method to save a list of categories to file
         public static void SaveCategories(List<Category> categories)
@@ -118,4 +139,3 @@ namespace POO_25453_TP
         }
     }
 }
-
