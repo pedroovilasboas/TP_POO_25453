@@ -46,7 +46,6 @@
             Controls.Add(buttonUpdate);
             Name = "UpdateStockForm";
             Text = "Update Stock";
-            Load += UpdateStockForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

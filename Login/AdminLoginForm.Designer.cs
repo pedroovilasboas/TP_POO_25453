@@ -20,57 +20,69 @@
 
         private void InitializeComponent()
         {
-            this.labelUsername = new System.Windows.Forms.Label();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.buttonLogin = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-
+            labelUsername = new Label();
+            labelPassword = new Label();
+            textBoxUsername = new TextBox();
+            textBoxPassword = new TextBox();
+            buttonLogin = new Button();
+            SuspendLayout();
+            // 
             // labelUsername
-            this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(30, 20);
-            this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(70, 20);
-            this.labelUsername.Text = "Username";
-
-            // textBoxUsername
-            this.textBoxUsername.Location = new System.Drawing.Point(120, 20);
-            this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(150, 25);
-
+            // 
+            labelUsername.AutoSize = true;
+            labelUsername.Location = new Point(30, 20);
+            labelUsername.Name = "labelUsername";
+            labelUsername.Size = new Size(60, 15);
+            labelUsername.TabIndex = 0;
+            labelUsername.Text = "Username";
+            // 
             // labelPassword
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(30, 60);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(70, 20);
-            this.labelPassword.Text = "Password";
-
+            // 
+            labelPassword.AutoSize = true;
+            labelPassword.Location = new Point(30, 60);
+            labelPassword.Name = "labelPassword";
+            labelPassword.Size = new Size(57, 15);
+            labelPassword.TabIndex = 2;
+            labelPassword.Text = "Password";
+            // 
+            // textBoxUsername
+            // 
+            textBoxUsername.Location = new Point(120, 20);
+            textBoxUsername.Name = "textBoxUsername";
+            textBoxUsername.Size = new Size(150, 23);
+            textBoxUsername.TabIndex = 1;
+            // 
             // textBoxPassword
-            this.textBoxPassword.Location = new System.Drawing.Point(120, 60);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(150, 25);
-            this.textBoxPassword.PasswordChar = '*';
-
+            // 
+            textBoxPassword.Location = new Point(120, 60);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.PasswordChar = '*';
+            textBoxPassword.Size = new Size(150, 23);
+            textBoxPassword.TabIndex = 3;
+            // 
             // buttonLogin
-            this.buttonLogin.Location = new System.Drawing.Point(120, 100);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(75, 30);
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
-
+            // 
+            buttonLogin.Location = new Point(120, 100);
+            buttonLogin.Name = "buttonLogin";
+            buttonLogin.Size = new Size(75, 30);
+            buttonLogin.TabIndex = 4;
+            buttonLogin.Text = "Login";
+            buttonLogin.UseVisualStyleBackColor = true;
+            buttonLogin.Click += buttonLogin_Click;
+            // 
             // AdminLoginForm
-            this.ClientSize = new System.Drawing.Size(300, 160);
-            this.Controls.Add(this.labelUsername);
-            this.Controls.Add(this.textBoxUsername);
-            this.Controls.Add(this.labelPassword);
-            this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.buttonLogin);
-            this.Name = "AdminLoginForm";
-            this.Text = "Admin Login";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            ClientSize = new Size(300, 160);
+            Controls.Add(labelUsername);
+            Controls.Add(textBoxUsername);
+            Controls.Add(labelPassword);
+            Controls.Add(textBoxPassword);
+            Controls.Add(buttonLogin);
+            Name = "AdminLoginForm";
+            Text = "Admin Login";
+            Load += AdminLoginForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

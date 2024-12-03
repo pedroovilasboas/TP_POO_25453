@@ -55,7 +55,6 @@
             dataGridViewResults.Size = new Size(845, 380);
             dataGridViewResults.TabIndex = 2;
             dataGridViewResults.CellContentClick += dataGridViewResults_CellContentClick;
-            dataGridViewResults.SelectionChanged += dataGridViewResults_SelectionChanged;
             // 
             // buttonEdit
             // 
@@ -100,7 +99,6 @@
             Controls.Add(buttonGo);
             Name = "ManageClientForm";
             Text = "Manage Clients";
-            Load += ManageClientForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
             ResumeLayout(false);
             PerformLayout();

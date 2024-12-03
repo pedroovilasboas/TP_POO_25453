@@ -25,16 +25,19 @@ namespace POO_25453_TP
         // Constructor for an existing product
         public Product(int productId, Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
-            ProductID = productId;
-            Category = category;
-            Brand = brand;
-            Name = name;
-            Description = description;
-            Type = type;
-            Price = price;
-            StockQuantity = stockQuantity;
-            lastProductID = Math.Max(lastProductID, productId);
+            if (category == null || brand == null)
+                throw new ArgumentNullException("Category and Brand cannot be null");
+
+            this.ProductID = productId;
+            this.Category = category;
+            this.Brand = brand;
+            this.Name = name;
+            this.Description = description;
+            this.Type = type;
+            this.Price = price;
+            this.StockQuantity = stockQuantity;
         }
+
 
         // Constructor for a new product
         public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POO_25453_TP.DAL;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
@@ -12,17 +13,28 @@ namespace POO_25453_TP
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            // Check credentials (hardcoded for now)
-            if (textBoxUsername.Text == "admin" && textBoxPassword.Text == "password")
+            // Get username and password from the text boxes
+            var username = textBoxUsername.Text;
+            var password = textBoxPassword.Text;
+
+            // Validate credentials using the ValidateAccountLogin method
+            if (Login.ValidateAccountLogin(username, password))
             {
+                // If credentials are valid, open the AccountPage
                 var accountPage = new AccountPage();
                 accountPage.Show();
                 this.Close();
             }
             else
             {
+                // Show an error message if credentials are invalid
                 MessageBox.Show("Invalid credentials!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void AdminLoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

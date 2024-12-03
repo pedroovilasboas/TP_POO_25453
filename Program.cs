@@ -10,7 +10,7 @@ namespace POO_25453_TP
         {
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new AccountPage());
+            Application.Run(new LoginSelectionForm());
         }
     }
 }

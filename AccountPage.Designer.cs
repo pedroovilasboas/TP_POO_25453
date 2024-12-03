@@ -154,14 +154,14 @@
             // addProductToolStripMenuItem
             // 
             addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
-            addProductToolStripMenuItem.Size = new Size(180, 22);
+            addProductToolStripMenuItem.Size = new Size(162, 22);
             addProductToolStripMenuItem.Text = "Add Product";
             addProductToolStripMenuItem.Click += addProductToolStripMenuItem_Click;
             // 
             // manageProductToolStripMenuItem
             // 
             manageProductToolStripMenuItem.Name = "manageProductToolStripMenuItem";
-            manageProductToolStripMenuItem.Size = new Size(180, 22);
+            manageProductToolStripMenuItem.Size = new Size(162, 22);
             manageProductToolStripMenuItem.Text = "Manage Product";
             manageProductToolStripMenuItem.Click += manageProductToolStripMenuItem_Click;
             // 

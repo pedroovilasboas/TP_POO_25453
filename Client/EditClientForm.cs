@@ -5,57 +5,98 @@ namespace POO_25453_TP
 {
     public partial class EditClientForm : Form
     {
-        private Client _client;
+        private Client client; // Stores the passed client object
+        private bool isClientEditing; // indicate the context
 
-        public EditClientForm(Client client)
+        public EditClientForm(Client client, bool isClientEditing)
         {
             InitializeComponent();
-            _client = client; // Armazena o cliente passado
+            this.client = client;
+            this.isClientEditing = isClientEditing; // Assign the context
         }
+
 
         private void EditClientForm_Load(object sender, EventArgs e)
         {
-            if (_client != null) // Verifique se _client não é nulo
+            if (client != null) // Check if the client object is not null
             {
-                textBoxName.Text = _client.Name;
-                textBoxUsername.Text = _client.Username;
-                textBoxEmail.Text = _client.Email;
-                textBoxPhone.Text = _client.Phone;
-                textBoxAddress.Text = _client.Address;
-                textBoxCity.Text = _client.City;
-                textBoxRegion.Text = _client.Region;
-                textBoxPostalCode.Text = _client.PostalCode;
-                textBoxPassword.Text = ""; // Deixa o campo de senha vazio
+                // Populate the text fields with client data
+                textBoxName.Text = client.Name;
+                textBoxUsername.Text = client.Username;
+                textBoxUsername.ReadOnly = true; // Make the username field read-only
+                textBoxEmail.Text = client.Email;
+                textBoxPhone.Text = client.Phone;
+                textBoxAddress.Text = client.Address;
+                textBoxCity.Text = client.City;
+                textBoxRegion.Text = client.Region;
+                textBoxPostalCode.Text = client.PostalCode;
+                textBoxPassword.Text = ""; // Leave the password field empty
             }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            // Atualizar os dados do cliente com os novos valores
-            _client.Name = textBoxName.Text;
-            _client.Username = textBoxUsername.Text;
-            _client.Email = textBoxEmail.Text;
-            _client.Phone = textBoxPhone.Text;
-            _client.Address = textBoxAddress.Text;
-            _client.City = textBoxCity.Text;
-            _client.Region = textBoxRegion.Text;
-            _client.PostalCode = textBoxPostalCode.Text;
-
-            // Atualizar a senha somente se um novo valor foi inserido
-            if (!string.IsNullOrEmpty(textBoxPassword.Text))
+            try
             {
-                _client.Password = textBoxPassword.Text;
+                // Update client data with form values
+                client.Name = textBoxName.Text;
+                client.Email = textBoxEmail.Text;
+                client.Phone = textBoxPhone.Text;
+                client.Address = textBoxAddress.Text;
+                client.City = textBoxCity.Text;
+                client.Region = textBoxRegion.Text;
+                client.PostalCode = textBoxPostalCode.Text;
+
+                bool passwordUpdated = false;
+
+                // Update password only if a new value is provided
+                if (!string.IsNullOrEmpty(textBoxPassword.Text))
+                {
+                    client.Password = textBoxPassword.Text;
+                    passwordUpdated = true; // Flag to indicate the password was changed
+                }
+
+                // Save changes
+                Client.UpdateClient(client);
+
+                // Show success message
+                MessageBox.Show("Client information has been updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Handle behavior based on the context
+                if (isClientEditing && passwordUpdated)
+                {
+                    MessageBox.Show("Your password has been changed. Please log in again.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Close the current form
+                    this.Close();
+
+                    // Close the ClientPage (main form) if available
+                    var parentForm = this.Owner as ClientPage;
+                    if (parentForm != null)
+                    {
+                        parentForm.Close();
+                    }
+
+                    // Reopen the LoginForm
+                    var loginselectionForm = new LoginSelectionForm();
+                    loginselectionForm.Show();
+                }
+                else
+                {
+                    // Close the form without redirecting to login
+                    this.Close();
+                }
             }
-
-            // Chamar o método para atualizar o cliente
-            Client.UpdateClient(_client); // Atualiza o cliente no arquivo
-
-            // Fechar o formulário
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating client: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void ButtonClose_Click(object sender, EventArgs e)
         {
+            // Close the form without saving changes
             this.Close();
         }
     }

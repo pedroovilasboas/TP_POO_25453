@@ -22,8 +22,8 @@ namespace POO_25453_TP
         private void buttonClient_Click(object sender, EventArgs e)
         {
             // Open Client Options Form (Login/Create Account)
-            var clientOptionsForm = new ClientOptionsForm();
-            clientOptionsForm.Show();
+            var clientloginform = new ClientLoginForm();
+            clientloginform.Show();
             this.Hide();
         }
     }

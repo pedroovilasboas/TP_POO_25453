@@ -36,6 +36,7 @@
             productsToolStripMenuItem = new ToolStripMenuItem();
             campaignToolStripMenuItem = new ToolStripMenuItem();
             myCartToolStripMenuItem = new ToolStripMenuItem();
+            panel2 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { myAccountToolStripMenuItem, productsToolStripMenuItem, campaignToolStripMenuItem, myCartToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(1206, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -60,19 +61,20 @@
             editAccountToolStripMenuItem.Name = "editAccountToolStripMenuItem";
             editAccountToolStripMenuItem.Size = new Size(142, 22);
             editAccountToolStripMenuItem.Text = "Edit Account";
+            editAccountToolStripMenuItem.Click += editAccountToolStripMenuItem_Click;
             // 
             // myOrderToolStripMenuItem
             // 
             myOrderToolStripMenuItem.Name = "myOrderToolStripMenuItem";
             myOrderToolStripMenuItem.Size = new Size(142, 22);
             myOrderToolStripMenuItem.Text = "My orders";
-            myOrderToolStripMenuItem.Click += myOrderToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             logoutToolStripMenuItem.Size = new Size(142, 22);
             logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // productsToolStripMenuItem
             // 
@@ -92,16 +94,23 @@
             myCartToolStripMenuItem.Size = new Size(61, 20);
             myCartToolStripMenuItem.Text = "My Cart";
             // 
+            // panel2
+            // 
+            panel2.Location = new Point(12, 27);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1185, 525);
+            panel2.TabIndex = 1;
+            // 
             // ClientPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1206, 572);
+            Controls.Add(panel2);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "ClientPage";
             Text = "ClientPage";
-            Load += ClientPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -118,5 +127,6 @@
         private ToolStripMenuItem productsToolStripMenuItem;
         private ToolStripMenuItem campaignToolStripMenuItem;
         private ToolStripMenuItem myCartToolStripMenuItem;
+        private Panel panel2;
     }
 }

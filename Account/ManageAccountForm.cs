@@ -56,8 +56,8 @@ namespace POO_25453_TP
 
             if (account != null)
             {
-                // Passa a conta selecionada para o formulário de edição
-                EditAccountForm editForm = new EditAccountForm(account); // Passando a conta selecionada
+               
+                EditAccountForm editForm = new EditAccountForm(account); 
                 editForm.ShowDialog();
 
                 // Atualize a lista após a edição
@@ -92,7 +92,7 @@ namespace POO_25453_TP
             string selectedAccountInfo = checkedListBoxResults.CheckedItems[0].ToString();
             string selectedUsername = selectedAccountInfo.Substring(selectedAccountInfo.IndexOf('(') + 1).TrimEnd(')');
 
-            // Perguntar ao usuário se ele tem certeza de que deseja excluir a conta
+            
             var confirmResult = MessageBox.Show("Are you sure you want to delete this account?",
                                                  "Confirm Delete",
                                                  MessageBoxButtons.YesNo,
@@ -100,10 +100,9 @@ namespace POO_25453_TP
 
             if (confirmResult == DialogResult.Yes)
             {
-                // Chamar o método de exclusão
+                
                 Account.DeleteAccount(selectedUsername);
 
-                // Atualizar a lista após a exclusão
                 string query = textBoxSearch.Text;
                 var results = Account.SearchAccounts(query);
                 DisplayResults(results);
