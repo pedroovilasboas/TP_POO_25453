@@ -46,15 +46,33 @@ namespace POO_25453_TP
 
         private void LoadFormIntoPanel(Form form)
         {
-            // Clear existing controls in the panel
+            // Clear the panel before adding the new form
             panel2.Controls.Clear();
 
             // Set the form as a child of the panel
-            form.TopLevel = false;
+            form.TopLevel = form.TopLevel = false;
             form.Dock = DockStyle.Fill;
             panel2.Controls.Add(form);
             form.Show();
         }
 
+
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProductListForm productListForm = new ProductListForm();
+            LoadFormIntoPanel(productListForm);
+        }
+
+
+        private void myOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
