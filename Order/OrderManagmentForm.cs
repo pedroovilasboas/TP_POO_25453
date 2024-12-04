@@ -19,19 +19,34 @@ namespace POO_25453_TP
         private void LoadOrders()
         {
             dgvOrders.Rows.Clear();
-            orders = Order.LoadOrders();
 
-            foreach (var order in orders)
+            string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\orders.txt";
+
+            if (File.Exists(ordersFile))
             {
-                dgvOrders.Rows.Add(
-                    order.OrderID,
-                    order.ClientID,
-                    order.ProductID,
-                    order.Quantity,
-                    order.Status
-                );
+                var orders = File.ReadAllLines(ordersFile)
+                    .Select(line =>
+                    {
+                        var parts = line.Split(',');
+                        return new
+                        {
+                            OrderID = int.Parse(parts[0]),
+                            ClientID = int.Parse(parts[1]),
+                            ProductID = int.Parse(parts[2]),
+                            Quantity = int.Parse(parts[3]),
+                            UnitPrice = decimal.Parse(parts[4]),
+                            TotalPrice = decimal.Parse(parts[5]),
+                            Status = parts[6]
+                        };
+                    });
+
+                foreach (var order in orders)
+                {
+                    dgvOrders.Rows.Add(order.OrderID, order.ClientID, order.ProductID, order.Quantity, order.UnitPrice, order.TotalPrice, order.Status);
+                }
             }
         }
+
 
         private void btnMarkAsShipped_Click(object sender, EventArgs e)
         {
@@ -57,6 +72,11 @@ namespace POO_25453_TP
             {
                 MessageBox.Show("Please select an order to update.", "No Order Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void OrdersManagementForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

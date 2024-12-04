@@ -29,12 +29,13 @@
             productsToolStripMenuItem = new ToolStripMenuItem();
             myCartToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
+            myOrdersToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem, productsToolStripMenuItem, myCartToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem, productsToolStripMenuItem, myCartToolStripMenuItem, myOrdersToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 2, 0, 2);
@@ -84,6 +85,13 @@
             panel1.Size = new Size(1185, 525);
             panel1.TabIndex = 1;
             // 
+            // myOrdersToolStripMenuItem
+            // 
+            myOrdersToolStripMenuItem.Name = "myOrdersToolStripMenuItem";
+            myOrdersToolStripMenuItem.Size = new Size(72, 20);
+            myOrdersToolStripMenuItem.Text = "My orders";
+            myOrdersToolStripMenuItem.Click += myOrdersToolStripMenuItem_Click;
+            // 
             // ClientPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -103,5 +111,6 @@
         }
 
         private Panel panel1;
+        private ToolStripMenuItem myOrdersToolStripMenuItem;
     }
 }

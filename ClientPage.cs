@@ -75,5 +75,19 @@ namespace POO_25453_TP
             ProductListForm productListForm = new ProductListForm(currentClient.ClientID);
             LoadFormIntoPanel(productListForm);
         }
+
+        private void myOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentClient == null)
+            {
+                MessageBox.Show("No client information available. Please log in again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Open the MyOrdersForm in the panel
+            MyOrdersForm myOrdersForm = new MyOrdersForm(currentClient.ClientID);
+            LoadFormIntoPanel(myOrdersForm);
+        }
+
     }
 }

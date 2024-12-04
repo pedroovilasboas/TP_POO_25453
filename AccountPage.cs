@@ -100,5 +100,11 @@ namespace POO_25453_TP
         {
 
         }
+
+        private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OrdersManagementForm ordersManagementForm = new OrdersManagementForm();
+            LoadFormIntoPanel(ordersManagementForm);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using static POO_25453_TP.Cart;
 
 namespace POO_25453_TP
 {
@@ -116,16 +117,26 @@ namespace POO_25453_TP
         {
             if (cart.Items.Any())
             {
-                MessageBox.Show("Checkout complete!", "Checkout", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                cart.Items.Clear();
-                cart.SaveCart();
-                LoadCartItems();
+                try
+                {
+                    cart.Checkout(); // Call the Checkout function in Cart.cs
+                    MessageBox.Show("Checkout complete! Your orders have been placed.", "Checkout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh the cart view
+                    LoadCartItems();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred during checkout: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
                 MessageBox.Show("Your cart is empty. Add items to proceed.", "Empty Cart", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
     }
 }
 

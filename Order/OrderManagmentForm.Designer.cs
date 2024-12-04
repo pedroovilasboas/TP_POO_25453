@@ -17,42 +17,48 @@
 
         private void InitializeComponent()
         {
-            this.dgvOrders = new System.Windows.Forms.DataGridView();
-            this.btnMarkAsShipped = new System.Windows.Forms.Button();
+            dgvOrders = new DataGridView();
+            btnMarkAsShipped = new Button();
 
             // 
             // dgvOrders
             // 
-            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrders.Columns.Add("OrderID", "Order ID");
-            this.dgvOrders.Columns.Add("ClientID", "Client ID");
-            this.dgvOrders.Columns.Add("ProductID", "Product ID");
-            this.dgvOrders.Columns.Add("Quantity", "Quantity");
-            this.dgvOrders.Columns.Add("Status", "Status");
-            this.dgvOrders.Location = new System.Drawing.Point(12, 12);
-            this.dgvOrders.Name = "dgvOrders";
-            this.dgvOrders.Size = new System.Drawing.Size(600, 300);
-            this.dgvOrders.TabIndex = 0;
+            dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+            // Rename the columns to match the names used in the code
+            dgvOrders.Columns.Add("OrderID", "Order ID");
+            dgvOrders.Columns.Add("ClientID", "Client ID");
+            dgvOrders.Columns.Add("ProductID", "Product ID");
+            dgvOrders.Columns.Add("Quantity", "Quantity");
+            dgvOrders.Columns.Add("UnitPrice", "Unit Price");
+            dgvOrders.Columns.Add("TotalPrice", "Total Price");
+            dgvOrders.Columns.Add("Status", "Status");
+
+            dgvOrders.Location = new Point(14, 20);
+            dgvOrders.Name = "dgvOrders";
+            dgvOrders.Size = new Size(759, 269);
+            dgvOrders.TabIndex = 0;
 
             // 
             // btnMarkAsShipped
             // 
-            this.btnMarkAsShipped.Location = new System.Drawing.Point(620, 20);
-            this.btnMarkAsShipped.Name = "btnMarkAsShipped";
-            this.btnMarkAsShipped.Size = new System.Drawing.Size(150, 30);
-            this.btnMarkAsShipped.TabIndex = 1;
-            this.btnMarkAsShipped.Text = "Mark as Shipped";
-            this.btnMarkAsShipped.UseVisualStyleBackColor = true;
-            this.btnMarkAsShipped.Click += new System.EventHandler(this.btnMarkAsShipped_Click);
+            btnMarkAsShipped.Location = new Point(815, 20);
+            btnMarkAsShipped.Name = "btnMarkAsShipped";
+            btnMarkAsShipped.Size = new Size(150, 30);
+            btnMarkAsShipped.TabIndex = 1;
+            btnMarkAsShipped.Text = "Mark as Shipped";
+            btnMarkAsShipped.UseVisualStyleBackColor = true;
+            btnMarkAsShipped.Click += btnMarkAsShipped_Click;
 
             // 
             // OrdersManagementForm
             // 
-            this.ClientSize = new System.Drawing.Size(800, 350);
-            this.Controls.Add(this.btnMarkAsShipped);
-            this.Controls.Add(this.dgvOrders);
-            this.Name = "OrdersManagementForm";
-            this.Text = "Orders Management";
+            ClientSize = new Size(998, 430);
+            Controls.Add(btnMarkAsShipped);
+            Controls.Add(dgvOrders);
+            Name = "OrdersManagementForm";
+            Text = "Orders Management";
+            Load += OrdersManagementForm_Load;
         }
     }
 }
