@@ -20,7 +20,7 @@ namespace POO_25453_TP
         public int ClientID { get; private set; }
         public List<CartItem> Items { get; set; } = new List<CartItem>();
 
-        private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cart.txt");
+        private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "C:\\PROGRAM_CS\\25453_TP_POO\\Cart\\cart.txt");
 
         public Cart(int clientID)
         {

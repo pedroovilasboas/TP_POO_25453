@@ -70,6 +70,34 @@ namespace POO_25453_TP
             }
         }
 
+
+        private void btnIncreaseQuantity_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtQuantity.Text, out int quantity))
+            {
+                txtQuantity.Text = (quantity + 1).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Invalid quantity. Resetting to 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtQuantity.Text = "1"; // Reset to a valid quantity
+            }
+        }
+
+        private void btnDecreaseQuantity_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtQuantity.Text, out int quantity) && quantity > 1)
+            {
+                txtQuantity.Text = (quantity - 1).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Quantity cannot be less than 1.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtQuantity.Text = "1"; // Reset to a valid quantity
+            }
+        }
+
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

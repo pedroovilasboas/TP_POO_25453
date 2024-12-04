@@ -11,22 +11,18 @@ namespace POO_25453_TP
         public CartViewForm(int clientID)
         {
             InitializeComponent();
-            // Load the cart for the specific client using their ClientID
-            this.cart = Cart.LoadCart(clientID);
+            this.cart = Cart.LoadCart(clientID); // Load the cart for the specific client
         }
 
         private void CartViewForm_Load(object sender, EventArgs e)
         {
-            // Load and display the items in the cart when the form loads
             LoadCartItems();
         }
 
         private void LoadCartItems()
         {
-            // Clear rows before adding new data
             dgvCartItems.Rows.Clear();
 
-            // Populate the DataGridView with cart items
             foreach (var item in cart.Items)
             {
                 dgvCartItems.Rows.Add(
@@ -37,22 +33,28 @@ namespace POO_25453_TP
                     (item.Quantity * item.Price).ToString("C")
                 );
             }
+
+            // Reset txtQuantity when the cart is loaded
+            txtQuantity.Text = string.Empty;
         }
-
-
 
         private void btnIncreaseQuantity_Click(object sender, EventArgs e)
         {
             if (dgvCartItems.SelectedRows.Count > 0)
             {
-                int productId = int.Parse(dgvCartItems.SelectedRows[0].Cells[0].Value.ToString());
+                var selectedRow = dgvCartItems.SelectedRows[0];
+                int productId = int.Parse(selectedRow.Cells["ProductID"].Value.ToString());
                 var cartItem = cart.Items.FirstOrDefault(item => item.ProductID == productId);
 
                 if (cartItem != null)
                 {
                     cartItem.Quantity++;
                     cart.SaveCart();
-                    LoadCartItems();
+
+                    // Update DataGridView and txtQuantity
+                    selectedRow.Cells["Quantity"].Value = cartItem.Quantity;
+                    selectedRow.Cells["TotalPrice"].Value = (cartItem.Quantity * cartItem.Price).ToString("C");
+                    txtQuantity.Text = cartItem.Quantity.ToString();
                 }
             }
         }
@@ -61,21 +63,37 @@ namespace POO_25453_TP
         {
             if (dgvCartItems.SelectedRows.Count > 0)
             {
-                int productId = int.Parse(dgvCartItems.SelectedRows[0].Cells[0].Value.ToString());
+                var selectedRow = dgvCartItems.SelectedRows[0];
+                int productId = int.Parse(selectedRow.Cells["ProductID"].Value.ToString());
                 var cartItem = cart.Items.FirstOrDefault(item => item.ProductID == productId);
 
-                if (cartItem != null)
+                if (cartItem != null && cartItem.Quantity > 1)
                 {
-                    if (cartItem.Quantity > 1)
-                    {
-                        cartItem.Quantity--;
-                        cart.SaveCart();
-                        LoadCartItems();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cannot decrease quantity below 1. Use the Remove button to remove the item.");
-                    }
+                    cartItem.Quantity--;
+                    cart.SaveCart();
+
+                    // Update DataGridView and txtQuantity
+                    selectedRow.Cells["Quantity"].Value = cartItem.Quantity;
+                    selectedRow.Cells["TotalPrice"].Value = (cartItem.Quantity * cartItem.Price).ToString("C");
+                    txtQuantity.Text = cartItem.Quantity.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Cannot decrease quantity below 1. Use the Remove button to remove the item.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void dgvCartItems_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCartItems.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvCartItems.SelectedRows[0];
+
+                // Safeguard for missing column or null value
+                if (selectedRow.Cells["Quantity"].Value != null)
+                {
+                    txtQuantity.Text = selectedRow.Cells["Quantity"].Value.ToString();
                 }
             }
         }
@@ -88,6 +106,9 @@ namespace POO_25453_TP
                 cart.Items = cart.Items.Where(item => item.ProductID != productId).ToList();
                 cart.SaveCart();
                 LoadCartItems();
+
+                // Clear txtQuantity after removing an item
+                txtQuantity.Text = string.Empty;
             }
         }
 
@@ -107,3 +128,4 @@ namespace POO_25453_TP
         }
     }
 }
+

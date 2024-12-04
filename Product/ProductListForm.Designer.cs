@@ -23,6 +23,8 @@
 
         private void InitializeComponent()
         {
+ 
+
             txtSearch = new TextBox();
             btnSearch = new Button();
             dgvProducts = new DataGridView();
@@ -33,6 +35,9 @@
             btnDecreaseQuantity = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
+
+            btnIncreaseQuantity.Click += new System.EventHandler(this.btnIncreaseQuantity_Click);
+            btnDecreaseQuantity.Click += new System.EventHandler(this.btnDecreaseQuantity_Click);
             // 
             // txtSearch
             // 
