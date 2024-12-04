@@ -18,6 +18,8 @@ namespace POO_25453_TP
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
 
+
+
         // File path for storing products
         private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "products.txt");
         private static int lastProductID = 0;

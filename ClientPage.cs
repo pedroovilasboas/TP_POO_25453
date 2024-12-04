@@ -1,37 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace POO_25453_TP
 {
     public partial class ClientPage : Form
     {
         private Client currentClient;
-        private Cart cart = new Cart();
 
-
-        // Constructor that accepts a Client as a parameter
+        // Constructor that accepts a Client object
         public ClientPage(Client client)
         {
-            currentClient = client;  // Stores the received client
+            currentClient = client ?? throw new ArgumentNullException(nameof(client));
             InitializeComponent();
 
-            // Using client information, such as name, to update the interface
+            // Update the form's title to greet the client
             this.Text = $"Welcome, {currentClient.Name}!";
         }
 
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        // Method to load a form into the panel
+        private void LoadFormIntoPanel(Form form)
         {
-            this.Close();
+            // Set the panel size to match the form's size
+            form.Width = panel1.Width;
+            form.Height = panel1.Height;
+
+            // Load the form into the panel
+            panel1.Controls.Clear();
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panel1.Controls.Add(form);
+            form.Show();
         }
 
+        // Event for Logout
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close(); // Close the form
+        }
+
+        // Event for editing account information
         private void editAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (currentClient == null)
@@ -40,41 +48,32 @@ namespace POO_25453_TP
                 return;
             }
 
-
-            var editClientForm = new EditClientForm(currentClient, true); // Pass true for client editing
-            editClientForm.Owner = this;
-            editClientForm.ShowDialog();
+            // Open the EditClientForm in the panel
+            EditClientForm editClientForm = new EditClientForm(currentClient);
+            LoadFormIntoPanel(editClientForm);
         }
 
-
-        private void LoadFormIntoPanel(Form form)
-        {
-            // Clear the panel before adding the new form
-            panel2.Controls.Clear();
-
-            // Set the form as a child of the panel
-            form.TopLevel = form.TopLevel = false;
-            form.Dock = DockStyle.Fill;
-            panel2.Controls.Add(form);
-            form.Show();
-        }
-
-
-
+        // Event for viewing products
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Passa o mesmo carrinho para o ProductListForm
-            ProductListForm productListForm = new ProductListForm(cart);
+            // Open the ProductListForm in the panel
+            ProductListForm productListForm = new ProductListForm(currentClient.ClientID);
             LoadFormIntoPanel(productListForm);
         }
 
+        // Event for viewing the cart
         private void myCartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Passa o mesmo carrinho para o CartViewForm
-            CartViewForm cartViewForm = new CartViewForm(cart);
+            // Open the CartViewForm in the panel
+            CartViewForm cartViewForm = new CartViewForm(currentClient.ClientID);
             LoadFormIntoPanel(cartViewForm);
         }
 
-        
+        private void ClientPage_Load(object sender, EventArgs e)
+        {
+            // Optionally, load a default form into the panel
+            ProductListForm productListForm = new ProductListForm(currentClient.ClientID);
+            LoadFormIntoPanel(productListForm);
+        }
     }
-}   
+}

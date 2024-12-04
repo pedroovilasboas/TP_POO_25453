@@ -1,67 +1,99 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace POO_25453_TP
 {
     public class Cart
     {
-        // Structure to represent an item in the cart
+
         public class CartItem
         {
-            public Product Product { get; set; }
+            public int ProductID { get; set; }
+            public string ProductName { get; set; }
             public int Quantity { get; set; }
-
-            public CartItem(Product product, int quantity)
-            {
-                Product = new Product(
-                    product.ProductID,
-                    product.Category, // Keep category if available
-                    product.Brand,    // Keep brand details
-                    product.Name,
-                    product.Description,
-                    product.Type,
-                    product.Price,
-                    product.StockQuantity // StockQuantity is not used in cart, just copied
-                );
-                Quantity = quantity; // Define how many are being purchased
-            }
+            public decimal Price { get; set; }
         }
 
-        // List to hold cart items
-        private List<CartItem> items = new List<CartItem>();
 
-        // Add a product to the cart
+        public int ClientID { get; private set; }
+        public List<CartItem> Items { get; set; } = new List<CartItem>();
+
+        private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cart.txt");
+
+        public Cart(int clientID)
+        {
+            this.ClientID = clientID;
+        }
+
         public void AddToCart(Product product, int quantity)
         {
-            // Find if the product already exists in the cart
-            var existingItem = items.Find(item => item.Product.ProductID == product.ProductID);
+            // Check if the product is already in the cart
+            var existingItem = Items.FirstOrDefault(item => item.ProductID == product.ProductID);
             if (existingItem != null)
             {
-                // Update the quantity if the product already exists
                 existingItem.Quantity += quantity;
             }
             else
             {
-                // Add a new item to the cart
-                items.Add(new CartItem(product, quantity));
+                Items.Add(new CartItem
+                {
+                    ProductID = product.ProductID,
+                    ProductName = product.Name,
+                    Quantity = quantity,
+                    Price = product.Price
+                });
             }
+
+            SaveCart();
         }
 
-        // Get all cart items
-        public List<CartItem> GetCartItems()
+        public void SaveCart()
         {
-            return items;
+            // Read existing cart data
+            var lines = new List<string>();
+            if (File.Exists(cartFile))
+            {
+                lines.AddRange(File.ReadAllLines(cartFile)
+                    .Where(line => int.Parse(line.Split(',')[0]) != ClientID));
+            }
+
+            // Add updated cart items for the current client
+            lines.AddRange(Items.Select(item =>
+                $"{ClientID},{item.ProductID},{item.ProductName},{item.Quantity},{item.Price}"));
+
+            // Write back to cart.txt
+            File.WriteAllLines(cartFile, lines);
         }
 
-        // Remove an item from the cart
-        public void RemoveFromCart(int productId)
+        public static Cart LoadCart(int clientID)
         {
-            items.RemoveAll(item => item.Product.ProductID == productId);
-        }
+            var cart = new Cart(clientID);
+            if (!File.Exists(cartFile)) return cart;
 
-        // Clear the entire cart
-        public void ClearCart()
-        {
-            items.Clear();
+            var lines = File.ReadAllLines(cartFile);
+            foreach (var line in lines)
+            {
+                var parts = line.Split(',');
+                if (parts.Length != 5) continue;
+
+                if (int.Parse(parts[0]) == clientID)
+                {
+                    cart.Items.Add(new CartItem
+                    {
+                        ProductID = int.Parse(parts[1]),
+                        ProductName = parts[2],
+                        Quantity = int.Parse(parts[3]),
+                        Price = decimal.Parse(parts[4])
+                    });
+                }
+            }
+
+            return cart;
         }
     }
+
+
 }
+

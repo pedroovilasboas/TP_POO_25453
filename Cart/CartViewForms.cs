@@ -8,133 +8,102 @@ namespace POO_25453_TP
     {
         private Cart cart;
 
-        public CartViewForm(Cart cart)
+        public CartViewForm(int clientID)
         {
             InitializeComponent();
-            this.cart = cart;
+            // Load the cart for the specific client using their ClientID
+            this.cart = Cart.LoadCart(clientID);
         }
 
         private void CartViewForm_Load(object sender, EventArgs e)
         {
+            // Load and display the items in the cart when the form loads
             LoadCartItems();
         }
 
         private void LoadCartItems()
         {
-            // Clear existing rows
+            // Clear rows before adding new data
             dgvCartItems.Rows.Clear();
 
-            // Configure columns if they are not already set
-            if (dgvCartItems.Columns.Count == 0)
-            {
-                dgvCartItems.Columns.Add("ProductID", "Product ID");
-                dgvCartItems.Columns.Add("Name", "Product Name");
-                dgvCartItems.Columns.Add("Quantity", "Quantity");
-                dgvCartItems.Columns.Add("Price", "Price");
-                dgvCartItems.Columns.Add("Total", "Total");
-            }
-
-            // Populate rows with cart items
-            foreach (var item in cart.GetCartItems())
+            // Populate the DataGridView with cart items
+            foreach (var item in cart.Items)
             {
                 dgvCartItems.Rows.Add(
-                    item.Product.ProductID,
-                    item.Product.Name,
+                    item.ProductID,
+                    item.ProductName,
                     item.Quantity,
-                    item.Product.Price.ToString("0.00"),
-                    (item.Quantity * item.Product.Price).ToString("0.00")
+                    item.Price.ToString("C"),
+                    (item.Quantity * item.Price).ToString("C")
                 );
             }
-
-            // Update quantity label
-            UpdateQuantityLabel();
         }
 
 
-
-        private void UpdateQuantityLabel()
-        {
-            if (dgvCartItems.SelectedRows.Count == 1)
-            {
-                var selectedRow = dgvCartItems.SelectedRows[0];
-                lblQuantity.Text = selectedRow.Cells["Quantity"].Value.ToString();
-            }
-            else
-            {
-                lblQuantity.Text = "0";
-            }
-        }
 
         private void btnIncreaseQuantity_Click(object sender, EventArgs e)
         {
-            if (dgvCartItems.SelectedRows.Count == 1)
+            if (dgvCartItems.SelectedRows.Count > 0)
             {
-                var selectedRow = dgvCartItems.SelectedRows[0];
-                int productId = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
-                var item = cart.GetCartItems().FirstOrDefault(i => i.Product.ProductID == productId);
+                int productId = int.Parse(dgvCartItems.SelectedRows[0].Cells[0].Value.ToString());
+                var cartItem = cart.Items.FirstOrDefault(item => item.ProductID == productId);
 
-                if (item != null)
+                if (cartItem != null)
                 {
-                    item.Quantity++;
+                    cartItem.Quantity++;
+                    cart.SaveCart();
                     LoadCartItems();
                 }
             }
-            else
-            {
-                MessageBox.Show("Please select a product to increase quantity.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
-
 
         private void btnDecreaseQuantity_Click(object sender, EventArgs e)
         {
-            if (dgvCartItems.SelectedRows.Count == 1)
+            if (dgvCartItems.SelectedRows.Count > 0)
             {
-                var selectedRow = dgvCartItems.SelectedRows[0];
-                int productId = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
-                var item = cart.GetCartItems().FirstOrDefault(i => i.Product.ProductID == productId);
+                int productId = int.Parse(dgvCartItems.SelectedRows[0].Cells[0].Value.ToString());
+                var cartItem = cart.Items.FirstOrDefault(item => item.ProductID == productId);
 
-                if (item != null && item.Quantity > 1)
+                if (cartItem != null)
                 {
-                    item.Quantity--;
-                    LoadCartItems();
+                    if (cartItem.Quantity > 1)
+                    {
+                        cartItem.Quantity--;
+                        cart.SaveCart();
+                        LoadCartItems();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot decrease quantity below 1. Use the Remove button to remove the item.");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Cannot reduce quantity below 1.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a product to decrease quantity.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (dgvCartItems.SelectedRows.Count == 1)
+            if (dgvCartItems.SelectedRows.Count > 0)
             {
-                var selectedRow = dgvCartItems.SelectedRows[0];
-                int productId = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
-
-                // Remove the item from the cart
-                cart.RemoveFromCart(productId);
+                int productId = int.Parse(dgvCartItems.SelectedRows[0].Cells[0].Value.ToString());
+                cart.Items = cart.Items.Where(item => item.ProductID != productId).ToList();
+                cart.SaveCart();
                 LoadCartItems();
-
-                MessageBox.Show("Product removed from the cart.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Please select a product to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
 
         private void btnCheckout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Checkout functionality to be implemented.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (cart.Items.Any())
+            {
+                MessageBox.Show("Checkout complete!", "Checkout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cart.Items.Clear();
+                cart.SaveCart();
+                LoadCartItems();
+            }
+            else
+            {
+                MessageBox.Show("Your cart is empty. Add items to proceed.", "Empty Cart", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
-

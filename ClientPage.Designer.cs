@@ -2,15 +2,15 @@
 {
     partial class ClientPage
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem accountToolStripMenuItem;
+        private ToolStripMenuItem editAccountToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
+        private ToolStripMenuItem productsToolStripMenuItem;
+        private ToolStripMenuItem myCartToolStripMenuItem;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        // Clean up resources
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,41 +20,34 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            myAccountToolStripMenuItem = new ToolStripMenuItem();
+            accountToolStripMenuItem = new ToolStripMenuItem();
             editAccountToolStripMenuItem = new ToolStripMenuItem();
-            myOrderToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
             productsToolStripMenuItem = new ToolStripMenuItem();
-            campaignToolStripMenuItem = new ToolStripMenuItem();
             myCartToolStripMenuItem = new ToolStripMenuItem();
-            panel2 = new Panel();
+            panel1 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { myAccountToolStripMenuItem, productsToolStripMenuItem, campaignToolStripMenuItem, myCartToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem, productsToolStripMenuItem, myCartToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
+            menuStrip1.Padding = new Padding(7, 2, 0, 2);
             menuStrip1.Size = new Size(1206, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
-            // myAccountToolStripMenuItem
+            // accountToolStripMenuItem
             // 
-            myAccountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editAccountToolStripMenuItem, myOrderToolStripMenuItem, logoutToolStripMenuItem });
-            myAccountToolStripMenuItem.Name = "myAccountToolStripMenuItem";
-            myAccountToolStripMenuItem.Size = new Size(84, 20);
-            myAccountToolStripMenuItem.Text = "My Account";
+            accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editAccountToolStripMenuItem, logoutToolStripMenuItem });
+            accountToolStripMenuItem.Name = "accountToolStripMenuItem";
+            accountToolStripMenuItem.Size = new Size(64, 20);
+            accountToolStripMenuItem.Text = "Account";
             // 
             // editAccountToolStripMenuItem
             // 
@@ -62,12 +55,6 @@
             editAccountToolStripMenuItem.Size = new Size(142, 22);
             editAccountToolStripMenuItem.Text = "Edit Account";
             editAccountToolStripMenuItem.Click += editAccountToolStripMenuItem_Click;
-            // 
-            // myOrderToolStripMenuItem
-            // 
-            myOrderToolStripMenuItem.Name = "myOrderToolStripMenuItem";
-            myOrderToolStripMenuItem.Size = new Size(142, 22);
-            myOrderToolStripMenuItem.Text = "My orders";
             // 
             // logoutToolStripMenuItem
             // 
@@ -83,12 +70,6 @@
             productsToolStripMenuItem.Text = "Products";
             productsToolStripMenuItem.Click += productsToolStripMenuItem_Click;
             // 
-            // campaignToolStripMenuItem
-            // 
-            campaignToolStripMenuItem.Name = "campaignToolStripMenuItem";
-            campaignToolStripMenuItem.Size = new Size(74, 20);
-            campaignToolStripMenuItem.Text = "Campaign";
-            // 
             // myCartToolStripMenuItem
             // 
             myCartToolStripMenuItem.Name = "myCartToolStripMenuItem";
@@ -96,39 +77,31 @@
             myCartToolStripMenuItem.Text = "My Cart";
             myCartToolStripMenuItem.Click += myCartToolStripMenuItem_Click;
             // 
-            // panel2
+            // panel1
             // 
-            panel2.Location = new Point(12, 27);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1185, 525);
-            panel2.TabIndex = 1;
+            panel1.Location = new Point(9, 35);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1185, 525);
+            panel1.TabIndex = 1;
             // 
             // ClientPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1206, 572);
-            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(4, 3, 4, 3);
             Name = "ClientPage";
-            Text = "ClientPage";
+            Text = "Client Page";
+            Load += ClientPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem myAccountToolStripMenuItem;
-        private ToolStripMenuItem editAccountToolStripMenuItem;
-        private ToolStripMenuItem myOrderToolStripMenuItem;
-        private ToolStripMenuItem logoutToolStripMenuItem;
-        private ToolStripMenuItem productsToolStripMenuItem;
-        private ToolStripMenuItem campaignToolStripMenuItem;
-        private ToolStripMenuItem myCartToolStripMenuItem;
-        private Panel panel2;
+        private Panel panel1;
     }
 }

@@ -9,6 +9,8 @@
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Button btnAddToCart;
+        private System.Windows.Forms.Button btnIncreaseQuantity;
+        private System.Windows.Forms.Button btnDecreaseQuantity;
 
         protected override void Dispose(bool disposing)
         {
@@ -21,87 +23,102 @@
 
         private void InitializeComponent()
         {
-            txtSearch = new System.Windows.Forms.TextBox();
-            btnSearch = new System.Windows.Forms.Button();
-            dgvProducts = new System.Windows.Forms.DataGridView();
-            lblQuantity = new System.Windows.Forms.Label();
-            txtQuantity = new System.Windows.Forms.TextBox();
-            btnAddToCart = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(dgvProducts)).BeginInit();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
+            dgvProducts = new DataGridView();
+            lblQuantity = new Label();
+            txtQuantity = new TextBox();
+            btnAddToCart = new Button();
+            btnIncreaseQuantity = new Button();
+            btnDecreaseQuantity = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
             // txtSearch
             // 
-            txtSearch.Location = new System.Drawing.Point(12, 12);
+            txtSearch.Location = new Point(12, 12);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new System.Drawing.Size(800, 23);
-            txtSearch.TabIndex = 0;
+            txtSearch.Size = new Size(800, 23);
+            txtSearch.TabIndex = 1;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new System.Drawing.Point(820, 12);
+            btnSearch.Location = new Point(820, 12);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new System.Drawing.Size(100, 23);
-            btnSearch.TabIndex = 1;
+            btnSearch.Size = new Size(75, 23);
+            btnSearch.TabIndex = 2;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
             // 
             // dgvProducts
             // 
-            dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new System.Drawing.Point(12, 50);
+            dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProducts.Location = new Point(12, 50);
             dgvProducts.Name = "dgvProducts";
-            dgvProducts.ReadOnly = true;
-            dgvProducts.Size = new System.Drawing.Size(1150, 400);
-            dgvProducts.TabIndex = 2;
+            dgvProducts.Size = new Size(1160, 400);
+            dgvProducts.TabIndex = 3;
             // 
             // lblQuantity
             // 
             lblQuantity.AutoSize = true;
-            lblQuantity.Location = new System.Drawing.Point(12, 470);
+            lblQuantity.Location = new Point(12, 470);
             lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new System.Drawing.Size(58, 15);
-            lblQuantity.TabIndex = 3;
+            lblQuantity.Size = new Size(56, 15);
+            lblQuantity.TabIndex = 4;
             lblQuantity.Text = "Quantity:";
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new System.Drawing.Point(80, 467);
+            txtQuantity.Location = new Point(80, 467);
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new System.Drawing.Size(100, 23);
-            txtQuantity.TabIndex = 4;
+            txtQuantity.Size = new Size(50, 23);
+            txtQuantity.TabIndex = 5;
             txtQuantity.Text = "1";
+            // 
+            // btnDecreaseQuantity
+            // 
+            btnDecreaseQuantity.Location = new Point(140, 467);
+            btnDecreaseQuantity.Name = "btnDecreaseQuantity";
+            btnDecreaseQuantity.Size = new Size(34, 23);
+            btnDecreaseQuantity.TabIndex = 6;
+            btnDecreaseQuantity.Text = "-";
+            btnDecreaseQuantity.UseVisualStyleBackColor = true;
+            // 
+            // btnIncreaseQuantity
+            // 
+            btnIncreaseQuantity.Location = new Point(180, 467);
+            btnIncreaseQuantity.Name = "btnIncreaseQuantity";
+            btnIncreaseQuantity.Size = new Size(34, 23);
+            btnIncreaseQuantity.TabIndex = 7;
+            btnIncreaseQuantity.Text = "+";
+            btnIncreaseQuantity.UseVisualStyleBackColor = true;
             // 
             // btnAddToCart
             // 
-            btnAddToCart.Location = new System.Drawing.Point(200, 467);
+            btnAddToCart.Location = new Point(230, 465);
             btnAddToCart.Name = "btnAddToCart";
-            btnAddToCart.Size = new System.Drawing.Size(150, 23);
-            btnAddToCart.TabIndex = 5;
+            btnAddToCart.Size = new Size(100, 23);
+            btnAddToCart.TabIndex = 8;
             btnAddToCart.Text = "Add to Cart";
             btnAddToCart.UseVisualStyleBackColor = true;
             btnAddToCart.Click += btnAddToCart_Click;
             // 
             // ProductListForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1185, 525);
+            ClientSize = new Size(1185, 525);
             Controls.Add(btnAddToCart);
+            Controls.Add(btnIncreaseQuantity);
+            Controls.Add(btnDecreaseQuantity);
             Controls.Add(txtQuantity);
             Controls.Add(lblQuantity);
             Controls.Add(dgvProducts);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None; // Remove as bordas e botões
-            ControlBox = false; // Remove os botões de controle
-            MaximizeBox = false; // Remove o botão de maximizar
-            MinimizeBox = false; // Remove o botão de minimizar
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ProductListForm";
             Text = "Product List";
             Load += ProductListForm_Load;
-            ((System.ComponentModel.ISupportInitialize)(dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

@@ -38,5 +38,10 @@ namespace POO_25453_TP
             var addClientForm = new AddClientForm();
             addClientForm.ShowDialog(); // Use ShowDialog to keep the login form on hold
         }
+
+        private void ClientLoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

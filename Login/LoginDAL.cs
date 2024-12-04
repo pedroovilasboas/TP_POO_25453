@@ -20,34 +20,44 @@ namespace POO_25453_TP.DAL
             return ValidateCredentials(username, password, filePath);
         }
 
-        // General credential validation logic
         private static bool ValidateCredentials(string username, string password, string filePath)
         {
-            // Check if the file exists
+            // Verifica se o arquivo existe
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException($"Credentials file not found: {filePath}");
+                throw new FileNotFoundException($"Arquivo de credenciais não encontrado: {filePath}");
             }
 
-            // Read all lines from the file
+            // Lê todas as linhas do arquivo
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines)
             {
-                // Split the line into parts (assuming ';' as the delimiter)
+                // Divide a linha em partes (assumindo ',' como delimitador)
                 var parts = line.Split(',');
 
-                // Check if the line contains enough fields
-                // For Clients: username;password;name;email;phone;address;city;region;postalcode
-                // For Accounts: username;password;name
-                if (parts.Length >= 3 && parts[0] == username && parts[1] == password)
+                // Verifica se o arquivo é de contas ou clientes
+                if (filePath.Contains("accounts"))
                 {
-                    // Valid credentials
-                    return true;
+                    // Formato para contas: username,password,name
+                    if (parts.Length >= 3 && parts[0] == username && parts[1] == password)
+                    {
+                        return true; // Credenciais de conta válidas
+                    }
+                }
+                else if (filePath.Contains("clients"))
+                {
+                    // Formato para clientes: clientID,username,password,name,email,phone,address,city,region,postalCode
+                    if (parts.Length >= 10 && parts[1] == username && parts[2] == password)
+                    {
+                        return true; // Credenciais de cliente válidas
+                    }
                 }
             }
 
-            // No match found
+            // Nenhuma correspondência encontrada
             return false;
         }
+
+
     }
 }

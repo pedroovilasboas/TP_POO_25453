@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
     public class Client
     {
+        public int ClientID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
@@ -18,11 +18,12 @@ namespace POO_25453_TP
         public string Region { get; set; }
         public string PostalCode { get; set; }
 
-        // File path for clients.txt
-        private static string clientsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Client\clients.txt");
+        private static string clientsFile = @"C:\PROGRAM_CS\25453_TP_POO\Client\clients.txt";
 
-        public Client(string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
+        // Constructor with ClientID (used for loading existing clients)
+        public Client(int clientID, string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
         {
+            ClientID = clientID;
             Username = username;
             Password = password;
             Name = name;
@@ -34,15 +35,29 @@ namespace POO_25453_TP
             PostalCode = postalCode;
         }
 
-        // Method to save a client
-        public void Save()
+        // Constructor without ClientID (used for new clients)
+        public Client(string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
         {
-            var clients = LoadClients();
-            clients.Add(this);
-            SaveClients(clients);
+            ClientID = GenerateUniqueClientID();
+            Username = username;
+            Password = password;
+            Name = name;
+            Email = email;
+            Phone = phone;
+            Address = address;
+            City = city;
+            Region = region;
+            PostalCode = postalCode;
         }
 
-        // Method to load all clients from file
+        // Generate a unique ClientID
+        private static int GenerateUniqueClientID()
+        {
+            var clients = LoadClients();
+            return clients.Any() ? clients.Max(c => c.ClientID) + 1 : 1;
+        }
+
+        // Load all clients from the file
         public static List<Client> LoadClients()
         {
             var clients = new List<Client>();
@@ -53,74 +68,92 @@ namespace POO_25453_TP
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length == 9)
+                    if (parts.Length == 10)
                     {
-                        clients.Add(new Client(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]));
+                        clients.Add(new Client(
+                            int.Parse(parts[0]), // ClientID
+                            parts[1],            // Username
+                            parts[2],            // Password
+                            parts[3],            // Name
+                            parts[4],            // Email
+                            parts[5],            // Phone
+                            parts[6],            // Address
+                            parts[7],            // City
+                            parts[8],            // Region
+                            parts[9]             // PostalCode
+                        ));
                     }
                 }
             }
 
-            Console.WriteLine($"Loaded {clients.Count} clients."); // Debugging
             return clients;
         }
 
-        // Method to save a list of clients to file
+        // Save all clients to the file
         public static void SaveClients(List<Client> clients)
         {
             using (var writer = new StreamWriter(clientsFile))
             {
                 foreach (var client in clients)
                 {
-                    writer.WriteLine($"{client.Username},{client.Password},{client.Name},{client.Email},{client.Phone},{client.Address},{client.City},{client.Region},{client.PostalCode}");
+                    writer.WriteLine($"{client.ClientID},{client.Username},{client.Password},{client.Name},{client.Email},{client.Phone},{client.Address},{client.City},{client.Region},{client.PostalCode}");
                 }
             }
         }
 
-        // Method to search clients by name, username, or email
-        public static List<Client> SearchClients(string query)
+        // Save the current client instance to the file
+        public void Save()
         {
             var clients = LoadClients();
-            query = query.ToLower();
-
-            return clients.Where(c => c.Name.ToLower().Contains(query) || c.Username.ToLower().Contains(query) || c.Email.ToLower().Contains(query)).ToList();
+            clients.Add(this); // Add the current client
+            SaveClients(clients); // Save the updated list
         }
 
-        // Method to update a client
+        // Update an existing client
         public static void UpdateClient(Client updatedClient)
         {
             var clients = LoadClients();
-            var index = clients.FindIndex(cli => cli.Username == updatedClient.Username);
+            var index = clients.FindIndex(cli => cli.ClientID == updatedClient.ClientID);
 
             if (index != -1)
             {
                 clients[index] = updatedClient;
                 SaveClients(clients);
-                Console.WriteLine($"Updated client: {updatedClient.Username}"); // Debugging
             }
             else
             {
-                MessageBox.Show("Client not found for update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine($"Client not found: {updatedClient.Username}"); // Debugging
+                throw new Exception("Client not found.");
             }
         }
 
-        // Method to delete a client by username
-        public static void DeleteClient(string username)
+        // Delete a client by ClientID
+        public static void DeleteClient(int clientID)
         {
             var clients = LoadClients();
-            var clientToDelete = clients.FirstOrDefault(cli => cli.Username == username);
+            var clientToDelete = clients.FirstOrDefault(cli => cli.ClientID == clientID);
 
             if (clientToDelete != null)
             {
                 clients.Remove(clientToDelete);
                 SaveClients(clients);
-                Console.WriteLine($"Deleted client: {username}"); // Debugging
             }
             else
             {
-                MessageBox.Show("Client not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine($"Client not found: {username}"); // Debugging
+                throw new Exception("Client not found.");
             }
+        }
+
+        // Search for clients by query (name, username, or email)
+        public static List<Client> SearchClients(string query)
+        {
+            var clients = LoadClients();
+            query = query.ToLower();
+
+            return clients.Where(c =>
+                c.Name.ToLower().Contains(query) ||
+                c.Username.ToLower().Contains(query) ||
+                c.Email.ToLower().Contains(query)
+            ).ToList();
         }
     }
 }

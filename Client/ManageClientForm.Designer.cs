@@ -23,6 +23,7 @@
             buttonEdit = new Button();
             Delete = new Button();
             buttonClose = new Button();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
             // 
@@ -48,13 +49,13 @@
             dataGridViewResults.AllowUserToAddRows = false;
             dataGridViewResults.AllowUserToDeleteRows = false;
             dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewResults.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1 });
             dataGridViewResults.Location = new Point(30, 70);
             dataGridViewResults.Name = "dataGridViewResults";
             dataGridViewResults.ReadOnly = true;
             dataGridViewResults.RowHeadersWidth = 51;
             dataGridViewResults.Size = new Size(845, 380);
             dataGridViewResults.TabIndex = 2;
-            dataGridViewResults.CellContentClick += dataGridViewResults_CellContentClick;
             // 
             // buttonEdit
             // 
@@ -86,6 +87,12 @@
             buttonClose.UseVisualStyleBackColor = true;
             buttonClose.Click += Close_Click;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Client ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
             // ManageClientForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -112,5 +119,6 @@
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Button buttonClose;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

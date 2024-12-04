@@ -93,6 +93,7 @@
             Controls.Add(buttonCreateAccount);
             Name = "ClientLoginForm";
             Text = "Client Login";
+            Load += ClientLoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

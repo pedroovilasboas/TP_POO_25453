@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
@@ -16,25 +11,17 @@ namespace POO_25453_TP
             InitializeComponent();
         }
 
-
-
-        // Event triggered when the "Go" button is clicked
         private void buttonGo_Click(object sender, EventArgs e)
         {
             string query = textBoxSearch.Text;
-
-            
             var results = Client.SearchClients(query);
-
-          
             DisplayResults(results);
         }
 
-        // Method to display the search results in the DataGridView
         private void DisplayResults(List<Client> results)
         {
-           
             dataGridViewResults.Columns.Clear();
+            dataGridViewResults.Columns.Add("ClientID", "Client ID");
             dataGridViewResults.Columns.Add("Name", "Name");
             dataGridViewResults.Columns.Add("Username", "Username");
             dataGridViewResults.Columns.Add("Email", "Email");
@@ -44,67 +31,51 @@ namespace POO_25453_TP
             dataGridViewResults.Columns.Add("Region", "Region");
             dataGridViewResults.Columns.Add("PostalCode", "Postal Code");
 
-            // Clear existing rows and populate new data
+            dataGridViewResults.Columns["ClientID"].Visible = false; // Hide ClientID
+
             dataGridViewResults.Rows.Clear();
             foreach (var client in results)
             {
-                dataGridViewResults.Rows.Add(client.Name, client.Username, client.Email, client.Phone, client.Address, client.City, client.Region, client.PostalCode);
+                dataGridViewResults.Rows.Add(client.ClientID, client.Name, client.Username, client.Email, client.Phone, client.Address, client.City, client.Region, client.PostalCode);
             }
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            // Ensure exactly one row is selected
             if (dataGridViewResults.SelectedRows.Count != 1)
             {
                 MessageBox.Show("Please select exactly one client to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Get the username of the selected client
-            string selectedUsername = dataGridViewResults.SelectedRows[0].Cells["Username"].Value.ToString();
-
-            // Load all clients and find the one matching the username
-            var client = Client.LoadClients().Find(cli => cli.Username == selectedUsername);
+            int selectedClientID = int.Parse(dataGridViewResults.SelectedRows[0].Cells["ClientID"].Value.ToString());
+            var client = Client.LoadClients().Find(cli => cli.ClientID == selectedClientID);
 
             if (client != null)
             {
-                // Open the edit form with isClientEditing = false (admin editing)
-                EditClientForm editForm = new EditClientForm(client, false); 
+                EditClientForm editForm = new EditClientForm(client);
                 editForm.ShowDialog();
 
-                // Refresh the list of results after editing
                 string query = textBoxSearch.Text;
                 var results = Client.SearchClients(query);
                 DisplayResults(results);
             }
             else
             {
-                // Show an error message if the client was not found
                 MessageBox.Show("Client not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine($"Client not found in buttonEdit_Click: {selectedUsername}"); // Debugging
             }
-        }
-
-   
-        private void Close_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            // Ensure exactly one row is selected
             if (dataGridViewResults.SelectedRows.Count != 1)
             {
                 MessageBox.Show("Please select exactly one client to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Get the username of the selected client
-            string selectedUsername = dataGridViewResults.SelectedRows[0].Cells["Username"].Value.ToString();
+            int selectedClientID = int.Parse(dataGridViewResults.SelectedRows[0].Cells["ClientID"].Value.ToString());
 
-            // Confirm the deletion with the user
             var confirmResult = MessageBox.Show("Are you sure you want to delete this client?",
                                                  "Confirm Delete",
                                                  MessageBoxButtons.YesNo,
@@ -112,10 +83,8 @@ namespace POO_25453_TP
 
             if (confirmResult == DialogResult.Yes)
             {
-                // Delete the selected client
-                Client.DeleteClient(selectedUsername);
+                Client.DeleteClient(selectedClientID);
 
-                // Refresh the list of results after deletion
                 string query = textBoxSearch.Text;
                 var results = Client.SearchClients(query);
                 DisplayResults(results);
@@ -124,11 +93,9 @@ namespace POO_25453_TP
             }
         }
 
-
-
-        private void dataGridViewResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Close_Click(object sender, EventArgs e)
         {
-            // Code to handle cell clicks (if needed)
+            this.Close();
         }
     }
 }

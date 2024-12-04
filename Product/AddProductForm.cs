@@ -23,9 +23,11 @@ namespace POO_25453_TP
             foreach (var category in Category.LoadCategories())
                 comboBoxCategory.Items.Add(category.Name);
 
-            // Display the next Product ID based on the lastProductID
-            textBoxID.Text = (Product.LoadProducts().Max(p => p.ProductID) + 1).ToString();
+            // Handle empty product list gracefully
+            var products = Product.LoadProducts();
+            textBoxID.Text = (products.Any() ? products.Max(p => p.ProductID) + 1 : 1).ToString();
         }
+
 
 
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
@@ -16,7 +12,6 @@ namespace POO_25453_TP
 
         private void AddClientForm_Load(object sender, EventArgs e)
         {
-
         }
 
         private void AddButton_Click_1(object sender, EventArgs e)
@@ -39,13 +34,12 @@ namespace POO_25453_TP
                 return;
             }
 
+            // Create a new client with auto-generated ClientID
             Client newClient = new Client(username, password, name, email, phoneNumber, address, city, region, postalCode);
-            newClient.Save();
+            newClient.Save(); // Save the new client to the file
 
             MessageBox.Show("Client added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
-
-        
     }
 }
