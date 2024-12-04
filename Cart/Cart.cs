@@ -96,12 +96,9 @@ namespace POO_25453_TP
 
         public void Checkout()
         {
-            string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\orders.txt"; // Global orders file
-            string myOrdersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\myorders.txt"; // Shared client orders file
+            string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt"; // Global orders file
+            string myOrdersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\myorders.txt"; // Shared client orders file
             int newOrderID = 1;
-
-            // Ensure the directory exists
-            Directory.CreateDirectory(@"C:\PROGRAM_CS\25453_TP_POO\Data");
 
             // Determine the next Order ID by reading the existing orders from orders.txt
             if (File.Exists(ordersFile))

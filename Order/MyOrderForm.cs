@@ -24,7 +24,7 @@ namespace POO_25453_TP
         {
             dgvMyOrders.Rows.Clear();
 
-            string myOrdersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\myorders.txt";
+            string myOrdersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\myorders.txt";
 
             if (File.Exists(myOrdersFile))
             {

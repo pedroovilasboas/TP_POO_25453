@@ -20,7 +20,7 @@ namespace POO_25453_TP
         {
             dgvOrders.Rows.Clear();
 
-            string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\orders.txt";
+            string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt";
 
             if (File.Exists(ordersFile))
             {
@@ -55,7 +55,7 @@ namespace POO_25453_TP
                 var selectedRow = dgvOrders.SelectedRows[0];
                 int orderId = int.Parse(selectedRow.Cells["OrderID"].Value.ToString());
 
-                string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\orders.txt";
+                string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt";
 
                 if (File.Exists(ordersFile))
                 {
