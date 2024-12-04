@@ -55,17 +55,34 @@ namespace POO_25453_TP
                 var selectedRow = dgvOrders.SelectedRows[0];
                 int orderId = int.Parse(selectedRow.Cells["OrderID"].Value.ToString());
 
-                var order = orders.FirstOrDefault(o => o.OrderID == orderId);
-                if (order != null && order.Status == "Para Envio")
+                string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Data\orders.txt";
+
+                if (File.Exists(ordersFile))
                 {
-                    order.Status = "Enviado";
-                    Order.SaveOrders(orders); // Save updated orders to file
-                    LoadOrders(); // Refresh the DataGridView
-                    MessageBox.Show($"Order {orderId} marked as 'Enviado'.", "Order Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("The selected order is already shipped.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var orders = File.ReadAllLines(ordersFile).ToList();
+
+                    for (int i = 0; i < orders.Count; i++)
+                    {
+                        var parts = orders[i].Split(',');
+
+                        if (int.Parse(parts[0]) == orderId) // Match OrderID
+                        {
+                            if (parts[6] == "Pending") // Check if the order is pending
+                            {
+                                parts[6] = "Shipped"; // Update status to shipped
+                                orders[i] = string.Join(",", parts);
+                                File.WriteAllLines(ordersFile, orders);
+                                LoadOrders(); // Refresh the DataGridView
+                                MessageBox.Show($"Order {orderId} marked as 'Shipped'.", "Order Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                            else
+                            {
+                                MessageBox.Show("The selected order is already shipped.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -73,6 +90,7 @@ namespace POO_25453_TP
                 MessageBox.Show("Please select an order to update.", "No Order Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void OrdersManagementForm_Load(object sender, EventArgs e)
         {
