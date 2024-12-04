@@ -21,10 +21,17 @@ namespace POO_25453_TP
         // Constructor for creating a new brand with a unique ID
         public Brand(string name, string description)
         {
-            BrandID = ++lastBrandID; // Increment lastBrandID for each new brand
+            if (lastBrandID == 0)
+            {
+                var brands = LoadBrands(); 
+                lastBrandID = brands.Any() ? brands.Max(b => b.BrandID) : 0;
+            }
+
+            BrandID = ++lastBrandID; 
             Name = name;
             Description = description;
         }
+
 
         // Constructor for loading an existing brand from file with a specific ID
         public Brand(int id, string name, string description)
@@ -39,6 +46,7 @@ namespace POO_25453_TP
                 lastBrandID = id;
             }
         }
+
 
         // Method to save a brand
         public void Save()
@@ -59,20 +67,23 @@ namespace POO_25453_TP
                 foreach (var line in lines)
                 {
                     var parts = line.Split(',');
-                    if (parts.Length == 3) // Ensure all fields are present: ID, Name, Description
+                    if (parts.Length == 3)
                     {
                         int id = int.Parse(parts[0]);
                         string name = parts[1];
                         string description = parts[2];
 
-                        // Create a brand with the specified ID
                         brands.Add(new Brand(id, name, description));
                     }
                 }
+
+                // Update the lastBrandID to ensure unique IDs
+                lastBrandID = brands.Any() ? brands.Max(b => b.BrandID) : 0;
             }
 
             return brands;
         }
+
 
         // Method to save a list of brands to file
         public static void SaveBrands(List<Brand> brands)

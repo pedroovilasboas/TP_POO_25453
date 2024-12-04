@@ -12,8 +12,13 @@ namespace POO_25453_TP
 
         private void AddBrandForm_Load(object sender, EventArgs e)
         {
+            var brands = Brand.LoadBrands();
+            var nextId = brands.Any() ? brands.Max(b => b.BrandID) + 1 : 1;
 
+            textBoxBrandId.Text = nextId.ToString();
+            textBoxBrandId.ReadOnly = true; 
         }
+
 
         private void AddButton_Click(object sender, EventArgs e)
         {

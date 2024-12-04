@@ -21,13 +21,15 @@ namespace POO_25453_TP
             DisplayResults(categories);
         }
 
+        // If the search box is empty, load all categories; otherwise, search for the query
         private void buttonGo_Click(object sender, EventArgs e)
         {
-            // Perform a search based on user input
             string query = textBoxSearch.Text;
-            var results = Category.SearchCategories(query);
+
+            var results = string.IsNullOrEmpty(query) ? Category.LoadCategories() : Category.SearchCategories(query);
             DisplayResults(results);
         }
+
 
         private void DisplayResults(List<Category> results)
         {

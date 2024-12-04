@@ -22,13 +22,13 @@ namespace POO_25453_TP
         private static string productsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "products.txt");
         private static int lastProductID = 0;
 
-        // Constructor for an existing product
+        // Constructor for existing product (loaded from file)
         public Product(int productId, Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
             if (category == null || brand == null)
                 throw new ArgumentNullException("Category and Brand cannot be null");
 
-            this.ProductID = ++lastProductID;
+            this.ProductID = productId; // Use the ID from the file
             this.Category = category;
             this.Brand = brand;
             this.Name = name;
@@ -38,18 +38,20 @@ namespace POO_25453_TP
             this.StockQuantity = stockQuantity;
         }
 
-
-        // Constructor for a new product
+        // Constructor for new product (creating a new entry)
         public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
-            ProductID = ++lastProductID;
-            Category = category;
-            Brand = brand;
-            Name = name;
-            Description = description;
-            Type = type;
-            Price = price;
-            StockQuantity = stockQuantity;
+            if (category == null || brand == null)
+                throw new ArgumentNullException("Category and Brand cannot be null");
+
+            this.ProductID = ++lastProductID; // Increment the last used ID
+            this.Category = category;
+            this.Brand = brand;
+            this.Name = name;
+            this.Description = description;
+            this.Type = type;
+            this.Price = price;
+            this.StockQuantity = stockQuantity;
         }
 
         // Method to save the product
@@ -81,18 +83,19 @@ namespace POO_25453_TP
                 products.Add(new Product(productId, category, brand, parts[3], parts[4], parts[5], decimal.Parse(parts[6]), int.Parse(parts[7])));
             }
 
-            // update lastProductID with bigger ID found
+            // Update lastProductID to the highest ID found in the file
             if (products.Any())
             {
                 lastProductID = products.Max(p => p.ProductID);
             }
             else
             {
-                lastProductID = 0; // Caso não haja produtos, inicializa em 0
+                lastProductID = 0; // Reset to 0 if no products exist
             }
 
             return products;
         }
+
 
 
 

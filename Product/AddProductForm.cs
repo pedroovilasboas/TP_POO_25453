@@ -23,11 +23,10 @@ namespace POO_25453_TP
             foreach (var category in Category.LoadCategories())
                 comboBoxCategory.Items.Add(category.Name);
 
-            // Display the next Product ID
-            var products = Product.LoadProducts();
-            var nextID = products.Any() ? products.Max(p => p.ProductID) + 1 : 1;
-            textBoxID.Text = nextID.ToString(); // Informative ID
+            // Display the next Product ID based on the lastProductID
+            textBoxID.Text = (Product.LoadProducts().Max(p => p.ProductID) + 1).ToString();
         }
+
 
 
         private void buttonSave_Click(object sender, EventArgs e)
