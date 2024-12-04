@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace POO_25453_TP
 {
     public partial class ClientPage : Form
     {
         private Client currentClient;
+        private Cart cart = new Cart();
+
 
         // Constructor that accepts a Client as a parameter
         public ClientPage(Client client)
@@ -37,9 +40,9 @@ namespace POO_25453_TP
                 return;
             }
 
-            // Abrir EditClientForm para o cliente (isClientEditing = true)
+
             var editClientForm = new EditClientForm(currentClient, true); // Pass true for client editing
-            editClientForm.Owner = this; // Define ClientPage como o dono do formulário
+            editClientForm.Owner = this;
             editClientForm.ShowDialog();
         }
 
@@ -60,19 +63,18 @@ namespace POO_25453_TP
 
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProductListForm productListForm = new ProductListForm();
+            // Passa o mesmo carrinho para o ProductListForm
+            ProductListForm productListForm = new ProductListForm(cart);
             LoadFormIntoPanel(productListForm);
         }
 
-
-        private void myOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void myCartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // Passa o mesmo carrinho para o CartViewForm
+            CartViewForm cartViewForm = new CartViewForm(cart);
+            LoadFormIntoPanel(cartViewForm);
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
     }
-}
+}   

@@ -1,146 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace POO_25453_TP
 {
     public class Cart
     {
-        // Cart class attributes
-        public int CartId { get; set; }
-        public Client Client { get; set; }
-        public List<Product> Products { get; set; } = new List<Product>();
-        public decimal TotalPrice { get; private set; }
-
-        // File path for cart.txt for persistence
-        private static string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Cart\cart.txt");
-
-        // Constructor
-        public Cart(int cartId, Client client)
+        // Structure to represent an item in the cart
+        public class CartItem
         {
-            CartId = cartId;
-            Client = client;
-            CalculateTotal();
+            public Product Product { get; set; }
+            public int Quantity { get; set; }
+
+            public CartItem(Product product, int quantity)
+            {
+                Product = new Product(
+                    product.ProductID,
+                    product.Category, // Keep category if available
+                    product.Brand,    // Keep brand details
+                    product.Name,
+                    product.Description,
+                    product.Type,
+                    product.Price,
+                    product.StockQuantity // StockQuantity is not used in cart, just copied
+                );
+                Quantity = quantity; // Define how many are being purchased
+            }
         }
 
-        // Method to add a product to the cart
-        public void AddToCart(Product product)
+        // List to hold cart items
+        private List<CartItem> items = new List<CartItem>();
+
+        // Add a product to the cart
+        public void AddToCart(Product product, int quantity)
         {
-            Products.Add(product);
-            CalculateTotal();
+            // Find if the product already exists in the cart
+            var existingItem = items.Find(item => item.Product.ProductID == product.ProductID);
+            if (existingItem != null)
+            {
+                // Update the quantity if the product already exists
+                existingItem.Quantity += quantity;
+            }
+            else
+            {
+                // Add a new item to the cart
+                items.Add(new CartItem(product, quantity));
+            }
         }
 
-        // Method to remove a product from the cart
-        public void RemoveFromCart(Product product)
+        // Get all cart items
+        public List<CartItem> GetCartItems()
         {
-            Products.Remove(product);
-            CalculateTotal();
+            return items;
         }
 
-        // Method to calculate the total price of the cart
-        public void CalculateTotal()
+        // Remove an item from the cart
+        public void RemoveFromCart(int productId)
         {
-            TotalPrice = Products.Sum(p => p.Price);
+            items.RemoveAll(item => item.Product.ProductID == productId);
         }
 
-        // Method to clear the cart
+        // Clear the entire cart
         public void ClearCart()
         {
-            Products.Clear();
-            CalculateTotal();
-        }
-
-        // Method to complete purchase (checkout)
-        public Order Checkout()
-        {
-            var order = new Order(GetNextOrderId(), Client, DateTime.Now, "To Ship")
-            {
-                Products = new List<Product>(Products)
-            };
-            order.CalculateTotal();
-            order.Save();
-
-            // Clear the cart after checkout
-            ClearCart();
-
-            return order;
-        }
-
-        // Method to save the cart state to file
-        public void Save()
-        {
-            var carts = LoadCarts();
-            carts.Add(this);
-            SaveCarts(carts);
-        }
-
-        // Method to load all carts from file
-        public static List<Cart> LoadCarts()
-        {
-            var carts = new List<Cart>();
-
-            if (File.Exists(cartFile))
-            {
-                var lines = File.ReadAllLines(cartFile);
-                foreach (var line in lines)
-                {
-                    var parts = line.Split(',');
-                    if (parts.Length >= 3)
-                    {
-                        int cartId = int.Parse(parts[0]);
-                        string clientUsername = parts[1];
-
-                        // Load the client using a method like `Client.LoadClients()`
-                        var client = Client.LoadClients().FirstOrDefault(c => c.Username == clientUsername);
-
-                        if (client != null)
-                        {
-                            var cart = new Cart(cartId, client);
-
-                            // Load products (assuming products are saved as IDs in a semicolon-separated format in parts[2])
-                            var productIds = parts[2].Split(';');
-                            foreach (var productIdStr in productIds)
-                            {
-                                if (int.TryParse(productIdStr, out int productId))
-                                {
-                                    // Load each product using a method like `Product.LoadProducts()`
-                                    var product = Product.LoadProducts().FirstOrDefault(p => p.ProductID == productId);
-                                    if (product != null)
-                                    {
-                                        cart.Products.Add(product);
-                                    }
-                                }
-                            }
-                            cart.CalculateTotal();
-                            carts.Add(cart);
-                        }
-                    }
-                }
-            }
-
-            return carts;
-        }
-
-        // Method to save a list of carts to file
-        public static void SaveCarts(List<Cart> carts)
-        {
-            using (var writer = new StreamWriter(cartFile))
-            {
-                foreach (var cart in carts)
-                {
-                    // Save each product ID in the cart as a semicolon-separated string
-                    string productIds = string.Join(";", cart.Products.Select(p => p.ProductID));
-                    writer.WriteLine($"{cart.CartId},{cart.Client.Username},{productIds},{cart.TotalPrice}");
-                }
-            }
-        }
-
-        // Method to get the next order ID (simple example)
-        private static int GetNextOrderId()
-        {
-            var orders = Order.LoadOrders();
-            return orders.Count > 0 ? orders.Max(o => o.OrderId) + 1 : 1;
+            items.Clear();
         }
     }
 }

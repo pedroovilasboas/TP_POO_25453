@@ -68,7 +68,6 @@
             myOrderToolStripMenuItem.Name = "myOrderToolStripMenuItem";
             myOrderToolStripMenuItem.Size = new Size(142, 22);
             myOrderToolStripMenuItem.Text = "My orders";
-            myOrderToolStripMenuItem.Click += myOrderToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
@@ -95,6 +94,7 @@
             myCartToolStripMenuItem.Name = "myCartToolStripMenuItem";
             myCartToolStripMenuItem.Size = new Size(61, 20);
             myCartToolStripMenuItem.Text = "My Cart";
+            myCartToolStripMenuItem.Click += myCartToolStripMenuItem_Click;
             // 
             // panel2
             // 
@@ -102,7 +102,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1185, 525);
             panel2.TabIndex = 1;
-            panel2.Paint += panel2_Paint;
             // 
             // ClientPage
             // 
