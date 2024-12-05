@@ -96,48 +96,51 @@ namespace POO_25453_TP
 
         public void Checkout()
         {
-            // Absolute paths for the files
+            // Absolute paths
             string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt";
             string myOrdersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\myorders.txt";
 
             int newOrderID = 1;
 
-            // Ensure the directory exists before writing to the files
+            // Ensure the directory exists
             if (!Directory.Exists(@"C:\PROGRAM_CS\25453_TP_POO\Order"))
             {
                 Directory.CreateDirectory(@"C:\PROGRAM_CS\25453_TP_POO\Order");
             }
 
-            // Determine the next OrderID by checking the orders.txt file
+            // Determine the next OrderID
             if (File.Exists(ordersFile))
             {
                 var lines = File.ReadAllLines(ordersFile);
                 if (lines.Any())
                 {
-                    newOrderID = lines.Select(line => int.Parse(line.Split(',')[0])).Max() + 1; // Increment the highest OrderID
+                    newOrderID = lines.Select(line => int.Parse(line.Split(',')[0])).Max() + 1;
                 }
             }
 
             // Create order lines for all items in the cart
             var orderLines = Items.Select(cartItem =>
             {
-                // Calculate the total price for each item
-                decimal totalPrice = cartItem.Price * cartItem.Quantity;
+                // Round price to the nearest integer
+                int unitPrice = (int)Math.Round(cartItem.Price);
+                int totalPrice = unitPrice * cartItem.Quantity;
 
-                // Return the formatted order line
-                return $"{newOrderID},{ClientID},{cartItem.ProductID},{cartItem.Quantity},{cartItem.Price:F2},{totalPrice:F2},Pending";
+                // Format the line for the file
+                return $"{newOrderID},{ClientID},{cartItem.ProductID},{cartItem.Quantity},{unitPrice},{totalPrice},Pending";
             }).ToList();
 
-            // Append the order lines to the orders.txt file
+            // Append to orders.txt
             File.AppendAllLines(ordersFile, orderLines);
 
-            // Append the order lines to the myorders.txt file
+            // Append to myorders.txt
             File.AppendAllLines(myOrdersFile, orderLines);
 
-            // Clear the cart after checkout
+            // Clear the cart
             Items.Clear();
             SaveCart();
         }
+
+
 
 
 
