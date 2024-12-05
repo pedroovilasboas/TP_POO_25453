@@ -58,7 +58,6 @@
             Controls.Add(dgvOrders);
             Name = "OrdersManagementForm";
             Text = "Orders Management";
-            Load += OrdersManagementForm_Load;
         }
     }
 }
