@@ -80,45 +80,77 @@ namespace POO_25453_TP
                 var selectedRow = dgvOrders.SelectedRows[0];
                 int orderId = int.Parse(selectedRow.Cells["OrderID"].Value.ToString());
 
+                // Absolute paths for the files
                 string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt";
+                string myOrdersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\myorders.txt";
 
                 if (File.Exists(ordersFile))
                 {
                     var orders = File.ReadAllLines(ordersFile).ToList();
+                    bool orderUpdated = false;
 
+                    // Update status in orders.txt
                     for (int i = 0; i < orders.Count; i++)
                     {
                         var parts = orders[i].Split(',');
 
-                        if (int.Parse(parts[0]) == orderId)
+                        if (int.Parse(parts[0]) == orderId) // Find all products in the order
                         {
-                            if (parts[6] == "Pending")
+                            if (parts[6] == "Pending") // Check if the status is "Pending"
                             {
-                                parts[6] = "Shipped";
-                                orders[i] = string.Join(",", parts);
-                                File.WriteAllLines(ordersFile, orders);
-                                LoadOrders();
-                                MessageBox.Show($"Pedido {orderId} marcado como 'Shipped'.", "Pedido Atualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
-                            }
-                            else
-                            {
-                                MessageBox.Show("O pedido selecionado já foi enviado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
+                                parts[6] = "Shipped"; // Update status to "Shipped"
+                                orders[i] = string.Join(",", parts); // Update the line in the file
+                                orderUpdated = true;
                             }
                         }
+                    }
+
+                    // Save changes to orders.txt
+                    if (orderUpdated)
+                    {
+                        File.WriteAllLines(ordersFile, orders);
+
+                        // Update status in myorders.txt
+                        if (File.Exists(myOrdersFile))
+                        {
+                            var myOrders = File.ReadAllLines(myOrdersFile).ToList();
+
+                            for (int i = 0; i < myOrders.Count; i++)
+                            {
+                                var parts = myOrders[i].Split(',');
+
+                                if (int.Parse(parts[0]) == orderId) // Find all products in the order
+                                {
+                                    parts[6] = "Shipped"; // Update status to "Shipped"
+                                    myOrders[i] = string.Join(",", parts); // Update the line in the file
+                                }
+                            }
+
+                            // Save changes to myorders.txt
+                            File.WriteAllLines(myOrdersFile, myOrders);
+                        }
+
+                        LoadOrders(); // Reload orders in the admin interface
+                        MessageBox.Show($"Order {orderId} marked as 'Shipped'.", "Order Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The selected order is already shipped.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"O arquivo {ordersFile} não existe. Por favor, verifique o diretório.", "Arquivo Não Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"The file {ordersFile} does not exist. Please check the directory.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, selecione um pedido para atualizar.", "Nenhum Pedido Selecionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select an order to update.", "No Order Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
+
         private void OrdersManagementForm_Load(object sender, EventArgs e)
         {
 
