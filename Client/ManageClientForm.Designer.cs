@@ -20,10 +20,10 @@
             buttonGo = new Button();
             textBoxSearch = new TextBox();
             dataGridViewResults = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             buttonEdit = new Button();
             Delete = new Button();
             buttonClose = new Button();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
             // 
@@ -57,6 +57,12 @@
             dataGridViewResults.Size = new Size(845, 380);
             dataGridViewResults.TabIndex = 2;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Client ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
             // buttonEdit
             // 
             buttonEdit.Location = new Point(30, 470);
@@ -87,12 +93,6 @@
             buttonClose.UseVisualStyleBackColor = true;
             buttonClose.Click += Close_Click;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Client ID";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // ManageClientForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -106,6 +106,7 @@
             Controls.Add(buttonGo);
             Name = "ManageClientForm";
             Text = "Manage Clients";
+            Load += ManageClientForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();
             ResumeLayout(false);
             PerformLayout();

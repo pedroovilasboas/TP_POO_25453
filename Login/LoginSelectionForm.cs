@@ -26,5 +26,10 @@ namespace POO_25453_TP
             clientloginform.Show();
             this.Hide();
         }
+
+        private void LoginSelectionForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

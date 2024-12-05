@@ -15,7 +15,7 @@ namespace POO_25453_TP
         // File path for brands.txt
         private static string brandsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Brand\brands.txt");
 
-        // Static field to keep track of the last used ID, ensuring uniqueness
+        // Static field to keep track of the last used ID
         private static int lastBrandID = 0;
 
         // Constructor for creating a new brand with a unique ID

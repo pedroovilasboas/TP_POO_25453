@@ -108,5 +108,15 @@ namespace POO_25453_TP
             OrdersManagementForm ordersManagementForm = new OrdersManagementForm();
             LoadFormIntoPanel(ordersManagementForm);
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

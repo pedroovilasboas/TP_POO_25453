@@ -6,58 +6,60 @@ namespace POO_25453_TP.DAL
 {
     public static class Login
     {
+        // Validate login for a client using their username and password
         public static bool ValidateClientLogin(string username, string password)
         {
-            // Use the absolute path directly
+            
             string filePath = @"C:\PROGRAM_CS\25453_TP_POO\Client\clients.txt";
             return ValidateCredentials(username, password, filePath);
         }
 
+        // Validate login for an account using the username and password
         public static bool ValidateAccountLogin(string username, string password)
         {
-            // Use the absolute path directly
+            
             string filePath = @"C:\PROGRAM_CS\25453_TP_POO\Account\accounts.txt";
             return ValidateCredentials(username, password, filePath);
         }
 
+        // General method to validate credentials for both clients and accounts
         private static bool ValidateCredentials(string username, string password, string filePath)
         {
-            // Verifica se o arquivo existe
+            
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException($"Arquivo de credenciais não encontrado: {filePath}");
+                throw new FileNotFoundException($"Credentials file not found: {filePath}");
             }
 
-            // Lê todas as linhas do arquivo
+            // Read all lines from the file
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines)
             {
-                // Divide a linha em partes (assumindo ',' como delimitador)
+               
                 var parts = line.Split(',');
 
-                // Verifica se o arquivo é de contas ou clientes
+                // Check if the file is for accounts or clients
                 if (filePath.Contains("accounts"))
                 {
-                    // Formato para contas: username,password,name
+                    // Format for accounts: username,password,name
                     if (parts.Length >= 3 && parts[0] == username && parts[1] == password)
                     {
-                        return true; // Credenciais de conta válidas
+                        return true; // Valid account credentials
                     }
                 }
                 else if (filePath.Contains("clients"))
                 {
-                    // Formato para clientes: clientID,username,password,name,email,phone,address,city,region,postalCode
+                    // Format for clients: clientID,username
                     if (parts.Length >= 10 && parts[1] == username && parts[2] == password)
                     {
-                        return true; // Credenciais de cliente válidas
+                        return true; // Valid client credentials
                     }
                 }
             }
 
-            // Nenhuma correspondência encontrada
+            // No match found
             return false;
         }
-
-
     }
 }
+

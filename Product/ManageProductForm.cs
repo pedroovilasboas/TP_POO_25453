@@ -134,7 +134,7 @@ namespace POO_25453_TP
                 {
                     editForm.ShowDialog();
                 }
-                RefreshProductList(); // Atualiza a tabela após a edição
+                RefreshProductList(); // update table after editing
             }
             else
             {

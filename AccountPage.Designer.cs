@@ -84,6 +84,7 @@
             menuStrip1.Size = new Size(1206, 24);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // accountToolStripMenuItem
             // 
@@ -229,6 +230,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1185, 525);
             panel1.TabIndex = 4;
+            panel1.Paint += panel1_Paint;
             // 
             // AccountPage
             // 

@@ -48,6 +48,7 @@
             Controls.Add(buttonClient);
             Name = "LoginSelectionForm";
             Text = "Login Selection";
+            Load += LoginSelectionForm_Load;
             ResumeLayout(false);
         }
     }

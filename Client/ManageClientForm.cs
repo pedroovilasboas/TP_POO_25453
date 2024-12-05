@@ -11,6 +11,7 @@ namespace POO_25453_TP
             InitializeComponent();
         }
 
+        // Search clients based on the query and display results
         private void buttonGo_Click(object sender, EventArgs e)
         {
             string query = textBoxSearch.Text;
@@ -18,6 +19,7 @@ namespace POO_25453_TP
             DisplayResults(results);
         }
 
+        // Display search results in the data grid view
         private void DisplayResults(List<Client> results)
         {
             dataGridViewResults.Columns.Clear();
@@ -40,6 +42,7 @@ namespace POO_25453_TP
             }
         }
 
+        // Edit the selected client
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridViewResults.SelectedRows.Count != 1)
@@ -66,6 +69,7 @@ namespace POO_25453_TP
             }
         }
 
+        // Delete the selected client
         private void Delete_Click(object sender, EventArgs e)
         {
             if (dataGridViewResults.SelectedRows.Count != 1)
@@ -93,9 +97,14 @@ namespace POO_25453_TP
             }
         }
 
+        // Close the form
         private void Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ManageClientForm_Load(object sender, EventArgs e)
+        {
         }
     }
 }

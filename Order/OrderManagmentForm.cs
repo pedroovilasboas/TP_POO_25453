@@ -18,9 +18,9 @@ namespace POO_25453_TP
 
         private void LoadOrders()
         {
-            dgvOrders.Columns.Clear(); // Limpa as colunas existentes
+            dgvOrders.Columns.Clear(); // Clear existing columns
 
-            // Adiciona as colunas com os nomes corretos
+            // Add columns with the correct names
             dgvOrders.Columns.Add("OrderID", "Order ID");
             dgvOrders.Columns.Add("ClientID", "Client ID");
             dgvOrders.Columns.Add("ProductID", "Product ID");
@@ -29,7 +29,7 @@ namespace POO_25453_TP
             dgvOrders.Columns.Add("TotalPrice", "Total Price");
             dgvOrders.Columns.Add("Status", "Status");
 
-            // Carrega os dados dos pedidos
+            // Load order data
             string ordersFile = @"C:\PROGRAM_CS\25453_TP_POO\Order\orders.txt";
 
             if (File.Exists(ordersFile))
@@ -66,12 +66,9 @@ namespace POO_25453_TP
             }
             else
             {
-                MessageBox.Show($"O arquivo {ordersFile} não existe. Por favor, verifique o diretório.", "Arquivo Não Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"The file {ordersFile} does not exist. Please check the directory.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-
-
 
         private void btnMarkAsShipped_Click(object sender, EventArgs e)
         {
@@ -94,7 +91,7 @@ namespace POO_25453_TP
                     {
                         var parts = orders[i].Split(',');
 
-                        if (int.Parse(parts[0]) == orderId) // Find all products in the order
+                        if (int.Parse(parts[0]) == orderId) // Find the order by ID
                         {
                             if (parts[6] == "Pending") // Check if the status is "Pending"
                             {
@@ -119,7 +116,7 @@ namespace POO_25453_TP
                             {
                                 var parts = myOrders[i].Split(',');
 
-                                if (int.Parse(parts[0]) == orderId) // Find all products in the order
+                                if (int.Parse(parts[0]) == orderId) // Find the order by ID
                                 {
                                     parts[6] = "Shipped"; // Update status to "Shipped"
                                     myOrders[i] = string.Join(",", parts); // Update the line in the file
@@ -149,11 +146,8 @@ namespace POO_25453_TP
             }
         }
 
-
-
         private void OrdersManagementForm_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

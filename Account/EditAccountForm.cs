@@ -13,36 +13,34 @@ namespace POO_25453_TP
 {
     public partial class EditAccountForm : Form
     {
-        private Account _account;
+        private Account account;
 
         public EditAccountForm(Account account)
         {
             InitializeComponent();
-            _account = account; // Armazena a conta passada
+            this.account = account; // Store the passed account
         }
 
         private void EditAccountForm_Load(object sender, EventArgs e)
         {
-            if (_account != null) // Verifique se _account não é nulo
+            if (account != null) // Check if account is not null
             {
-                textBoxName.Text = _account.Name;        // Preencher o campo Nome
-                textBoxUsername.Text = _account.Username; // Preencher o campo Username
+                textBoxName.Text = account.Name;        // Fill in the Name field
+                textBoxUsername.Text = account.Username; // Fill in the Username field
             }
         }
 
         private void Savebuton_Click(object sender, EventArgs e)
         {
-            // Atualizar os dados da conta com os novos valores
-            _account.Name = textBoxName.Text;
-            _account.Username = textBoxUsername.Text;
-            _account.Password = textBoxPassword.Text;   
+            // Update the account data with new values
+            account.Name = textBoxName.Text;
+            account.Username = textBoxUsername.Text;
+            account.Password = textBoxPassword.Text;
 
-            
+            // Call the method to update the account
+            Account.UpdateAccount(account); // Update the account in the file
 
-            // Chamar o método para atualizar a conta
-            Account.UpdateAccount(_account); // Atualiza a conta no arquivo
-
-            // Fechar o formulário
+            // Close the form
             this.Close();
         }
 

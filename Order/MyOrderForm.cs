@@ -9,17 +9,20 @@ namespace POO_25453_TP
     {
         private int clientID;
 
+        // Constructor to initialize the form with a specific client ID
         public MyOrdersForm(int clientID)
         {
             InitializeComponent();
             this.clientID = clientID;
         }
 
+        // Event triggered when the form loads
         private void MyOrdersForm_Load(object sender, EventArgs e)
         {
-            LoadClientOrders();
+            LoadClientOrders(); // Load orders for the specific client
         }
 
+        // Load and display orders for the current client from a file
         private void LoadClientOrders()
         {
             dgvMyOrders.Rows.Clear();
@@ -28,6 +31,7 @@ namespace POO_25453_TP
 
             if (File.Exists(myOrdersFile))
             {
+                // Read orders from the file and filter by client ID
                 var orders = File.ReadAllLines(myOrdersFile)
                     .Where(line => line.Split(',')[1] == clientID.ToString()) // Filter by ClientID
                     .Select(line =>
@@ -39,32 +43,24 @@ namespace POO_25453_TP
                             OrderID = int.Parse(parts[0]),
                             ProductID = int.Parse(parts[2]),
                             Quantity = int.Parse(parts[3]),
-                            UnitPrice = int.Parse(parts[4]), // Read as integer
-                            TotalPrice = int.Parse(parts[5]), // Read as integer
+                            UnitPrice = int.Parse(parts[4]),
+                            TotalPrice = int.Parse(parts[5]), 
                             Status = parts[6]
                         };
                     });
 
+                // Add each order to the DataGridView
                 foreach (var order in orders)
                 {
-                    dgvMyOrders.Rows.Add(
-                        order.OrderID,
-                        order.ProductID,
-                        order.Quantity,
-                        order.UnitPrice.ToString(), // Display as integer
-                        order.TotalPrice.ToString(), // Display as integer
-                        order.Status
-                    );
+                    dgvMyOrders.Rows.Add( order.OrderID, order.ProductID, order.Quantity, order.UnitPrice.ToString(), order.TotalPrice.ToString(), order.Status );
                 }
             }
             else
             {
+                // Show a warning if the file does not exist
                 MessageBox.Show($"The file {myOrdersFile} does not exist. Please check the directory.", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-
-
     }
 }
 
