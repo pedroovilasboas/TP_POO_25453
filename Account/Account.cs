@@ -97,12 +97,15 @@ namespace POO_25453_TP
             }
         }
 
-        // Method to delete an account by username
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
         public static void DeleteAccount(string username)
         {
             var accounts = LoadAccounts();
 
-            // Find account to delete
+            
             var accountToDelete = accounts.FirstOrDefault(acc => acc.Username == username);
 
             if (accountToDelete != null)

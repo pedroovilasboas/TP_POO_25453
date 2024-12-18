@@ -1,25 +1,30 @@
 ﻿using System;
 
-namespace POO_25453_TP
+public class Campaign
 {
-    public class Campaign
+    public string Name { get; set; } // Nome da campanha
+    public string Description { get; set; } // Descrição
+    public decimal DiscountPercentage { get; set; } // Percentual de desconto
+    public DateTime StartDate { get; set; } // Data de início
+    public DateTime EndDate { get; set; } // Data de fim
+    public string Scope { get; set; } // Escopo ("Global", "Category", "Brand", "Product")
+    public string Target { get; set; } // Categoria, marca ou ID do produto
+
+    /// <summary>
+    /// Verifica se a campanha está ativa no momento atual.
+    /// </summary>
+    public bool IsActive()
     {
-        // Campaign class attributes
-        public int CampaignId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public float DiscountPercentage { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        return DateTime.Now >= StartDate && DateTime.Now <= EndDate;
+    }
 
-        // IDs to define campaign scope
-        public int ProductID { get; set; }   // Renamed to match Product class convention
-        public int BrandID { get; set; }     // Renamed to match Brand class convention
-        public int CategoryID { get; set; }  // Renamed to match Category class convention
-
-        // File path for campaigns.txt for persistence
-        private static string campaignsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\POO_25453_TP\Campaign\campaigns.txt");
-
-
+    /// <summary>
+    /// Retorna uma representação em texto da campanha.
+    /// </summary>
+    public override string ToString()
+    {
+        return $"{Name} - {Description} | {DiscountPercentage}% off | Scope: {Scope} | Target: {Target} | Active: {IsActive()}";
     }
 }
+
+
