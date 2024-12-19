@@ -1,0 +1,5 @@
+1,Samsung,Electronics,Galaxy S21,Latest Samsung flagship phone,Smartphone,999,50
+2,Nike,Sports,Air Max,Comfortable running shoes,Shoes,129,25
+3,Dell,Electronics,XPS 13,Premium laptop computer,Laptop,1299,20
+4,Adidas,Sports,Track Suit,Professional sports wear,Clothing,89,40
+5,Sony,Electronics,WH-1000XM4,Noise cancelling headphones,Headphones,349,25

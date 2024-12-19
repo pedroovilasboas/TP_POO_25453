@@ -1,0 +1,6 @@
+1,Dell,Computer and technology manufacturer
+2,Samsung,Electronics and mobile devices
+3,Nike,Sports and athletic wear
+4,Adidas,Sports and lifestyle brand
+5,Sony,Consumer electronics manufacturer
+6,Apple,Premium technology products
