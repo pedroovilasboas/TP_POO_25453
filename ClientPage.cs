@@ -102,9 +102,15 @@ namespace POO_25453_TP
         /// <param name="e">Event arguments.</param>
         private void myCartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Open the CartViewForm in the panel
-            CartViewForm cartViewForm = new CartViewForm(currentClient.ClientID);
-            LoadFormIntoPanel(cartViewForm);
+            try
+            {
+                CartViewForm cartViewForm = new CartViewForm(currentClient.ClientID);
+                LoadFormIntoPanel(cartViewForm);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading cart: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace POO_25453_TP
         /// <summary>
         /// File path for storing cart data
         /// </summary>
-        private static readonly string cartFile = @"C:\PROGRAM_CS\TP_POO_25453\Cart\cart.txt";
+        private static readonly string cartFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Cart", "cart.txt");
 
         /// <summary>
         /// Constructor for creating a new cart
@@ -173,6 +173,7 @@ namespace POO_25453_TP
                         {
                             if (string.IsNullOrWhiteSpace(line)) return false;
                             
+
                             try
                             {
                                 var parts = line.Split(';');
@@ -232,23 +233,26 @@ namespace POO_25453_TP
         }
 
         /// <summary>
-        /// Processes the checkout of the cart
-        /// Creates orders for all items and updates product stock
+        /// Processes the checkout of specific items from the cart
+        /// Creates orders for the specified items and updates product stock
         /// </summary>
+        /// <param name="itemsToCheckout">List of items to checkout. If null, checkouts entire cart</param>
         /// <returns>True if checkout was successful</returns>
         /// <exception cref="InvalidOperationException">Thrown when cart is empty or order validation fails</exception>
         /// <exception cref="Exception">Thrown when checkout processing fails</exception>
-        public bool Checkout()
+        public bool Checkout(List<CartItem> itemsToCheckout = null)
         {
-            if (!Items.Any())
+            var itemsToProcess = itemsToCheckout ?? Items;
+
+            if (!itemsToProcess.Any())
             {
-                throw new InvalidOperationException("Cart is empty");
+                throw new InvalidOperationException("No items selected for checkout");
             }
 
             var orders = new List<Order>();
             int newOrderID = Order.GenerateNewOrderID();
 
-            foreach (var item in Items)
+            foreach (var item in itemsToProcess)
             {
                 var order = new Order
                 {
@@ -280,7 +284,17 @@ namespace POO_25453_TP
                     order.UpdateProductStock();
                 }
 
-                Items.Clear();
+                // Remove only the checked out items from the cart
+                if (itemsToCheckout != null)
+                {
+                    Items.RemoveAll(item => itemsToCheckout.Any(checkoutItem => 
+                        checkoutItem.ProductID == item.ProductID));
+                }
+                else
+                {
+                    Items.Clear();
+                }
+                
                 SaveCart();
 
                 return true;
