@@ -5,6 +5,11 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "25453_TP_POO", "25453_TP_POO.csproj", "{F54F4179-55DD-4AD2-83CD-B0C540562C44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "25453_TP_POO.TEST", "..\25453_TP_POO.TEST\25453_TP_POO.TEST.csproj", "{3C4DEE0B-F7E3-4FE9-9A82-C8022860009E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F54F4179-55DD-4AD2-83CD-B0C540562C44} = {F54F4179-55DD-4AD2-83CD-B0C540562C44}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{F54F4179-55DD-4AD2-83CD-B0C540562C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F54F4179-55DD-4AD2-83CD-B0C540562C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F54F4179-55DD-4AD2-83CD-B0C540562C44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C4DEE0B-F7E3-4FE9-9A82-C8022860009E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4DEE0B-F7E3-4FE9-9A82-C8022860009E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4DEE0B-F7E3-4FE9-9A82-C8022860009E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4DEE0B-F7E3-4FE9-9A82-C8022860009E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
