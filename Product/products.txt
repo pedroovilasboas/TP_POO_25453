@@ -1,4 +1,4 @@
-1,dshge,,iPhone 15 Pro,Smartphone Apple com chip A17 Pro,Smartphone,1299,27
+1,dshge,,iPhone 15 Pro,Smartphone Apple com chip A17 Pro,Smartphone,1299,24
 2,,,Galaxy S24 Ultra,Smartphone Samsung topo de linha,Smartphone,1199,36
 3,,,MacBook Pro 16,Laptop com chip M3 Max,Laptop,2499,23
 4,,,XPS 15,Laptop Dell premium com Intel i9,Laptop,1899,25
