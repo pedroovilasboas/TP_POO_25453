@@ -1,5 +1,18 @@
-1,Samsung,Electronics,Galaxy S21,Latest Samsung flagship phone,Smartphone,999,50
-2,Nike,Sports,Air Max,Comfortable running shoes,Shoes,129,25
-3,Dell,Electronics,XPS 13,Premium laptop computer,Laptop,1299,20
-4,Adidas,Sports,Track Suit,Professional sports wear,Clothing,89,40
-5,Sony,Electronics,WH-1000XM4,Noise cancelling headphones,Headphones,349,25
+1,,,iPhone 15 Pro,Smartphone Apple com chip A17 Pro,Smartphone,1299,32
+2,,,Galaxy S24 Ultra,Smartphone Samsung topo de linha,Smartphone,1199,36
+3,,,MacBook Pro 16,Laptop com chip M3 Max,Laptop,2499,26
+4,,,XPS 15,Laptop Dell premium com Intel i9,Laptop,1899,25
+5,,,iPad Pro 12.9,Tablet Apple M2 com tela mini-LED,Tablet,1099,36
+6,,,Galaxy Tab S9,Tablet Samsung com S Pen,Tablet,899,35
+7,,,ROG Swift PG27UQ,Monitor gaming 4K 144Hz,Monitor,799,20
+8,,,Odyssey G9,Monitor curvo ultrawide 49",Monitor,1499,15
+9,,,Legion Tower 7i,Desktop gaming com RTX 4090,Desktop,3499,9
+10,,,iMac 24,All-in-one com chip M3,Desktop,1499,20
+11,,,AirPods Pro 2,Fones sem fio com cancelamento,Audio,249,50
+12,,,WH-1000XM5,Headphone Sony premium,Audio,399,40
+13,,,Xbox Series X,Console gaming 4K,Gaming,499,30
+14,,,ROG Strix G15,Laptop gaming AMD Ryzen 9,Gaming,1699,25
+15,,,Magic Keyboard,Teclado sem fio Apple,Acessório,99,50
+16,,,MX Master 3S,Mouse premium Logitech,Acessório,99,40
+17,,,OfficeJet Pro,Impressora multifuncional,Impressora,299,30
+18,,,RT-AX88U,Roteador WiFi 6 dual band,Networking,299,25

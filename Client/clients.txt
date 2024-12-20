@@ -3,3 +3,8 @@
 3,client1,client1,client 1,client1@email.pt,987654321,rua da estrada n1,Barcelos,Braga,12345
 4,andre1234,12345,André,andré@email.com,987654321,Rua do sitio,barcelos,braga,5432
 5,ethfsg,afgadg,safgs,sfgsdfs,dsfsfd,fsdafsf,asfsdf,fsdfsdf,fsafa
+1;pedro;123;Pedro Silva;pedro@email.com;911222333;Rua Principal 123;Lisboa;Lisboa;1000-100
+2;ana;123;Ana Costa;ana@email.com;922333444;Avenida Central 456;Porto;Porto;4000-200
+3;joao;123;João Santos;joao@email.com;933444555;Rua do Comércio 789;Braga;Braga;4700-300
+4;maria;123;Maria Oliveira;maria@email.com;944555666;Praça da República 321;Coimbra;Coimbra;3000-400
+5;rui;123;Rui Ferreira;rui@email.com;955666777;Rua da Liberdade 654;Faro;Faro;8000-500

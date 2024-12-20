@@ -1,0 +1,5 @@
+1;Black Friday Apple;Desconto em produtos Apple;2024-11-20;2024-11-30;20;Brand;Apple
+2;Volta às Aulas;Desconto em laptops;2024-01-15;2024-02-15;15;Category;Laptops
+3;Gaming Week;Produtos gaming com desconto;2024-03-01;2024-03-15;25;Category;Gaming
+4;iPhone Promo;Desconto especial iPhone 15 Pro;2024-12-19;2024-12-31;10;Product;iPhone 15 Pro
+5;Monitor Sale;Descontos em monitores;2024-12-19;2024-12-25;30;Category;Monitores

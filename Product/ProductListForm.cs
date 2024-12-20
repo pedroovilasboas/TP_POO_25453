@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -28,18 +28,38 @@ namespace POO_25453_TP
         private void DisplayResults(System.Collections.Generic.List<Product> products)
         {
             dgvProducts.Rows.Clear();
-            dgvProducts.Columns.Clear();
-
-            dgvProducts.Columns.Add("ProductID", "Product ID");
-            dgvProducts.Columns.Add("Name", "Product Name");
-            dgvProducts.Columns.Add("Brand", "Brand");
-            dgvProducts.Columns.Add("Category", "Category");
-            dgvProducts.Columns.Add("Type", "Type");
-            dgvProducts.Columns.Add("Price", "Price");
+            if (dgvProducts.Columns.Count == 0)
+            {
+                dgvProducts.Columns.Add("ProductID", "Product ID");
+                dgvProducts.Columns.Add("Name", "Name");
+                dgvProducts.Columns.Add("Brand", "Brand");
+                dgvProducts.Columns.Add("Category", "Category");
+                dgvProducts.Columns.Add("Description", "Description");
+                dgvProducts.Columns.Add("OriginalPrice", "Original Price");
+                dgvProducts.Columns.Add("Discount", "Discount");
+                dgvProducts.Columns.Add("FinalPrice", "Final Price");
+            }
 
             foreach (var product in products)
             {
-                dgvProducts.Rows.Add(product.ProductID, product.Name, product.Brand?.Name, product.Category?.Name, product.Type, product.Price);
+                decimal discountedPrice = Campaign.GetDiscountedPrice(product);
+                decimal discount = ((product.Price - discountedPrice) / product.Price) * 100;
+                
+                var row = dgvProducts.Rows.Add(
+                    product.ProductID,
+                    product.Name,
+                    product.Brand?.Name ?? "",
+                    product.Category?.Name ?? "",
+                    product.Description,
+                    product.Price.ToString("C"),
+                    discount > 0 ? $"{discount:F0}%" : "-",
+                    discountedPrice.ToString("C")
+                );
+
+                if (discount > 0)
+                {
+                    dgvProducts.Rows[row].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+                }
             }
         }
 
@@ -55,8 +75,16 @@ namespace POO_25453_TP
                 {
                     if (int.TryParse(txtQuantity.Text, out int quantity) && quantity > 0)
                     {
-                        cart.AddToCart(product, quantity); // Add product to cart
-                        MessageBox.Show($"{quantity} units of {product.Name} added to cart!", "Cart Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        decimal discountedPrice = Campaign.GetDiscountedPrice(product);
+                        cart.AddToCart(product, quantity);
+
+                        string message = $"{quantity} units of {product.Name} added to cart!";
+                        if (discountedPrice < product.Price)
+                        {
+                            message += $"\nPrice with discount: {discountedPrice:C}";
+                        }
+
+                        MessageBox.Show(message, "Cart Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {

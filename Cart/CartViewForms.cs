@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 using static POO_25453_TP.Cart;
@@ -8,11 +8,25 @@ namespace POO_25453_TP
     public partial class CartViewForm : Form
     {
         private Cart cart;
+        private Label lblTotal;
 
         public CartViewForm(int clientID)
         {
             InitializeComponent();
-            this.cart = Cart.LoadCart(clientID); // Load the cart for the specific client
+            this.cart = Cart.LoadCart(clientID);
+
+            // Initialize and configure the total label
+            lblTotal = new Label
+            {
+                AutoSize = true,
+                Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold),
+                Location = new System.Drawing.Point(dgvCartItems.Right - 300, dgvCartItems.Bottom + 10),
+                Size = new System.Drawing.Size(280, 25),
+                TextAlign = System.Drawing.ContentAlignment.MiddleRight
+            };
+            this.Controls.Add(lblTotal);
+
+            LoadCartItems();
         }
 
         private void CartViewForm_Load(object sender, EventArgs e)
@@ -23,16 +37,47 @@ namespace POO_25453_TP
         private void LoadCartItems()
         {
             dgvCartItems.Rows.Clear();
+            dgvCartItems.Columns.Clear();
+
+            dgvCartItems.Columns.Add("ProductID", "Product ID");
+            dgvCartItems.Columns.Add("ProductName", "Product Name");
+            dgvCartItems.Columns.Add("Quantity", "Quantity");
+            dgvCartItems.Columns.Add("OriginalPrice", "Original Price");
+            dgvCartItems.Columns.Add("DiscountedPrice", "Price with Discount");
+            dgvCartItems.Columns.Add("Savings", "Savings");
+            dgvCartItems.Columns.Add("TotalPrice", "Total Price");
 
             foreach (var item in cart.Items)
             {
-                dgvCartItems.Rows.Add(
+                decimal savings = (item.OriginalPrice - item.DiscountedPrice) * item.Quantity;
+                decimal totalPrice = item.DiscountedPrice * item.Quantity;
+
+                var row = dgvCartItems.Rows.Add(
                     item.ProductID,
                     item.ProductName,
                     item.Quantity,
-                    item.Price.ToString("C"),
-                    (item.Quantity * item.Price).ToString("C")
+                    item.OriginalPrice.ToString("C"),
+                    item.DiscountedPrice.ToString("C"),
+                    savings > 0 ? savings.ToString("C") : "-",
+                    totalPrice.ToString("C")
                 );
+
+                // Highlight rows with discounts
+                if (item.DiscountedPrice < item.OriginalPrice)
+                {
+                    dgvCartItems.Rows[row].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+                }
+            }
+
+            // Calculate and display the total
+            decimal cartTotal = cart.Items.Sum(item => item.DiscountedPrice * item.Quantity);
+            decimal originalTotal = cart.Items.Sum(item => item.OriginalPrice * item.Quantity);
+            decimal totalSavings = originalTotal - cartTotal;
+
+            lblTotal.Text = $"Total: {cartTotal:C}";
+            if (totalSavings > 0)
+            {
+                lblTotal.Text += $" (You save: {totalSavings:C})";
             }
 
             // Reset txtQuantity when the cart is loaded
@@ -54,7 +99,7 @@ namespace POO_25453_TP
 
                     // Update DataGridView and txtQuantity
                     selectedRow.Cells["Quantity"].Value = cartItem.Quantity;
-                    selectedRow.Cells["TotalPrice"].Value = (cartItem.Quantity * cartItem.Price).ToString("C");
+                    selectedRow.Cells["TotalPrice"].Value = (cartItem.DiscountedPrice * cartItem.Quantity).ToString("C");
                     txtQuantity.Text = cartItem.Quantity.ToString();
                 }
             }
@@ -75,7 +120,7 @@ namespace POO_25453_TP
 
                     // Update DataGridView and txtQuantity
                     selectedRow.Cells["Quantity"].Value = cartItem.Quantity;
-                    selectedRow.Cells["TotalPrice"].Value = (cartItem.Quantity * cartItem.Price).ToString("C");
+                    selectedRow.Cells["TotalPrice"].Value = (cartItem.DiscountedPrice * cartItem.Quantity).ToString("C");
                     txtQuantity.Text = cartItem.Quantity.ToString();
                 }
                 else
@@ -136,7 +181,9 @@ namespace POO_25453_TP
             }
         }
 
+        private void dgvCartItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
     }
 }
-

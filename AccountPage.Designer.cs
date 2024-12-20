@@ -1,16 +1,9 @@
-﻿namespace POO_25453_TP
+            namespace POO_25453_TP
 {
     partial class AccountPage
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
@@ -50,205 +37,171 @@
             manageCategoryToolStripMenuItem = new ToolStripMenuItem();
             ordersToolStripMenuItem = new ToolStripMenuItem();
             warrantyToolStripMenuItem = new ToolStripMenuItem();
-            campaingToolStripMenuItem = new ToolStripMenuItem();
-            addCampaingToolStripMenuItem = new ToolStripMenuItem();
-            manageCampaingToolStripMenuItem = new ToolStripMenuItem();
+            campaignToolStripMenuItem = new ToolStripMenuItem();
+            manageCampaignsToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
+
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
+
+            // Context Menu Strips
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
-            // 
-            // contextMenuStrip2
-            // 
+
             contextMenuStrip2.ImageScalingSize = new Size(20, 20);
             contextMenuStrip2.Name = "contextMenuStrip2";
             contextMenuStrip2.Size = new Size(61, 4);
-            // 
-            // contextMenuStrip3
-            // 
+
             contextMenuStrip3.ImageScalingSize = new Size(20, 20);
             contextMenuStrip3.Name = "contextMenuStrip3";
             contextMenuStrip3.Size = new Size(61, 4);
-            // 
-            // menuStrip1
-            // 
+
+            // Menu Strip
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem, clientToolStripMenuItem, productToolStripMenuItem, productToolStripMenuItem1, categoryToolStripMenuItem, ordersToolStripMenuItem, warrantyToolStripMenuItem, campaingToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { 
+                accountToolStripMenuItem, 
+                clientToolStripMenuItem, 
+                productToolStripMenuItem, 
+                productToolStripMenuItem1, 
+                categoryToolStripMenuItem, 
+                ordersToolStripMenuItem, 
+                warrantyToolStripMenuItem,
+                campaignToolStripMenuItem
+            });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1206, 24);
+            menuStrip1.Size = new Size(1723, 35);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
-            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
-            // 
-            // accountToolStripMenuItem
-            // 
+
+            // Account Menu
             accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addAccountToolStripMenuItem, manageAccountToolStripMenuItem });
             accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            accountToolStripMenuItem.Size = new Size(64, 20);
+            accountToolStripMenuItem.Size = new Size(93, 29);
             accountToolStripMenuItem.Text = "Account";
-            // 
-            // addAccountToolStripMenuItem
-            // 
+
             addAccountToolStripMenuItem.Name = "addAccountToolStripMenuItem";
-            addAccountToolStripMenuItem.Size = new Size(165, 22);
+            addAccountToolStripMenuItem.Size = new Size(248, 34);
             addAccountToolStripMenuItem.Text = "Add Account";
-            addAccountToolStripMenuItem.Click += addAccountToolStripMenuItem_Click;
-            // 
-            // manageAccountToolStripMenuItem
-            // 
+            addAccountToolStripMenuItem.Click += new EventHandler(addAccountToolStripMenuItem_Click);
+
             manageAccountToolStripMenuItem.Name = "manageAccountToolStripMenuItem";
-            manageAccountToolStripMenuItem.Size = new Size(165, 22);
+            manageAccountToolStripMenuItem.Size = new Size(248, 34);
             manageAccountToolStripMenuItem.Text = "Manage Account";
-            manageAccountToolStripMenuItem.Click += manageAccountToolStripMenuItem_Click;
-            // 
-            // clientToolStripMenuItem
-            // 
+            manageAccountToolStripMenuItem.Click += new EventHandler(manageAccountToolStripMenuItem_Click);
+
+            // Client Menu
             clientToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addClientToolStripMenuItem, manageClientToolStripMenuItem });
             clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            clientToolStripMenuItem.Size = new Size(50, 20);
+            clientToolStripMenuItem.Size = new Size(72, 29);
             clientToolStripMenuItem.Text = "Client";
-            // 
-            // addClientToolStripMenuItem
-            // 
+
             addClientToolStripMenuItem.Name = "addClientToolStripMenuItem";
-            addClientToolStripMenuItem.Size = new Size(151, 22);
+            addClientToolStripMenuItem.Size = new Size(227, 34);
             addClientToolStripMenuItem.Text = "Add Client";
-            addClientToolStripMenuItem.Click += addClientToolStripMenuItem_Click;
-            // 
-            // manageClientToolStripMenuItem
-            // 
+            addClientToolStripMenuItem.Click += new EventHandler(addClientToolStripMenuItem_Click);
+
             manageClientToolStripMenuItem.Name = "manageClientToolStripMenuItem";
-            manageClientToolStripMenuItem.Size = new Size(151, 22);
+            manageClientToolStripMenuItem.Size = new Size(227, 34);
             manageClientToolStripMenuItem.Text = "Manage Client";
-            manageClientToolStripMenuItem.Click += manageClientToolStripMenuItem_Click;
-            // 
-            // productToolStripMenuItem
-            // 
+            manageClientToolStripMenuItem.Click += new EventHandler(manageClientToolStripMenuItem_Click);
+
+            // Brand Menu
             productToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBrandToolStripMenuItem, manageBandToolStripMenuItem });
             productToolStripMenuItem.Name = "productToolStripMenuItem";
-            productToolStripMenuItem.Size = new Size(50, 20);
+            productToolStripMenuItem.Size = new Size(74, 29);
             productToolStripMenuItem.Text = "Brand";
-            // 
-            // addBrandToolStripMenuItem
-            // 
+
             addBrandToolStripMenuItem.Name = "addBrandToolStripMenuItem";
-            addBrandToolStripMenuItem.Size = new Size(147, 22);
+            addBrandToolStripMenuItem.Size = new Size(223, 34);
             addBrandToolStripMenuItem.Text = "Add Brand";
-            addBrandToolStripMenuItem.Click += addBrandToolStripMenuItem_Click;
-            // 
-            // manageBandToolStripMenuItem
-            // 
+            addBrandToolStripMenuItem.Click += new EventHandler(addBrandToolStripMenuItem_Click);
+
             manageBandToolStripMenuItem.Name = "manageBandToolStripMenuItem";
-            manageBandToolStripMenuItem.Size = new Size(147, 22);
-            manageBandToolStripMenuItem.Text = "Manage Band";
-            manageBandToolStripMenuItem.Click += manageBandToolStripMenuItem_Click;
-            // 
-            // productToolStripMenuItem1
-            // 
+            manageBandToolStripMenuItem.Size = new Size(223, 34);
+            manageBandToolStripMenuItem.Text = "Manage Brand";
+            manageBandToolStripMenuItem.Click += new EventHandler(manageBandToolStripMenuItem_Click);
+
+            // Product Menu
             productToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { addProductToolStripMenuItem, manageProductToolStripMenuItem });
             productToolStripMenuItem1.Name = "productToolStripMenuItem1";
-            productToolStripMenuItem1.Size = new Size(61, 20);
+            productToolStripMenuItem1.Size = new Size(90, 29);
             productToolStripMenuItem1.Text = "Product";
-            // 
-            // addProductToolStripMenuItem
-            // 
+
             addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
-            addProductToolStripMenuItem.Size = new Size(162, 22);
+            addProductToolStripMenuItem.Size = new Size(245, 34);
             addProductToolStripMenuItem.Text = "Add Product";
-            addProductToolStripMenuItem.Click += addProductToolStripMenuItem_Click;
-            // 
-            // manageProductToolStripMenuItem
-            // 
+            addProductToolStripMenuItem.Click += new EventHandler(addProductToolStripMenuItem_Click);
+
             manageProductToolStripMenuItem.Name = "manageProductToolStripMenuItem";
-            manageProductToolStripMenuItem.Size = new Size(162, 22);
+            manageProductToolStripMenuItem.Size = new Size(245, 34);
             manageProductToolStripMenuItem.Text = "Manage Product";
-            manageProductToolStripMenuItem.Click += manageProductToolStripMenuItem_Click;
-            // 
-            // categoryToolStripMenuItem
-            // 
+            manageProductToolStripMenuItem.Click += new EventHandler(manageProductToolStripMenuItem_Click);
+
+            // Category Menu
             categoryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addCategoryToolStripMenuItem, manageCategoryToolStripMenuItem });
             categoryToolStripMenuItem.Name = "categoryToolStripMenuItem";
-            categoryToolStripMenuItem.Size = new Size(67, 20);
+            categoryToolStripMenuItem.Size = new Size(100, 29);
             categoryToolStripMenuItem.Text = "Category";
-            categoryToolStripMenuItem.Click += categoryToolStripMenuItem_Click;
-            // 
-            // addCategoryToolStripMenuItem
-            // 
+
             addCategoryToolStripMenuItem.Name = "addCategoryToolStripMenuItem";
-            addCategoryToolStripMenuItem.Size = new Size(168, 22);
+            addCategoryToolStripMenuItem.Size = new Size(255, 34);
             addCategoryToolStripMenuItem.Text = "Add Category";
-            addCategoryToolStripMenuItem.Click += addCategoryToolStripMenuItem_Click;
-            // 
-            // manageCategoryToolStripMenuItem
-            // 
+            addCategoryToolStripMenuItem.Click += new EventHandler(addCategoryToolStripMenuItem_Click);
+
             manageCategoryToolStripMenuItem.Name = "manageCategoryToolStripMenuItem";
-            manageCategoryToolStripMenuItem.Size = new Size(168, 22);
+            manageCategoryToolStripMenuItem.Size = new Size(255, 34);
             manageCategoryToolStripMenuItem.Text = "Manage Category";
-            manageCategoryToolStripMenuItem.Click += manageCategoryToolStripMenuItem_Click;
-            // 
-            // ordersToolStripMenuItem
-            // 
+            manageCategoryToolStripMenuItem.Click += new EventHandler(manageCategoryToolStripMenuItem_Click);
+
+            // Orders Menu
             ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            ordersToolStripMenuItem.Size = new Size(54, 20);
+            ordersToolStripMenuItem.Size = new Size(82, 29);
             ordersToolStripMenuItem.Text = "Orders";
-            ordersToolStripMenuItem.Click += ordersToolStripMenuItem_Click;
-            // 
-            // warrantyToolStripMenuItem
-            // 
+            ordersToolStripMenuItem.Click += new EventHandler(ordersToolStripMenuItem_Click);
+
+            // Warranty Menu
             warrantyToolStripMenuItem.Name = "warrantyToolStripMenuItem";
-            warrantyToolStripMenuItem.Size = new Size(67, 20);
+            warrantyToolStripMenuItem.Size = new Size(99, 29);
             warrantyToolStripMenuItem.Text = "Warranty";
-            // 
-            // campaingToolStripMenuItem
-            // 
-            campaingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addCampaingToolStripMenuItem, manageCampaingToolStripMenuItem });
-            campaingToolStripMenuItem.Name = "campaingToolStripMenuItem";
-            campaingToolStripMenuItem.Size = new Size(74, 20);
-            campaingToolStripMenuItem.Text = "Campaign";
-            // 
-            // addCampaingToolStripMenuItem
-            // 
-            addCampaingToolStripMenuItem.Name = "addCampaingToolStripMenuItem";
-            addCampaingToolStripMenuItem.Size = new Size(175, 22);
-            addCampaingToolStripMenuItem.Text = "Add Campaign";
-            // 
-            // manageCampaingToolStripMenuItem
-            // 
-            manageCampaingToolStripMenuItem.Name = "manageCampaingToolStripMenuItem";
-            manageCampaingToolStripMenuItem.Size = new Size(175, 22);
-            manageCampaingToolStripMenuItem.Text = "Manage Campaign";
-            // 
-            // panel1
-            // 
-            panel1.Location = new Point(9, 35);
+
+            // Campaign Menu
+            campaignToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageCampaignsToolStripMenuItem });
+            campaignToolStripMenuItem.Name = "campaignToolStripMenuItem";
+            campaignToolStripMenuItem.Size = new Size(109, 29);
+            campaignToolStripMenuItem.Text = "Campaign";
+
+            manageCampaignsToolStripMenuItem.Name = "manageCampaignsToolStripMenuItem";
+            manageCampaignsToolStripMenuItem.Size = new Size(255, 34);
+            manageCampaignsToolStripMenuItem.Text = "Manage Campaigns";
+            manageCampaignsToolStripMenuItem.Click += new EventHandler(manageCampaignsToolStripMenuItem_Click);
+
+            // Panel
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 35);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1185, 525);
+            panel1.Size = new Size(1723, 918);
             panel1.TabIndex = 4;
-            panel1.Paint += panel1_Paint;
-            // 
-            // AccountPage
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+
+            // Form
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1206, 572);
+            ClientSize = new Size(1723, 953);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "AccountPage";
-            Text = "AccountPage";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Account Page";
+            WindowState = FormWindowState.Maximized;
+
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
-
-        #endregion
 
         private ContextMenuStrip contextMenuStrip1;
         private ContextMenuStrip contextMenuStrip2;
@@ -256,7 +209,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem accountToolStripMenuItem;
         private ToolStripMenuItem addAccountToolStripMenuItem;
-        private Panel panel1;
         private ToolStripMenuItem manageAccountToolStripMenuItem;
         private ToolStripMenuItem clientToolStripMenuItem;
         private ToolStripMenuItem addClientToolStripMenuItem;
@@ -272,8 +224,8 @@
         private ToolStripMenuItem manageCategoryToolStripMenuItem;
         private ToolStripMenuItem ordersToolStripMenuItem;
         private ToolStripMenuItem warrantyToolStripMenuItem;
-        private ToolStripMenuItem campaingToolStripMenuItem;
-        private ToolStripMenuItem addCampaingToolStripMenuItem;
-        private ToolStripMenuItem manageCampaingToolStripMenuItem;
+        private ToolStripMenuItem campaignToolStripMenuItem;
+        private ToolStripMenuItem manageCampaignsToolStripMenuItem;
+        private Panel panel1;
     }
 }

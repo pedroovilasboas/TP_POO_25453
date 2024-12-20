@@ -18,8 +18,6 @@ namespace POO_25453_TP
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
 
-
-
         // File path for storing products
         private static string productsFile = @"C:\PROGRAM_CS\TP_POO_25453\Product\products.txt";
         private static int lastProductID = 0;
@@ -27,9 +25,6 @@ namespace POO_25453_TP
         // Constructor for existing product (loaded from file)
         public Product(int productId, Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
-            if (category == null || brand == null)
-                throw new ArgumentNullException("Category and Brand cannot be null");
-
             this.ProductID = productId; // Use the ID from the file
             this.Category = category;
             this.Brand = brand;
@@ -73,16 +68,41 @@ namespace POO_25453_TP
             var lines = File.ReadAllLines(productsFile);
             foreach (var line in lines)
             {
-                var parts = line.Split(',');
-                if (parts.Length != 8) continue;
+                try
+                {
+                    var parts = line.Split(',');
+                    if (parts.Length != 8) continue;
 
-                int productId = int.Parse(parts[0]);
-                string brandName = parts[1];
-                string categoryName = parts[2];
-                var brand = Brand.LoadBrands().FirstOrDefault(b => b.Name == brandName);
-                var category = Category.LoadCategories().FirstOrDefault(c => c.Name == categoryName);
+                    int productId = int.Parse(parts[0]);
+                    string brandName = parts[1];
+                    string categoryName = parts[2];
+                    
+                    Brand brand = null;
+                    Category category = null;
 
-                products.Add(new Product(productId, category, brand, parts[3], parts[4], parts[5], decimal.Parse(parts[6]), int.Parse(parts[7])));
+                    if (!string.IsNullOrEmpty(brandName))
+                        brand = Brand.LoadBrands().FirstOrDefault(b => b.Name == brandName);
+                    
+                    if (!string.IsNullOrEmpty(categoryName))
+                        category = Category.LoadCategories().FirstOrDefault(c => c.Name == categoryName);
+
+                    var product = new Product(
+                        productId,
+                        category,
+                        brand,
+                        parts[3],
+                        parts[4],
+                        parts[5],
+                        decimal.Parse(parts[6]),
+                        int.Parse(parts[7])
+                    );
+
+                    products.Add(product);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             // Update lastProductID to the highest ID found in the file
@@ -98,9 +118,6 @@ namespace POO_25453_TP
             return products;
         }
 
-
-
-
         // Method to save all products
         public static void SaveProducts(List<Product> products)
         {
@@ -114,14 +131,14 @@ namespace POO_25453_TP
         }
 
         // Method to search products
-        public static List<Product> SearchProducts(string query)
+        public static List<Product> SearchProducts(string searchTerm)
         {
-            var products = LoadProducts();
-            query = query.ToLower();
-            return products.Where(p =>
-                (p.Name != null && p.Name.ToLower().Contains(query)) ||
-                (p.Brand?.Name != null && p.Brand.Name.ToLower().Contains(query)) ||
-                (p.Category?.Name != null && p.Category.Name.ToLower().Contains(query))
+            return LoadProducts().Where(p =>
+                p.Name.Contains(searchTerm) ||
+                p.Description.Contains(searchTerm) ||
+                p.Type.Contains(searchTerm) ||
+                (p.Brand != null && p.Brand.Name.Contains(searchTerm)) ||
+                (p.Category != null && p.Category.Name.Contains(searchTerm))
             ).ToList();
         }
 
@@ -154,6 +171,21 @@ namespace POO_25453_TP
             {
                 MessageBox.Show("Product not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public decimal GetFinalPrice()
+        {
+            return Campaign.GetDiscountedPrice(this);
+        }
+
+        public string GetPriceDisplay()
+        {
+            decimal finalPrice = GetFinalPrice();
+            if (finalPrice < Price)
+            {
+                return $"{finalPrice:C} (Original: {Price:C})";
+            }
+            return Price.ToString("C");
         }
     }
 }

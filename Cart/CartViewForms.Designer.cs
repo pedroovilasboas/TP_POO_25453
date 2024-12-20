@@ -21,96 +21,126 @@
 
         private void InitializeComponent()
         {
-            this.dgvCartItems = new System.Windows.Forms.DataGridView();
-            this.btnIncreaseQuantity = new System.Windows.Forms.Button();
-            this.btnDecreaseQuantity = new System.Windows.Forms.Button();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.btnCheckout = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-
+            dgvCartItems = new DataGridView();
+            btnIncreaseQuantity = new Button();
+            btnDecreaseQuantity = new Button();
+            txtQuantity = new TextBox();
+            btnCheckout = new Button();
+            btnRemove = new Button();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvCartItems).BeginInit();
+            SuspendLayout();
             // 
             // dgvCartItems
             // 
-            this.dgvCartItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCartItems.Columns.Add("ProductID", "Product ID");
-            this.dgvCartItems.Columns.Add("ProductName", "Product Name");
-            this.dgvCartItems.Columns.Add("Quantity", "Quantity");
-            this.dgvCartItems.Columns.Add("Price", "Price per Unit");
-            this.dgvCartItems.Columns.Add("TotalPrice", "Total Price");
-            this.dgvCartItems.Location = new System.Drawing.Point(12, 12);
-            this.dgvCartItems.Name = "dgvCartItems";
-            this.dgvCartItems.Size = new System.Drawing.Size(760, 300);
-            this.dgvCartItems.TabIndex = 0;
-            this.dgvCartItems.SelectionChanged += new System.EventHandler(this.dgvCartItems_SelectionChanged);
-
+            dgvCartItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCartItems.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
+            dgvCartItems.Location = new Point(12, 12);
+            dgvCartItems.Name = "dgvCartItems";
+            dgvCartItems.Size = new Size(760, 300);
+            dgvCartItems.TabIndex = 0;
+            dgvCartItems.CellContentClick += dgvCartItems_CellContentClick;
+            dgvCartItems.SelectionChanged += dgvCartItems_SelectionChanged;
             // 
             // btnIncreaseQuantity
             // 
-            this.btnIncreaseQuantity.Location = new System.Drawing.Point(250, 330);
-            this.btnIncreaseQuantity.Name = "btnIncreaseQuantity";
-            this.btnIncreaseQuantity.Size = new System.Drawing.Size(30, 30);
-            this.btnIncreaseQuantity.TabIndex = 1;
-            this.btnIncreaseQuantity.Text = "+";
-            this.btnIncreaseQuantity.UseVisualStyleBackColor = true;
-            this.btnIncreaseQuantity.Click += new System.EventHandler(this.btnIncreaseQuantity_Click);
-
+            btnIncreaseQuantity.Location = new Point(250, 330);
+            btnIncreaseQuantity.Name = "btnIncreaseQuantity";
+            btnIncreaseQuantity.Size = new Size(30, 30);
+            btnIncreaseQuantity.TabIndex = 1;
+            btnIncreaseQuantity.Text = "+";
+            btnIncreaseQuantity.UseVisualStyleBackColor = true;
+            btnIncreaseQuantity.Click += btnIncreaseQuantity_Click;
             // 
             // btnDecreaseQuantity
             // 
-            this.btnDecreaseQuantity.Location = new System.Drawing.Point(200, 330);
-            this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
-            this.btnDecreaseQuantity.Size = new System.Drawing.Size(30, 30);
-            this.btnDecreaseQuantity.TabIndex = 2;
-            this.btnDecreaseQuantity.Text = "-";
-            this.btnDecreaseQuantity.UseVisualStyleBackColor = true;
-            this.btnDecreaseQuantity.Click += new System.EventHandler(this.btnDecreaseQuantity_Click);
-
+            btnDecreaseQuantity.Location = new Point(200, 330);
+            btnDecreaseQuantity.Name = "btnDecreaseQuantity";
+            btnDecreaseQuantity.Size = new Size(30, 30);
+            btnDecreaseQuantity.TabIndex = 2;
+            btnDecreaseQuantity.Text = "-";
+            btnDecreaseQuantity.UseVisualStyleBackColor = true;
+            btnDecreaseQuantity.Click += btnDecreaseQuantity_Click;
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(290, 330);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(50, 23);
-            this.txtQuantity.TabIndex = 3;
-            this.txtQuantity.Text = "1";
-            this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-
+            txtQuantity.Location = new Point(290, 330);
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.Size = new Size(50, 23);
+            txtQuantity.TabIndex = 3;
+            txtQuantity.Text = "1";
+            txtQuantity.TextAlign = HorizontalAlignment.Center;
             // 
             // btnCheckout
             // 
-            this.btnCheckout.Location = new System.Drawing.Point(360, 330);
-            this.btnCheckout.Name = "btnCheckout";
-            this.btnCheckout.Size = new System.Drawing.Size(75, 30);
-            this.btnCheckout.TabIndex = 4;
-            this.btnCheckout.Text = "Checkout";
-            this.btnCheckout.UseVisualStyleBackColor = true;
-            this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
-
+            btnCheckout.Location = new Point(360, 330);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new Size(75, 30);
+            btnCheckout.TabIndex = 4;
+            btnCheckout.Text = "Checkout";
+            btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += btnCheckout_Click;
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(450, 330);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 30);
-            this.btnRemove.TabIndex = 5;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-
+            btnRemove.Location = new Point(450, 330);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(75, 30);
+            btnRemove.TabIndex = 5;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Product ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Product Name";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Quantity";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Price per Unit";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Total Price";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // CartViewForm
             // 
-            this.ClientSize = new System.Drawing.Size(800, 400);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnCheckout);
-            this.Controls.Add(this.txtQuantity);
-            this.Controls.Add(this.btnDecreaseQuantity);
-            this.Controls.Add(this.btnIncreaseQuantity);
-            this.Controls.Add(this.dgvCartItems);
-            this.Name = "CartViewForm";
-            this.Text = "Cart";
-            this.Load += new System.EventHandler(this.CartViewForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCartItems)).EndInit();
+            ClientSize = new Size(800, 400);
+            Controls.Add(btnRemove);
+            Controls.Add(btnCheckout);
+            Controls.Add(txtQuantity);
+            Controls.Add(btnDecreaseQuantity);
+            Controls.Add(btnIncreaseQuantity);
+            Controls.Add(dgvCartItems);
+            Name = "CartViewForm";
+            Text = "Cart";
+            Load += CartViewForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvCartItems).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

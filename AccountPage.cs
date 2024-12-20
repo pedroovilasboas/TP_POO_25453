@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO
-    
     ;
 using System.Drawing;
 using System.Linq;
@@ -105,8 +104,14 @@ namespace POO_25453_TP
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OrdersManagementForm ordersManagementForm = new OrdersManagementForm();
-            LoadFormIntoPanel(ordersManagementForm);
+            OrdersForm ordersForm = new OrdersForm();
+            LoadFormIntoPanel(ordersForm);
+        }
+
+        private void manageCampaignsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CampaignManagementForm campaignForm = new CampaignManagementForm();
+            LoadFormIntoPanel(campaignForm);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

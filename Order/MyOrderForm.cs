@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,104 +6,99 @@ namespace POO_25453_TP
 {
     public partial class MyOrdersForm : Form
     {
-        private int clientID;
+        private readonly int clientID;
 
-        // Constructor to initialize the form with a specific client ID
         public MyOrdersForm(int clientID)
         {
             InitializeComponent();
             this.clientID = clientID;
+            SetupDataGridView();
         }
 
-        // Event triggered when the form loads
-        private void MyOrdersForm_Load(object sender, EventArgs e)
+        private void SetupDataGridView()
         {
-            LoadClientOrders(); // Load orders for the specific client
+            dgvMyOrders.Columns.Clear();
+            dgvMyOrders.Columns.Add("OrderID", "Order ID");
+            dgvMyOrders.Columns.Add("ProductID", "Product ID");
+            dgvMyOrders.Columns.Add("ProductName", "Product");
+            dgvMyOrders.Columns.Add("Quantity", "Quantity");
+            dgvMyOrders.Columns.Add("UnitPrice", "Unit Price");
+            dgvMyOrders.Columns.Add("TotalPrice", "Total Price");
+            dgvMyOrders.Columns.Add("Status", "Status");
+            dgvMyOrders.Columns.Add("OrderDate", "Order Date");
+
+            dgvMyOrders.Columns["OrderID"].Width = 70;
+            dgvMyOrders.Columns["ProductID"].Width = 70;
+            dgvMyOrders.Columns["ProductName"].Width = 150;
+            dgvMyOrders.Columns["Quantity"].Width = 70;
+            dgvMyOrders.Columns["UnitPrice"].Width = 100;
+            dgvMyOrders.Columns["TotalPrice"].Width = 100;
+            dgvMyOrders.Columns["Status"].Width = 80;
+            dgvMyOrders.Columns["OrderDate"].Width = 150;
         }
 
-        // Load and display orders for the current client from a file
-        private void LoadClientOrders()
+        private void DisplayResults(System.Collections.Generic.List<Order> orders)
         {
             try
             {
-                // Setup DataGridView columns
                 dgvMyOrders.Rows.Clear();
-                if (dgvMyOrders.Columns.Count == 0)
-                {
-                    dgvMyOrders.Columns.Add("OrderID", "Order ID");
-                    dgvMyOrders.Columns.Add("ProductID", "Product ID");
-                    dgvMyOrders.Columns.Add("Quantity", "Quantity");
-                    dgvMyOrders.Columns.Add("UnitPrice", "Unit Price");
-                    dgvMyOrders.Columns.Add("TotalPrice", "Total Price");
-                    dgvMyOrders.Columns.Add("Status", "Status");
-                }
 
-                string myOrdersFile = @"C:\PROGRAM_CS\TP_POO_25453\Order\myorders.txt";
-                string orderDir = Path.GetDirectoryName(myOrdersFile);
-
-                // Create directory if it doesn't exist
-                if (!Directory.Exists(orderDir))
+                if (!orders.Any())
                 {
-                    Directory.CreateDirectory(orderDir);
-                }
-
-                // Create empty file if it doesn't exist
-                if (!File.Exists(myOrdersFile))
-                {
-                    File.WriteAllText(myOrdersFile, "");
-                    MessageBox.Show("You don't have any orders yet.", "No Orders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No orders found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                var fileContent = File.ReadAllLines(myOrdersFile);
-                if (fileContent.Length == 0)
-                {
-                    MessageBox.Show("You don't have any orders yet.", "No Orders", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Read orders from the file and filter by client ID
-                var orders = fileContent
-                    .Where(line => 
-                    {
-                        var parts = line.Split(',');
-                        return parts.Length >= 2 && parts[1] == clientID.ToString();
-                    })
-                    .Select(line =>
-                    {
-                        var parts = line.Split(',');
-                        return new
-                        {
-                            OrderID = int.Parse(parts[0]),
-                            ProductID = int.Parse(parts[2]),
-                            Quantity = int.Parse(parts[3]),
-                            UnitPrice = decimal.Parse(parts[4]),
-                            TotalPrice = decimal.Parse(parts[5]),
-                            Status = parts[6]
-                        };
-                    });
+                var products = Product.LoadProducts();
 
                 foreach (var order in orders)
                 {
+                    var product = products.FirstOrDefault(p => p.ProductID == order.ProductID);
+                    string productName = product?.Name ?? "Unknown Product";
+
                     dgvMyOrders.Rows.Add(
                         order.OrderID,
                         order.ProductID,
+                        productName,
                         order.Quantity,
-                        order.UnitPrice.ToString("C"),
-                        order.TotalPrice.ToString("C"),
-                        order.Status
+                        order.UnitPrice.ToString("C2"),
+                        order.TotalPrice.ToString("C2"),
+                        order.Status,
+                        order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss")
                     );
-                }
-
-                if (dgvMyOrders.Rows.Count == 0)
-                {
-                    MessageBox.Show("You don't have any orders yet.", "No Orders", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading orders: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error displaying orders: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            string searchQuery = textBoxSearch.Text.Trim();
+            var orders = Order.LoadClientOrders(clientID);
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                orders = orders.Where(o => 
+                    o.OrderID.ToString().Contains(searchQuery) ||
+                    o.Status.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    o.OrderDate.ToString("yyyy-MM-dd").Contains(searchQuery)
+                ).ToList();
+            }
+
+            DisplayResults(orders);
+        }
+
+        private void ButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MyOrdersForm_Load(object sender, EventArgs e)
+        {
+            ButtonSearch_Click(sender, e); // Load all orders initially
         }
     }
 }
