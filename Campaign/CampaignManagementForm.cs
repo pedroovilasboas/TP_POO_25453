@@ -5,8 +5,17 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for managing promotional campaigns.
+    /// Provides functionality for creating, viewing, and deleting campaigns,
+    /// with support for different discount types and targets.
+    /// </summary>
     public partial class CampaignManagementForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the CampaignManagementForm.
+        /// Loads existing campaigns and initializes the discount type combo box.
+        /// </summary>
         public CampaignManagementForm()
         {
             InitializeComponent();
@@ -22,17 +31,30 @@ namespace POO_25453_TP
                 cboDiscountType.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Handles the form load event. Refreshes the campaign list display.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void CampaignManagementForm_Load(object sender, EventArgs e)
         {
             RefreshCampaignList();
         }
 
+        /// <summary>
+        /// Refreshes the campaign list by reloading all campaigns from storage.
+        /// </summary>
         private void RefreshCampaignList()
         {
             var campaigns = Campaign.LoadCampaigns();
             DisplayResults(campaigns);
         }
 
+        /// <summary>
+        /// Displays the list of campaigns in the data grid view.
+        /// Shows campaign details including status and target information.
+        /// </summary>
+        /// <param name="campaigns">List of campaigns to display.</param>
         private void DisplayResults(List<Campaign> campaigns)
         {
             dgvCampaigns.Rows.Clear();
@@ -68,6 +90,9 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Sets up the discount type combo box with available discount types.
+        /// </summary>
         private void SetupDiscountTypes()
         {
             cboDiscountType.Items.Clear();
@@ -76,6 +101,10 @@ namespace POO_25453_TP
             UpdateTargetComboBox();
         }
 
+        /// <summary>
+        /// Updates the target combo box based on the selected discount type.
+        /// Populates with appropriate options (products, brands, or categories).
+        /// </summary>
         private void UpdateTargetComboBox()
         {
             cboTarget.Items.Clear();
@@ -101,11 +130,23 @@ namespace POO_25453_TP
                 cboTarget.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Handles the discount type selection change event.
+        /// Updates the target combo box accordingly.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void cboDiscountType_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateTargetComboBox();
         }
 
+        /// <summary>
+        /// Handles the discount type selection change event.
+        /// Updates the target combo box and its enabled state based on the selected type.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void cboDiscountType_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             cboTarget.Items.Clear();
@@ -152,6 +193,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the add campaign button click event.
+        /// Creates and saves a new campaign with the entered information.
+        /// Shows appropriate success or error messages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnAddCampaign_Click(object sender, EventArgs e)
         {
             try
@@ -183,6 +231,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the delete campaign button click event.
+        /// Deletes the selected campaign after confirmation.
+        /// Shows appropriate success or error messages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnDeleteCampaign_Click(object sender, EventArgs e)
         {
             if (dgvCampaigns.SelectedRows.Count == 0)
@@ -217,11 +272,19 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the close button click event. Closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Clears all input fields and resets them to default values.
+        /// </summary>
         private void ClearInputs()
         {
             txtName.Clear();
@@ -232,6 +295,9 @@ namespace POO_25453_TP
             cboDiscountType.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Loads all campaigns from storage and displays them in the grid.
+        /// </summary>
         private void LoadCampaigns()
         {
             var campaigns = Campaign.LoadCampaigns();

@@ -5,22 +5,80 @@ using System.Linq;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Represents a client in the e-commerce system.
+    /// Manages client information and provides CRUD operations.
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Unique identifier for the client
+        /// </summary>
         public int ClientID { get; set; }
+
+        /// <summary>
+        /// Client's username for authentication
+        /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Client's password for authentication
+        /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// Client's full name
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Client's email address
+        /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Client's phone number
+        /// </summary>
         public string Phone { get; set; }
+
+        /// <summary>
+        /// Client's street address
+        /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// Client's city of residence
+        /// </summary>
         public string City { get; set; }
+
+        /// <summary>
+        /// Client's region or state
+        /// </summary>
         public string Region { get; set; }
+
+        /// <summary>
+        /// Client's postal code
+        /// </summary>
         public string PostalCode { get; set; }
 
+        /// <summary>
+        /// File path for storing client data
+        /// </summary>
         private static string clientsFile = @"C:\PROGRAM_CS\TP_POO_25453\Client\clients.txt";
 
-        // Constructor with ClientID (used for loading existing clients)
+        /// <summary>
+        /// Constructor for loading existing clients from storage
+        /// </summary>
+        /// <param name="clientID">Existing client ID</param>
+        /// <param name="username">Client's username</param>
+        /// <param name="password">Client's password</param>
+        /// <param name="name">Client's full name</param>
+        /// <param name="email">Client's email address</param>
+        /// <param name="phone">Client's phone number</param>
+        /// <param name="address">Client's street address</param>
+        /// <param name="city">Client's city</param>
+        /// <param name="region">Client's region</param>
+        /// <param name="postalCode">Client's postal code</param>
         public Client(int clientID, string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
         {
             ClientID = clientID;
@@ -35,7 +93,19 @@ namespace POO_25453_TP
             PostalCode = postalCode;
         }
 
-        // Constructor without ClientID (used for new clients)
+        /// <summary>
+        /// Constructor for creating new clients
+        /// Automatically generates a new client ID
+        /// </summary>
+        /// <param name="username">Client's username</param>
+        /// <param name="password">Client's password</param>
+        /// <param name="name">Client's full name</param>
+        /// <param name="email">Client's email address</param>
+        /// <param name="phone">Client's phone number</param>
+        /// <param name="address">Client's street address</param>
+        /// <param name="city">Client's city</param>
+        /// <param name="region">Client's region</param>
+        /// <param name="postalCode">Client's postal code</param>
         public Client(string username, string password, string name, string email, string phone, string address, string city, string region, string postalCode)
         {
             ClientID = GenerateUniqueClientID();
@@ -50,14 +120,20 @@ namespace POO_25453_TP
             PostalCode = postalCode;
         }
 
-        // Generate a unique ClientID
+        /// <summary>
+        /// Generates a unique client ID for new clients
+        /// </summary>
+        /// <returns>New unique client ID</returns>
         private static int GenerateUniqueClientID()
         {
             var clients = LoadClients();
             return clients.Any() ? clients.Max(c => c.ClientID) + 1 : 1;
         }
 
-        // Load all clients from the file
+        /// <summary>
+        /// Loads all clients from storage
+        /// </summary>
+        /// <returns>List of all clients in the system</returns>
         public static List<Client> LoadClients()
         {
             var clients = new List<Client>();
@@ -71,16 +147,16 @@ namespace POO_25453_TP
                     if (parts.Length == 10)
                     {
                         clients.Add(new Client(
-                            int.Parse(parts[0]), // ClientID
-                            parts[1],            // Username
-                            parts[2],            // Password
-                            parts[3],            // Name
-                            parts[4],            // Email
-                            parts[5],            // Phone
-                            parts[6],            // Address
-                            parts[7],            // City
-                            parts[8],            // Region
-                            parts[9]             // PostalCode
+                            int.Parse(parts[0]),
+                            parts[1],
+                            parts[2],
+                            parts[3],
+                            parts[4],
+                            parts[5],
+                            parts[6],
+                            parts[7],
+                            parts[8],
+                            parts[9]
                         ));
                     }
                 }
@@ -89,7 +165,10 @@ namespace POO_25453_TP
             return clients;
         }
 
-        // Save all clients to the file
+        /// <summary>
+        /// Saves multiple clients to storage
+        /// </summary>
+        /// <param name="clients">List of clients to save</param>
         public static void SaveClients(List<Client> clients)
         {
             using (var writer = new StreamWriter(clientsFile))
@@ -101,15 +180,21 @@ namespace POO_25453_TP
             }
         }
 
-        // Save the current client instance to the file
+        /// <summary>
+        /// Saves the current client to storage
+        /// </summary>
         public void Save()
         {
             var clients = LoadClients();
-            clients.Add(this); // Add the current client
-            SaveClients(clients); // Save the updated list
+            clients.Add(this);
+            SaveClients(clients);
         }
 
-        // Update an existing client
+        /// <summary>
+        /// Updates an existing client's information
+        /// </summary>
+        /// <param name="updatedClient">Client with updated information</param>
+        /// <exception cref="Exception">Thrown when client is not found</exception>
         public static void UpdateClient(Client updatedClient)
         {
             var clients = LoadClients();
@@ -126,7 +211,11 @@ namespace POO_25453_TP
             }
         }
 
-        // Delete a client by ClientID
+        /// <summary>
+        /// Deletes a client from the system
+        /// </summary>
+        /// <param name="clientID">ID of the client to delete</param>
+        /// <exception cref="Exception">Thrown when client is not found</exception>
         public static void DeleteClient(int clientID)
         {
             var clients = LoadClients();
@@ -143,7 +232,11 @@ namespace POO_25453_TP
             }
         }
 
-        // Search for clients by query (name, username, or email)
+        /// <summary>
+        /// Searches for clients based on name, username, or email
+        /// </summary>
+        /// <param name="query">Search term to match against name, username, or email</param>
+        /// <returns>List of matching clients</returns>
         public static List<Client> SearchClients(string query)
         {
             var clients = LoadClients();

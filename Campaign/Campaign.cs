@@ -5,31 +5,99 @@ using System.Linq;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Defines the types of discounts that can be applied in a campaign
+    /// </summary>
     public enum DiscountType
     {
+        /// <summary>
+        /// Discount applies to all products
+        /// </summary>
         General,
+
+        /// <summary>
+        /// Discount applies to a specific product
+        /// </summary>
         Product,
+
+        /// <summary>
+        /// Discount applies to all products of a specific brand
+        /// </summary>
         Brand,
+
+        /// <summary>
+        /// Discount applies to all products in a specific category
+        /// </summary>
         Category
     }
 
+    /// <summary>
+    /// Represents a promotional campaign in the e-commerce system.
+    /// Manages discount offers and their application to products.
+    /// </summary>
     public class Campaign
     {
-        // Properties
+        /// <summary>
+        /// Unique identifier for the campaign
+        /// </summary>
         public int CampaignID { get; private set; }
+
+        /// <summary>
+        /// Name of the campaign
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Detailed description of the campaign
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Date when the campaign becomes active
+        /// </summary>
         public DateTime StartDate { get; set; }
+
+        /// <summary>
+        /// Date when the campaign expires
+        /// </summary>
         public DateTime EndDate { get; set; }
+
+        /// <summary>
+        /// Discount percentage to be applied
+        /// </summary>
         public decimal DiscountPercentage { get; set; }
+
+        /// <summary>
+        /// Type of discount (General, Product, Brand, or Category)
+        /// </summary>
         public DiscountType DiscountType { get; set; }
+
+        /// <summary>
+        /// Target identifier based on discount type (product name, brand name, or category name)
+        /// </summary>
         public string TargetID { get; set; }
 
-        // File path for storing campaigns
+        /// <summary>
+        /// File path for storing campaign data
+        /// </summary>
         private static string campaignsFile = @"C:\PROGRAM_CS\TP_POO_25453\Campaign\campaigns.txt";
+
+        /// <summary>
+        /// Tracks the last used campaign ID for auto-increment
+        /// </summary>
         private static int lastCampaignID = 0;
 
-        // Constructor for existing campaign (loaded from file)
+        /// <summary>
+        /// Constructor for existing campaigns loaded from storage
+        /// </summary>
+        /// <param name="campaignId">Existing campaign ID</param>
+        /// <param name="name">Campaign name</param>
+        /// <param name="description">Campaign description</param>
+        /// <param name="startDate">Start date</param>
+        /// <param name="endDate">End date</param>
+        /// <param name="discountPercentage">Discount percentage</param>
+        /// <param name="discountType">Type of discount</param>
+        /// <param name="targetId">Target identifier</param>
         public Campaign(int campaignId, string name, string description, DateTime startDate, 
                       DateTime endDate, decimal discountPercentage, DiscountType discountType, string targetId)
         {
@@ -43,7 +111,17 @@ namespace POO_25453_TP
             TargetID = targetId;
         }
 
-        // Constructor for new campaign
+        /// <summary>
+        /// Constructor for creating new campaigns
+        /// Automatically generates a new campaign ID
+        /// </summary>
+        /// <param name="name">Campaign name</param>
+        /// <param name="description">Campaign description</param>
+        /// <param name="startDate">Start date</param>
+        /// <param name="endDate">End date</param>
+        /// <param name="discountPercentage">Discount percentage</param>
+        /// <param name="discountType">Type of discount</param>
+        /// <param name="targetId">Target identifier (optional)</param>
         public Campaign(string name, string description, DateTime startDate, DateTime endDate, 
                       decimal discountPercentage, DiscountType discountType, string targetId = null)
         {
@@ -57,7 +135,9 @@ namespace POO_25453_TP
             TargetID = targetId;
         }
 
-        // Method to save the campaign
+        /// <summary>
+        /// Saves the current campaign to storage
+        /// </summary>
         public void Save()
         {
             var campaigns = LoadCampaigns();
@@ -65,7 +145,10 @@ namespace POO_25453_TP
             SaveCampaigns(campaigns);
         }
 
-        // Method to load all campaigns
+        /// <summary>
+        /// Loads all campaigns from storage
+        /// </summary>
+        /// <returns>List of all campaigns in the system</returns>
         public static List<Campaign> LoadCampaigns()
         {
             var campaigns = new List<Campaign>();
@@ -101,7 +184,10 @@ namespace POO_25453_TP
             return campaigns;
         }
 
-        // Method to save all campaigns
+        /// <summary>
+        /// Saves multiple campaigns to storage
+        /// </summary>
+        /// <param name="campaigns">List of campaigns to save</param>
         public static void SaveCampaigns(List<Campaign> campaigns)
         {
             var lines = campaigns.Select(c => string.Join(";",
@@ -124,7 +210,11 @@ namespace POO_25453_TP
             File.WriteAllLines(campaignsFile, lines);
         }
 
-        // Method to get discounted price for a product
+        /// <summary>
+        /// Calculates the discounted price for a product considering all active campaigns
+        /// </summary>
+        /// <param name="product">Product to calculate discount for</param>
+        /// <returns>Final price after applying the highest applicable discount</returns>
         public static decimal GetDiscountedPrice(Product product)
         {
             var campaigns = LoadCampaigns()
@@ -143,7 +233,11 @@ namespace POO_25453_TP
             return product.Price * (1 - maxDiscount / 100);
         }
 
-        // Method to check if campaign is applicable to a product
+        /// <summary>
+        /// Checks if this campaign applies to a specific product
+        /// </summary>
+        /// <param name="product">Product to check</param>
+        /// <returns>True if the campaign applies to the product</returns>
         public bool IsApplicable(Product product)
         {
             if (DateTime.Now < StartDate || DateTime.Now > EndDate)

@@ -4,13 +4,27 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for adding new products to the system.
+    /// Provides interface for entering product details including name, description,
+    /// price, stock quantity, brand, and category information.
+    /// </summary>
     public partial class AddProductForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the AddProductForm.
+        /// </summary>
         public AddProductForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the form load event. Initializes the form by loading brands and categories
+        /// into their respective combo boxes, and sets up the next available product ID.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void AddProductForm_Load(object sender, EventArgs e)
         {
             try
@@ -61,6 +75,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the save button click event. Validates all input fields,
+        /// creates a new Product object with the entered information, and saves it to storage.
+        /// Shows appropriate error messages if validation fails.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonSave_Click(object sender, EventArgs e)
         {
             try

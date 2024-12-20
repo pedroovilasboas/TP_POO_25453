@@ -6,19 +6,43 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Represents a product brand in the e-commerce system.
+    /// Manages brand information and provides CRUD operations.
+    /// </summary>
     public class Brand
     {
-        public int BrandID { get; set; } // Unique identifier for each brand
+        /// <summary>
+        /// Unique identifier for the brand
+        /// </summary>
+        public int BrandID { get; set; }
+
+        /// <summary>
+        /// Name of the brand
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Description of the brand
+        /// </summary>
         public string Description { get; set; }
 
-        // File path for brands.txt
+        /// <summary>
+        /// File path for storing brand data
+        /// </summary>
         private static string brandsFile = @"C:\PROGRAM_CS\TP_POO_25453\Brand\brands.txt";
 
-        // Static field to keep track of the last used ID
+        /// <summary>
+        /// Tracks the last used brand ID for auto-increment
+        /// </summary>
         private static int lastBrandID = 0;
 
-        // Constructor for creating a new brand with a unique ID
+        /// <summary>
+        /// Constructor for creating a new brand
+        /// Automatically generates a new brand ID
+        /// </summary>
+        /// <param name="name">Brand name</param>
+        /// <param name="description">Brand description</param>
         public Brand(string name, string description)
         {
             if (lastBrandID == 0)
@@ -32,23 +56,27 @@ namespace POO_25453_TP
             Description = description;
         }
 
-
-        // Constructor for loading an existing brand from file with a specific ID
+        /// <summary>
+        /// Constructor for loading existing brands from storage
+        /// </summary>
+        /// <param name="id">Existing brand ID</param>
+        /// <param name="name">Brand name</param>
+        /// <param name="description">Brand description</param>
         public Brand(int id, string name, string description)
         {
             BrandID = id;
             Name = name;
             Description = description;
 
-            // Update lastBrandID to ensure unique IDs for future brands
             if (id > lastBrandID)
             {
                 lastBrandID = id;
             }
         }
 
-
-        // Method to save a brand
+        /// <summary>
+        /// Saves the current brand to storage
+        /// </summary>
         public void Save()
         {
             var brands = LoadBrands();
@@ -56,7 +84,10 @@ namespace POO_25453_TP
             SaveBrands(brands);
         }
 
-        // Method to load all brands from file
+        /// <summary>
+        /// Loads all brands from storage
+        /// </summary>
+        /// <returns>List of all brands in the system</returns>
         public static List<Brand> LoadBrands()
         {
             var brands = new List<Brand>();
@@ -77,38 +108,44 @@ namespace POO_25453_TP
                     }
                 }
 
-                // Update the lastBrandID to ensure unique IDs
                 lastBrandID = brands.Any() ? brands.Max(b => b.BrandID) : 0;
             }
 
             return brands;
         }
 
-
-        // Method to save a list of brands to file
+        /// <summary>
+        /// Saves multiple brands to storage
+        /// </summary>
+        /// <param name="brands">List of brands to save</param>
         public static void SaveBrands(List<Brand> brands)
         {
             using (var writer = new StreamWriter(brandsFile))
             {
                 foreach (var brand in brands)
                 {
-                    // Save each brand as "ID,Name,Description"
-                    writer.WriteLine($"{brand.BrandID},{brand.Name},{brand.Description}");
+                    writer.WriteLine($"{brand.BrandID};{brand.Name};{brand.Description}");
                 }
             }
         }
 
-        // Method to search brands by name or description
+        /// <summary>
+        /// Searches for brands based on name or description
+        /// </summary>
+        /// <param name="query">Search term to match against name or description</param>
+        /// <returns>List of matching brands</returns>
         public static List<Brand> SearchBrands(string query)
         {
             var brands = LoadBrands();
             query = query.ToLower();
 
-            // Return brands where name or description contains the search query
             return brands.Where(b => b.Name.ToLower().Contains(query) || b.Description.ToLower().Contains(query)).ToList();
         }
 
-        // Method to update a brand by ID
+        /// <summary>
+        /// Updates an existing brand's information
+        /// </summary>
+        /// <param name="updatedBrand">Brand with updated information</param>
         public static void UpdateBrand(Brand updatedBrand)
         {
             var brands = LoadBrands();
@@ -116,7 +153,6 @@ namespace POO_25453_TP
 
             if (index != -1)
             {
-                // Replace the old brand with the updated one
                 brands[index] = updatedBrand;
                 SaveBrands(brands);
             }
@@ -126,7 +162,10 @@ namespace POO_25453_TP
             }
         }
 
-        // Method to delete a brand by ID
+        /// <summary>
+        /// Deletes a brand from the system
+        /// </summary>
+        /// <param name="id">ID of the brand to delete</param>
         public static void DeleteBrand(int id)
         {
             var brands = LoadBrands();

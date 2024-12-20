@@ -1,13 +1,24 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Main client dashboard form that provides access to all client-specific
+    /// functionalities through a menu-driven interface. Includes options for
+    /// managing account information, viewing products, accessing cart,
+    /// and viewing order history.
+    /// </summary>
     public partial class ClientPage : Form
     {
         private Client currentClient;
 
-        // Constructor that accepts a Client object
+        /// <summary>
+        /// Initializes a new instance of the ClientPage.
+        /// </summary>
+        /// <param name="client">The client whose information will be displayed.
+        /// Cannot be null.</param>
+        /// <exception cref="ArgumentNullException">Thrown when client is null.</exception>
         public ClientPage(Client client)
         {
             currentClient = client ?? throw new ArgumentNullException(nameof(client));
@@ -17,7 +28,11 @@ namespace POO_25453_TP
             this.Text = $"Welcome, {currentClient.Name}!";
         }
 
-        // Method to load a form into the panel
+        /// <summary>
+        /// Loads a form into the main panel, adjusting its size and display properties
+        /// to fit within the panel boundaries.
+        /// </summary>
+        /// <param name="form">The form to be loaded into the panel.</param>
         private void LoadFormIntoPanel(Form form)
         {
             // Set the panel size to match the form's size
@@ -33,13 +48,24 @@ namespace POO_25453_TP
             form.Show();
         }
 
-        // Event for Logout
+        /// <summary>
+        /// Handles the logout menu item click.
+        /// Closes the client dashboard and returns to the login screen.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close(); // Close the form
         }
 
-        // Event for editing account information
+        /// <summary>
+        /// Handles the edit account menu item click.
+        /// Opens the EditClientForm for the current client in the main panel.
+        /// Shows an error if client information is not available.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void editAccountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (currentClient == null)
@@ -53,7 +79,13 @@ namespace POO_25453_TP
             LoadFormIntoPanel(editClientForm);
         }
 
-        // Event for viewing products
+        /// <summary>
+        /// Handles the products menu item click.
+        /// Opens the ProductListForm in the main panel, displaying available products
+        /// for the current client.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open the ProductListForm in the panel
@@ -61,7 +93,13 @@ namespace POO_25453_TP
             LoadFormIntoPanel(productListForm);
         }
 
-        // Event for viewing the cart
+        /// <summary>
+        /// Handles the my cart menu item click.
+        /// Opens the CartViewForm in the main panel, displaying the current
+        /// client's shopping cart.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void myCartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open the CartViewForm in the panel
@@ -69,6 +107,12 @@ namespace POO_25453_TP
             LoadFormIntoPanel(cartViewForm);
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// Loads the ProductListForm by default in the main panel.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ClientPage_Load(object sender, EventArgs e)
         {
             // Optionally, load a default form into the panel
@@ -76,6 +120,14 @@ namespace POO_25453_TP
             LoadFormIntoPanel(productListForm);
         }
 
+        /// <summary>
+        /// Handles the my orders menu item click.
+        /// Opens the MyOrdersForm in the main panel, displaying the current
+        /// client's order history. Shows an error if client information
+        /// is not available.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void myOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (currentClient == null)

@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,13 +5,27 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for managing product categories in the system.
+    /// Provides functionality for viewing, searching, editing, and deleting categories.
+    /// Displays categories in a data grid view with ID, name, and description.
+    /// </summary>
     public partial class ManageCategoryForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the ManageCategoryForm.
+        /// </summary>
         public ManageCategoryForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// Loads and displays all categories when the form is initialized.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ManageCategoryForm_Load(object sender, EventArgs e)
         {
             // Load all categories when the form loads
@@ -21,7 +33,13 @@ namespace POO_25453_TP
             DisplayResults(categories);
         }
 
-        // If the search box is empty, load all categories; otherwise, search for the query
+        /// <summary>
+        /// Handles the search button click event.
+        /// Searches for categories based on the entered query and displays results.
+        /// If query is empty, displays all categories.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonGo_Click(object sender, EventArgs e)
         {
             string query = textBoxSearch.Text;
@@ -30,7 +48,11 @@ namespace POO_25453_TP
             DisplayResults(results);
         }
 
-
+        /// <summary>
+        /// Displays the list of categories in the data grid view.
+        /// Sets up columns for Category ID, Name, and Description.
+        /// </summary>
+        /// <param name="results">List of categories to display.</param>
         private void DisplayResults(List<Category> results)
         {
             // Clear and configure DataGridView columns
@@ -46,6 +68,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the edit button click event.
+        /// Opens the EditCategoryForm for the selected category.
+        /// Shows error messages if no category or multiple categories are selected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             // Ensure one row is selected
@@ -75,6 +104,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the delete button click event.
+        /// Deletes the selected category after confirmation.
+        /// Shows error messages if no category or multiple categories are selected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             // Ensure one row is selected
@@ -105,6 +141,11 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the close button click event. Closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonClose_Click(object sender, EventArgs e)
         {
             // Close the form

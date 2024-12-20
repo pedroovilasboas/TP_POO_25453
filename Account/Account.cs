@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,15 +8,38 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Represents an administrator account in the system.
+    /// Manages account creation, authentication, and maintenance.
+    /// </summary>
     public class Account
     {
+        /// <summary>
+        /// Username for account login
+        /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Password for account authentication
+        /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// Display name of the account holder
+        /// </summary>
         public string Name { get; set; }
 
-        // Absolute file path for accounts.txt
+        /// <summary>
+        /// File path for storing account data
+        /// </summary>
         private static string accountsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Account\accounts.txt");
 
+        /// <summary>
+        /// Constructor for creating a new account
+        /// </summary>
+        /// <param name="username">Unique username for the account</param>
+        /// <param name="password">Account password</param>
+        /// <param name="name">Display name for the account</param>
         public Account(string username, string password, string name)
         {
             Username = username;
@@ -24,7 +47,9 @@ namespace POO_25453_TP
             Name = name;
         }
 
-        // Method to save account to file
+        /// <summary>
+        /// Saves the current account to storage
+        /// </summary>
         public void Save()
         {
             var accounts = LoadAccounts();
@@ -32,7 +57,10 @@ namespace POO_25453_TP
             SaveAccounts(accounts);
         }
 
-        // Method to load all accounts from file
+        /// <summary>
+        /// Loads all accounts from storage
+        /// </summary>
+        /// <returns>List of all accounts in the system</returns>
         public static List<Account> LoadAccounts()
         {
             var accounts = new List<Account>();
@@ -53,7 +81,10 @@ namespace POO_25453_TP
             return accounts;
         }
 
-        // Method to save a list of accounts to file
+        /// <summary>
+        /// Saves multiple accounts to storage
+        /// </summary>
+        /// <param name="accounts">List of accounts to save</param>
         public static void SaveAccounts(List<Account> accounts)
         {
             using (var writer = new StreamWriter(accountsFile))
@@ -65,7 +96,11 @@ namespace POO_25453_TP
             }
         }
 
-        // Method to search accounts by name or username
+        /// <summary>
+        /// Searches for accounts based on name or username
+        /// </summary>
+        /// <param name="query">Search term to match against name or username</param>
+        /// <returns>List of matching accounts</returns>
         public static List<Account> SearchAccounts(string query)
         {
             var accounts = LoadAccounts();
@@ -74,44 +109,40 @@ namespace POO_25453_TP
             return accounts.Where(a => a.Name.ToLower().Contains(query) || a.Username.ToLower().Contains(query)).ToList();
         }
 
-        // Method to update account information
+        /// <summary>
+        /// Updates an existing account's information
+        /// </summary>
+        /// <param name="updatedAccount">Account with updated information</param>
         public static void UpdateAccount(Account updatedAccount)
         {
             var accounts = LoadAccounts();
 
-            // Find account to update by username
             var index = accounts.FindIndex(acc => acc.Username == updatedAccount.Username);
 
             if (index != -1)
             {
-                // Update account in the list
                 accounts[index] = updatedAccount;
-
-                // Save all accounts back to file
                 SaveAccounts(accounts);
             }
             else
             {
-                // Show error if account not found
                 MessageBox.Show("Account not found for update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// 
+        /// Deletes an account from the system
         /// </summary>
-        /// <param name="username"></param>
+        /// <param name="username">Username of the account to delete</param>
         public static void DeleteAccount(string username)
         {
             var accounts = LoadAccounts();
-
-            
             var accountToDelete = accounts.FirstOrDefault(acc => acc.Username == username);
 
             if (accountToDelete != null)
             {
-                accounts.Remove(accountToDelete); // Remove account from list
-                SaveAccounts(accounts); // Save updated list to file
+                accounts.Remove(accountToDelete);
+                SaveAccounts(accounts);
             }
             else
             {

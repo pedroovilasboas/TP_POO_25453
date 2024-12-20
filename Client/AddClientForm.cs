@@ -1,8 +1,13 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for adding new clients to the system.
+    /// Provides interface for entering client details including personal information,
+    /// contact details, and login credentials.
+    /// </summary>
     public partial class AddClientForm : Form
     {
         public AddClientForm()

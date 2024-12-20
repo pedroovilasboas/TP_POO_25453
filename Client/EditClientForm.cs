@@ -1,8 +1,13 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for editing existing client information.
+    /// Allows modification of client details including personal information,
+    /// contact details, and optionally updating their password.
+    /// </summary>
     public partial class EditClientForm : Form
     {
         private Client client; // Stores the passed client object

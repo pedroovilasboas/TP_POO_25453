@@ -1,10 +1,1 @@
-1;Apple;Empresa de tecnologia conhecida por iPhones, MacBooks e iPads
-2;Samsung;Líder global em eletrônicos e smartphones
-3;Dell;Especializada em computadores e laptops
-4;Sony;Empresa japonesa de eletrônicos e entretenimento
-5;LG;Fabricante de eletrônicos e eletrodomésticos
-6;Asus;Especializada em laptops e componentes de PC
-7;Lenovo;Fabricante global de computadores e tablets
-8;HP;Líder em impressoras e computadores
-9;Microsoft;Criadora do Windows e Xbox
-10;Acer;Fabricante de computadores e monitores
+1,dshge,af

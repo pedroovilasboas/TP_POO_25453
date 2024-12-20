@@ -6,20 +6,43 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Represents a product category in the e-commerce system.
+    /// Manages category information and provides CRUD operations.
+    /// </summary>
     public class Category
     {
-        // Properties for Category
-        public int CategoryId { get; private set; } // ID is now read-only
+        /// <summary>
+        /// Unique identifier for the category
+        /// </summary>
+        public int CategoryId { get; private set; }
+
+        /// <summary>
+        /// Name of the category
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Description of the category
+        /// </summary>
         public string Description { get; set; }
 
-        // File path for categories.txt
+        /// <summary>
+        /// File path for storing category data
+        /// </summary>
         private static string categoriesFile = @"C:\PROGRAM_CS\TP_POO_25453\Category\categories.txt";
 
-        // Static field to store the last used ID
+        /// <summary>
+        /// Tracks the last used category ID for auto-increment
+        /// </summary>
         private static int lastCategoryId = 0;
 
-        // Constructor for creating an existing categor
+        /// <summary>
+        /// Constructor for loading existing categories from storage
+        /// </summary>
+        /// <param name="categoryId">Existing category ID</param>
+        /// <param name="name">Category name</param>
+        /// <param name="description">Category description</param>
         public Category(int categoryId, string name, string description)
         {
             CategoryId = categoryId;
@@ -27,31 +50,39 @@ namespace POO_25453_TP
             Description = description;
         }
 
-
-        // Constructor for creating an new category
+        /// <summary>
+        /// Constructor for creating new categories
+        /// Automatically generates a new category ID
+        /// </summary>
+        /// <param name="name">Category name</param>
+        /// <param name="description">Category description</param>
         public Category(string name, string description)
         {
-            // Increment lastCategoryId based on the current value
             if (lastCategoryId == 0)
             {
                 var categories = LoadCategories();
                 lastCategoryId = categories.Any() ? categories.Max(c => c.CategoryId) : 0;
             }
 
-            CategoryId = ++lastCategoryId; // Assign the next available ID
+            CategoryId = ++lastCategoryId;
             Name = name;
             Description = description;
         }
 
-
-        // Method to save a category
+        /// <summary>
+        /// Saves the current category to storage
+        /// </summary>
         public void Save()
         {
             var categories = LoadCategories();
-            categories.Add(this); // Add the new category to the list
+            categories.Add(this);
             SaveCategories(categories);
         }
 
+        /// <summary>
+        /// Loads all categories from storage
+        /// </summary>
+        /// <returns>List of all categories in the system</returns>
         public static List<Category> LoadCategories()
         {
             var categories = new List<Category>();
@@ -64,35 +95,40 @@ namespace POO_25453_TP
                     var parts = line.Split(',');
                     if (parts.Length == 3)
                     {
-                        int categoryId = int.Parse(parts[0]);
+                        int id = int.Parse(parts[0]);
                         string name = parts[1];
                         string description = parts[2];
 
-                        categories.Add(new Category(categoryId, name, description)); // Use o construtor com 3 argumentos
+                        categories.Add(new Category(id, name, description));
                     }
                 }
 
-                // Atualiza o último ID usado
                 lastCategoryId = categories.Any() ? categories.Max(c => c.CategoryId) : 0;
             }
 
             return categories;
         }
 
-
-        // Method to save a list of categories to file
+        /// <summary>
+        /// Saves multiple categories to storage
+        /// </summary>
+        /// <param name="categories">List of categories to save</param>
         public static void SaveCategories(List<Category> categories)
         {
             using (var writer = new StreamWriter(categoriesFile))
             {
                 foreach (var category in categories)
                 {
-                    writer.WriteLine($"{category.CategoryId},{category.Name},{category.Description}");
+                    writer.WriteLine($"{category.CategoryId};{category.Name};{category.Description}");
                 }
             }
         }
 
-        // Method to search categories by name or description
+        /// <summary>
+        /// Searches for categories based on name or description
+        /// </summary>
+        /// <param name="query">Search term to match against name or description</param>
+        /// <returns>List of matching categories</returns>
         public static List<Category> SearchCategories(string query)
         {
             var categories = LoadCategories();
@@ -104,7 +140,10 @@ namespace POO_25453_TP
             ).ToList();
         }
 
-        // Method to update an existing category
+        /// <summary>
+        /// Updates an existing category's information
+        /// </summary>
+        /// <param name="updatedCategory">Category with updated information</param>
         public static void UpdateCategory(Category updatedCategory)
         {
             var categories = LoadCategories();
@@ -121,7 +160,10 @@ namespace POO_25453_TP
             }
         }
 
-        // Method to delete a category by ID
+        /// <summary>
+        /// Deletes a category from the system
+        /// </summary>
+        /// <param name="categoryId">ID of the category to delete</param>
         public static void DeleteCategory(int categoryId)
         {
             var categories = LoadCategories();

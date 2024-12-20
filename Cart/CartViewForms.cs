@@ -5,11 +5,21 @@ using static POO_25453_TP.Cart;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for viewing and managing the shopping cart.
+    /// Provides functionality for viewing cart items, updating quantities,
+    /// removing items, and proceeding to checkout. Displays item details
+    /// including prices, discounts, and total savings.
+    /// </summary>
     public partial class CartViewForm : Form
     {
         private Cart cart;
         private Label lblTotal;
 
+        /// <summary>
+        /// Initializes a new instance of the CartViewForm.
+        /// </summary>
+        /// <param name="clientID">ID of the client whose cart to display.</param>
         public CartViewForm(int clientID)
         {
             InitializeComponent();
@@ -29,11 +39,22 @@ namespace POO_25453_TP
             LoadCartItems();
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// Loads and displays the cart items.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void CartViewForm_Load(object sender, EventArgs e)
         {
             LoadCartItems();
         }
 
+        /// <summary>
+        /// Loads and displays cart items in the data grid view.
+        /// Shows product details, quantities, prices, and savings.
+        /// Highlights items with active discounts.
+        /// </summary>
         private void LoadCartItems()
         {
             dgvCartItems.Rows.Clear();
@@ -84,6 +105,13 @@ namespace POO_25453_TP
             txtQuantity.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Handles the increase quantity button click event.
+        /// Increases the quantity of the selected cart item by one.
+        /// Updates the display and saves changes.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnIncreaseQuantity_Click(object sender, EventArgs e)
         {
             if (dgvCartItems.SelectedRows.Count > 0)
@@ -105,6 +133,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the decrease quantity button click event.
+        /// Decreases the quantity of the selected cart item by one.
+        /// Shows warning if quantity would go below 1.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnDecreaseQuantity_Click(object sender, EventArgs e)
         {
             if (dgvCartItems.SelectedRows.Count > 0)
@@ -130,6 +165,12 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the selection change event in the cart items grid.
+        /// Updates the quantity text box with the selected item's quantity.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void dgvCartItems_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvCartItems.SelectedRows.Count > 0)
@@ -144,6 +185,12 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the remove item button click event.
+        /// Removes the selected item from the cart and updates the display.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (dgvCartItems.SelectedRows.Count > 0)
@@ -158,6 +205,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the checkout button click event.
+        /// Processes the checkout for all items in the cart.
+        /// Shows appropriate success or error messages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnCheckout_Click(object sender, EventArgs e)
         {
             if (cart.Items.Any())
@@ -181,6 +235,11 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the cell content click event in the cart items grid.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void dgvCartItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

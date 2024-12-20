@@ -5,13 +5,28 @@ using POO_25453_TP.DAL;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for client login authentication.
+    /// Provides interface for clients to enter their credentials
+    /// and access their account dashboard. Also includes option to create new account.
+    /// </summary>
     public partial class ClientLoginForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the ClientLoginForm.
+        /// </summary>
         public ClientLoginForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the login button click event. Validates the entered credentials,
+        /// loads the client information, and opens the client dashboard if authentication
+        /// is successful. Shows appropriate error messages for invalid credentials or errors.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             try
@@ -53,6 +68,12 @@ namespace POO_25453_TP
         }
 
 
+        /// <summary>
+        /// Handles the create account button click event.
+        /// Opens the AddClientForm for new client registration.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonCreateAccount_Click(object sender, EventArgs e)
         {
             // Create and display the AddClientForm
@@ -60,6 +81,11 @@ namespace POO_25453_TP
             addClientForm.ShowDialog(); // Use ShowDialog to keep the login form on hold
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ClientLoginForm_Load(object sender, EventArgs e)
         {
 

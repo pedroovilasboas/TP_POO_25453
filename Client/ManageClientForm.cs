@@ -1,9 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for managing clients in the system.
+    /// Provides functionality for viewing, searching, editing, and deleting client accounts.
+    /// Includes a data grid view to display all clients and their details, with search capabilities.
+    /// </summary>
     public partial class ManageClientForm : Form
     {
         public ManageClientForm()

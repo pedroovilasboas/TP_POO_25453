@@ -4,10 +4,19 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for displaying and managing a client's orders.
+    /// Provides functionality to view order history and search through orders
+    /// with details such as products, quantities, prices, and status.
+    /// </summary>
     public partial class MyOrdersForm : Form
     {
         private readonly int clientID;
 
+        /// <summary>
+        /// Initializes a new instance of the MyOrdersForm.
+        /// </summary>
+        /// <param name="clientID">The ID of the client whose orders will be displayed.</param>
         public MyOrdersForm(int clientID)
         {
             InitializeComponent();
@@ -15,6 +24,10 @@ namespace POO_25453_TP
             SetupDataGridView();
         }
 
+        /// <summary>
+        /// Sets up the data grid view columns with appropriate headers and widths
+        /// for displaying order information.
+        /// </summary>
         private void SetupDataGridView()
         {
             dgvMyOrders.Columns.Clear();
@@ -37,6 +50,12 @@ namespace POO_25453_TP
             dgvMyOrders.Columns["OrderDate"].Width = 150;
         }
 
+        /// <summary>
+        /// Displays the list of orders in the data grid view.
+        /// Shows order details including product information, quantities, prices,
+        /// status, and dates.
+        /// </summary>
+        /// <param name="orders">List of orders to display.</param>
         private void DisplayResults(System.Collections.Generic.List<Order> orders)
         {
             try
@@ -74,6 +93,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the search button click event.
+        /// Filters orders based on the search query, matching against order ID,
+        /// status, or date.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             string searchQuery = textBoxSearch.Text.Trim();
@@ -91,11 +117,22 @@ namespace POO_25453_TP
             DisplayResults(orders);
         }
 
+        /// <summary>
+        /// Handles the close button click event. Closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the form load event. Loads and displays all orders
+        /// for the client.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void MyOrdersForm_Load(object sender, EventArgs e)
         {
             ButtonSearch_Click(sender, e); // Load all orders initially

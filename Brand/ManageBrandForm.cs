@@ -1,23 +1,44 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for managing product brands in the system.
+    /// Provides functionality for viewing, searching, editing, and deleting brands.
+    /// Displays brands in a data grid view with ID, name, and description.
+    /// </summary>
     public partial class ManageBrandForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the ManageBrandForm.
+        /// </summary>
         public ManageBrandForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// Loads and displays all brands when the form is initialized.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ManageBrandForm_Load(object sender, EventArgs e)
         {
             // Load all brands when the form loads
             RefreshBrandList();
         }
 
+        /// <summary>
+        /// Handles the search button click event.
+        /// Searches for brands based on the entered query and displays results.
+        /// If query is empty, displays all brands.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonGo_Click(object sender, EventArgs e)
         {
             string query = textBoxSearch.Text;
@@ -27,6 +48,11 @@ namespace POO_25453_TP
             DisplayResults(results);
         }
 
+        /// <summary>
+        /// Displays the list of brands in the data grid view.
+        /// Sets up columns for Brand ID, Name, and Description.
+        /// </summary>
+        /// <param name="results">List of brands to display.</param>
         private void DisplayResults(List<Brand> results)
         {
             // Clear existing columns and rows
@@ -45,6 +71,10 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Refreshes the brand list in the data grid view.
+        /// Loads all brands from storage and displays them.
+        /// </summary>
         private void RefreshBrandList()
         {
             // Load all brands and display them in the grid
@@ -52,6 +82,13 @@ namespace POO_25453_TP
             DisplayResults(allBrands);
         }
 
+        /// <summary>
+        /// Handles the edit button click event.
+        /// Opens the EditBrandForm for the selected brand.
+        /// Shows error messages if no brand or multiple brands are selected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             // Ensure exactly one row is selected
@@ -82,6 +119,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the delete button click event.
+        /// Deletes the selected brand after confirmation.
+        /// Shows error messages if no brand or multiple brands are selected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             // Ensure exactly one row is selected
@@ -109,6 +153,11 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the close button click event. Closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();

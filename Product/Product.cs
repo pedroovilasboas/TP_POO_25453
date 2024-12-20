@@ -6,23 +6,73 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Represents a product in the e-commerce system.
+    /// Manages product information, inventory, and pricing.
+    /// </summary>
     public class Product
     {
-        // Properties for Product
+        /// <summary>
+        /// Unique identifier for the product
+        /// </summary>
         public int ProductID { get; private set; }
+
+        /// <summary>
+        /// Category classification of the product
+        /// </summary>
         public Category Category { get; set; }
+
+        /// <summary>
+        /// Brand of the product
+        /// </summary>
         public Brand Brand { get; set; }
+
+        /// <summary>
+        /// Name of the product
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Detailed description of the product
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Type or variant of the product
+        /// </summary>
         public string Type { get; set; }
+
+        /// <summary>
+        /// Base price of the product before any discounts
+        /// </summary>
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// Current quantity available in stock
+        /// </summary>
         public int StockQuantity { get; set; }
 
-        // File path for storing products
+        /// <summary>
+        /// File path for storing product data
+        /// </summary>
         private static string productsFile = @"C:\PROGRAM_CS\TP_POO_25453\Product\products.txt";
+
+        /// <summary>
+        /// Tracks the last used product ID for auto-increment
+        /// </summary>
         private static int lastProductID = 0;
 
-        // Constructor for existing product (loaded from file)
+        /// <summary>
+        /// Constructor for existing products loaded from storage
+        /// </summary>
+        /// <param name="productId">Existing product ID</param>
+        /// <param name="category">Product category</param>
+        /// <param name="brand">Product brand</param>
+        /// <param name="name">Product name</param>
+        /// <param name="description">Product description</param>
+        /// <param name="type">Product type</param>
+        /// <param name="price">Product price</param>
+        /// <param name="stockQuantity">Available stock</param>
         public Product(int productId, Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
             this.ProductID = productId; // Use the ID from the file
@@ -35,7 +85,18 @@ namespace POO_25453_TP
             this.StockQuantity = stockQuantity;
         }
 
-        // Constructor for new product (creating a new entry)
+        /// <summary>
+        /// Constructor for creating new products
+        /// Automatically generates a new product ID
+        /// </summary>
+        /// <param name="category">Product category</param>
+        /// <param name="brand">Product brand</param>
+        /// <param name="name">Product name</param>
+        /// <param name="description">Product description</param>
+        /// <param name="type">Product type</param>
+        /// <param name="price">Product price</param>
+        /// <param name="stockQuantity">Initial stock quantity</param>
+        /// <exception cref="ArgumentNullException">Thrown when category or brand is null</exception>
         public Product(Category category, Brand brand, string name, string description, string type, decimal price, int stockQuantity)
         {
             if (category == null || brand == null)
@@ -51,7 +112,9 @@ namespace POO_25453_TP
             this.StockQuantity = stockQuantity;
         }
 
-        // Method to save the product
+        /// <summary>
+        /// Saves the current product to storage
+        /// </summary>
         public void Save()
         {
             var products = LoadProducts();
@@ -59,7 +122,11 @@ namespace POO_25453_TP
             SaveProducts(products);
         }
 
-        // Method to load all products
+        /// <summary>
+        /// Loads all products from storage
+        /// Includes associated category and brand information
+        /// </summary>
+        /// <returns>List of all products in the system</returns>
         public static List<Product> LoadProducts()
         {
             var products = new List<Product>();
@@ -118,7 +185,10 @@ namespace POO_25453_TP
             return products;
         }
 
-        // Method to save all products
+        /// <summary>
+        /// Saves multiple products to storage
+        /// </summary>
+        /// <param name="products">List of products to save</param>
         public static void SaveProducts(List<Product> products)
         {
             using (var writer = new StreamWriter(productsFile))
@@ -130,7 +200,11 @@ namespace POO_25453_TP
             }
         }
 
-        // Method to search products
+        /// <summary>
+        /// Searches for products based on various criteria
+        /// </summary>
+        /// <param name="searchTerm">Term to search for in product details</param>
+        /// <returns>List of products matching the search term</returns>
         public static List<Product> SearchProducts(string searchTerm)
         {
             return LoadProducts().Where(p =>
@@ -142,7 +216,10 @@ namespace POO_25453_TP
             ).ToList();
         }
 
-        // Method to update stock quantity
+        /// <summary>
+        /// Updates the stock quantity of a product
+        /// </summary>
+        /// <param name="newStock">New stock quantity</param>
         public void UpdateStock(int newStock)
         {
             StockQuantity = newStock;
@@ -156,7 +233,10 @@ namespace POO_25453_TP
             }
         }
 
-        // Method to update product details
+        /// <summary>
+        /// Updates all details of an existing product
+        /// </summary>
+        /// <param name="updatedProduct">Product with updated information</param>
         public static void UpdateProduct(Product updatedProduct)
         {
             var products = LoadProducts();
@@ -173,11 +253,20 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Gets the final price after applying any active campaign discounts
+        /// </summary>
+        /// <returns>Discounted price of the product</returns>
         public decimal GetFinalPrice()
         {
             return Campaign.GetDiscountedPrice(this);
         }
 
+        /// <summary>
+        /// Gets a formatted string showing the product's price
+        /// Includes both discounted and original price if a discount is active
+        /// </summary>
+        /// <returns>Formatted price string</returns>
         public string GetPriceDisplay()
         {
             decimal finalPrice = GetFinalPrice();

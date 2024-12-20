@@ -5,22 +5,56 @@ using System.Linq;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Represents a shopping cart in the e-commerce system.
+    /// Manages cart items and checkout process for a client.
+    /// </summary>
     public class Cart
     {
-
+        /// <summary>
+        /// Represents an item in the shopping cart
+        /// </summary>
         public class CartItem
         {
+            /// <summary>
+            /// ID of the product in the cart
+            /// </summary>
             public int ProductID { get; set; }
+
+            /// <summary>
+            /// Name of the product
+            /// </summary>
             public string ProductName { get; set; }
+
+            /// <summary>
+            /// Quantity of the product
+            /// </summary>
             public int Quantity { get; set; }
+
+            /// <summary>
+            /// Original price before discounts
+            /// </summary>
             public decimal OriginalPrice { get; set; }
+
+            /// <summary>
+            /// Price after applying discounts
+            /// </summary>
             public decimal DiscountedPrice { get; set; }
 
+            /// <summary>
+            /// Converts cart item to string format for storage
+            /// </summary>
+            /// <returns>Semicolon-separated string of cart item data</returns>
             public override string ToString()
             {
                 return $"{ProductID};{ProductName};{Quantity};{OriginalPrice};{DiscountedPrice}";
             }
 
+            /// <summary>
+            /// Creates a cart item from its string representation
+            /// </summary>
+            /// <param name="line">Semicolon-separated string of cart item data</param>
+            /// <returns>New CartItem instance</returns>
             public static CartItem FromString(string line)
             {
                 var parts = line.Split(';');
@@ -35,22 +69,39 @@ namespace POO_25453_TP
             }
         }
 
-
+        /// <summary>
+        /// ID of the client who owns this cart
+        /// </summary>
         public int ClientID { get; private set; }
+
+        /// <summary>
+        /// List of items in the cart
+        /// </summary>
         public List<CartItem> Items { get; set; } = new List<CartItem>();
 
+        /// <summary>
+        /// File path for storing cart data
+        /// </summary>
         private static readonly string cartFile = @"C:\PROGRAM_CS\TP_POO_25453\Cart\cart.txt";
 
+        /// <summary>
+        /// Constructor for creating a new cart
+        /// </summary>
+        /// <param name="clientID">ID of the client who owns the cart</param>
         public Cart(int clientID)
         {
             this.ClientID = clientID;
         }
 
+        /// <summary>
+        /// Adds a product to the cart with automatic discount calculation
+        /// </summary>
+        /// <param name="product">Product to add</param>
+        /// <param name="quantity">Quantity to add</param>
         public void AddToCart(Product product, int quantity)
         {
             decimal discountedPrice = Campaign.GetDiscountedPrice(product);
             
-            // Check if the product is already in the cart
             var existingItem = Items.FirstOrDefault(item => item.ProductID == product.ProductID);
             if (existingItem != null)
             {
@@ -71,9 +122,14 @@ namespace POO_25453_TP
             SaveCart();
         }
 
+        /// <summary>
+        /// Adds a product to the cart with a specified discount price
+        /// </summary>
+        /// <param name="product">Product to add</param>
+        /// <param name="quantity">Quantity to add</param>
+        /// <param name="discountedPrice">Pre-calculated discounted price</param>
         public void AddToCart(Product product, int quantity, decimal discountedPrice)
         {
-            // Check if the product is already in the cart
             var existingItem = Items.FirstOrDefault(item => item.ProductID == product.ProductID);
             if (existingItem != null)
             {
@@ -94,11 +150,14 @@ namespace POO_25453_TP
             SaveCart();
         }
 
+        /// <summary>
+        /// Saves the current cart state to storage
+        /// Preserves cart data for other clients
+        /// </summary>
         public void SaveCart()
         {
             try
             {
-                // Create directory if it doesn't exist
                 string directory = Path.GetDirectoryName(cartFile);
                 if (!Directory.Exists(directory))
                 {
@@ -107,7 +166,6 @@ namespace POO_25453_TP
 
                 List<string> lines = new List<string>();
 
-                // Preservar itens de outros clientes
                 if (File.Exists(cartFile))
                 {
                     lines = File.ReadAllLines(cartFile)
@@ -122,20 +180,18 @@ namespace POO_25453_TP
                             }
                             catch
                             {
-                                return false; // Ignorar linhas inválidas
+                                return false;
                             }
                         })
                         .ToList();
                 }
 
-                // Adicionar itens do cliente atual
                 foreach (var item in Items)
                 {
                     string line = $"{ClientID};{item.ProductID};{item.ProductName};{item.Quantity};{item.OriginalPrice:F2};{item.DiscountedPrice:F2}";
                     lines.Add(line);
                 }
 
-                // Save to file
                 File.WriteAllLines(cartFile, lines);
             }
             catch (Exception ex)
@@ -144,6 +200,11 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Loads a client's cart from storage
+        /// </summary>
+        /// <param name="clientID">ID of the client whose cart to load</param>
+        /// <returns>Cart instance with loaded items</returns>
         public static Cart LoadCart(int clientID)
         {
             var cart = new Cart(clientID);
@@ -170,7 +231,13 @@ namespace POO_25453_TP
             return cart;
         }
 
-
+        /// <summary>
+        /// Processes the checkout of the cart
+        /// Creates orders for all items and updates product stock
+        /// </summary>
+        /// <returns>True if checkout was successful</returns>
+        /// <exception cref="InvalidOperationException">Thrown when cart is empty or order validation fails</exception>
+        /// <exception cref="Exception">Thrown when checkout processing fails</exception>
         public bool Checkout()
         {
             if (!Items.Any())
@@ -178,7 +245,6 @@ namespace POO_25453_TP
                 throw new InvalidOperationException("Cart is empty");
             }
 
-            // Create new orders
             var orders = new List<Order>();
             int newOrderID = Order.GenerateNewOrderID();
 
@@ -197,7 +263,6 @@ namespace POO_25453_TP
                     OrderDate = DateTime.Now
                 };
 
-                // Validate the order
                 if (!order.ValidateOrder())
                 {
                     throw new InvalidOperationException($"Invalid order for product {item.ProductName}. Please check product availability.");
@@ -208,16 +273,13 @@ namespace POO_25453_TP
 
             try
             {
-                // Save all orders
                 Order.SaveOrders(orders);
 
-                // Update product stock
                 foreach (var order in orders)
                 {
                     order.UpdateProductStock();
                 }
 
-                // Clear the cart
                 Items.Clear();
                 SaveCart();
 

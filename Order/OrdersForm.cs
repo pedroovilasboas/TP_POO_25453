@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for managing orders in the system.
+    /// Provides functionality for viewing and updating order statuses,
+    /// with a detailed grid view of all order information.
+    /// </summary>
     public partial class OrdersForm : Form
     {
         private DataGridView dgvOrders;
@@ -12,12 +17,21 @@ namespace POO_25453_TP
         private ComboBox cmbStatus;
         private Label lblStatus;
 
+        /// <summary>
+        /// Initializes a new instance of the OrdersForm.
+        /// Sets up the form and loads all orders.
+        /// </summary>
         public OrdersForm()
         {
             InitializeComponent();
             LoadOrders();
         }
 
+        /// <summary>
+        /// Initializes form components and sets up the layout.
+        /// Creates and configures the data grid view, status combo box,
+        /// and update button.
+        /// </summary>
         private void InitializeComponent()
         {
             this.dgvOrders = new System.Windows.Forms.DataGridView();
@@ -93,11 +107,16 @@ namespace POO_25453_TP
             this.PerformLayout();
         }
 
+        /// <summary>
+        /// Loads and displays all orders in the system.
+        /// Configures the data grid view columns with appropriate formatting
+        /// for dates, prices, and other order details.
+        /// Orders are sorted by ID in descending order.
+        /// </summary>
         private void LoadOrders()
         {
             var orders = Order.LoadOrders();
             
-            // Configurar as colunas do DataGridView
             dgvOrders.AutoGenerateColumns = false;
             dgvOrders.Columns.Clear();
 
@@ -187,6 +206,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the selection change event in the orders grid.
+        /// Updates the status combo box to show the current status
+        /// of the selected order.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void dgvOrders_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -196,6 +222,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the update status button click event.
+        /// Updates the status of the selected order and refreshes the display.
+        /// Shows a success message upon completion.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void btnUpdateStatus_Click(object sender, EventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)

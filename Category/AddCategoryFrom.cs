@@ -1,15 +1,29 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for adding new product categories to the system.
+    /// Provides interface for entering category details such as name
+    /// and description. Automatically generates category ID.
+    /// </summary>
     public partial class AddCategoryForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the AddCategoryForm.
+        /// </summary>
         public AddCategoryForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// Generates and displays the next available category ID.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void AddCategoryForm_Load(object sender, EventArgs e)
         {
             
@@ -20,6 +34,13 @@ namespace POO_25453_TP
         }
 
 
+        /// <summary>
+        /// Handles the add button click event.
+        /// Creates and saves a new category with the entered details.
+        /// Shows appropriate success or error messages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             // Retrieve input values

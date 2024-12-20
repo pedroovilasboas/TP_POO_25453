@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,18 +10,37 @@ using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for managing administrator accounts in the system.
+    /// Provides functionality for viewing, searching, editing, and deleting administrator accounts.
+    /// Also includes a data grid view to display all accounts and their details.
+    /// </summary>
     public partial class ManageAccountForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the ManageAccountForm.
+        /// </summary>
         public ManageAccountForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the form load event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void ManageAccountForm_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Handles the search button click event.
+        /// Searches for accounts based on the entered query and displays results.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonGo_Click(object sender, EventArgs e)
         {
             // Get the search query from the input field
@@ -34,6 +53,11 @@ namespace POO_25453_TP
             DisplayResults(results);
         }
 
+        /// <summary>
+        /// Displays the list of accounts in the checked list box.
+        /// Shows account names and usernames for each account.
+        /// </summary>
+        /// <param name="results">List of accounts to display.</param>
         private void DisplayResults(List<Account> results)
         {
             // Clear the current items in the checked list box
@@ -46,6 +70,13 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the edit button click event.
+        /// Opens the EditAccountForm for the selected account.
+        /// Shows error messages if no account or multiple accounts are selected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             // Ensure that exactly one account is selected for editing
@@ -79,17 +110,34 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the selection change event in the results list box.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void checkedListBoxResults_SelectedIndexChanged(object sender, EventArgs e)
         {
            
         }
 
+        /// <summary>
+        /// Handles the close button click event. Closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void Close_Click(object sender, EventArgs e)
         {
             // Close the form
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the delete button click event.
+        /// Deletes the selected account after confirmation.
+        /// Shows error messages if no account or multiple accounts are selected.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void Delete_Click(object sender, EventArgs e)
         {
             // Ensure that exactly one account is selected for deletion
@@ -123,6 +171,11 @@ namespace POO_25453_TP
             }
         }
 
+        /// <summary>
+        /// Handles the search text box change event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             

@@ -1,20 +1,33 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for updating product stock quantities.
+    /// Provides interface for modifying the stock level of existing products,
+    /// with validation to ensure stock quantities remain non-negative.
+    /// </summary>
     public partial class UpdateStockForm : Form
     {
         private Product _product;
 
-        // Constructor that receives the product to update
+        /// <summary>
+        /// Initializes a new instance of the UpdateStockForm.
+        /// </summary>
+        /// <param name="product">The product whose stock needs to be updated.</param>
         public UpdateStockForm(Product product)
         {
             InitializeComponent();
             _product = product;
         }
 
-        // Load event to populate product details
+        /// <summary>
+        /// Handles the form load event. Displays the current product name
+        /// and stock quantity in the form labels.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void UpdateStockForm_Load(object sender, EventArgs e)
         {
             if (_product != null)
@@ -24,7 +37,12 @@ namespace POO_25453_TP
             }
         }
 
-        // Button click event to update stock
+        /// <summary>
+        /// Handles the update button click event. Validates and updates the product's
+        /// stock quantity with the entered value. Shows appropriate success or error messages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             try

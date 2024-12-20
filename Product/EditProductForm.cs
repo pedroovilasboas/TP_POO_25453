@@ -1,18 +1,33 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace POO_25453_TP
 {
+    /// <summary>
+    /// Form for editing existing product information.
+    /// Allows modification of product details including name, description,
+    /// price, stock quantity, brand, and category information.
+    /// </summary>
     public partial class EditProductForm : Form
     {
         private Product _product;
 
+        /// <summary>
+        /// Initializes a new instance of the EditProductForm.
+        /// </summary>
+        /// <param name="product">The product to be edited.</param>
         public EditProductForm(Product product)
         {
             InitializeComponent();
            _product = product;
         }
 
+        /// <summary>
+        /// Handles the form load event. Populates the form fields with the existing
+        /// product information and loads available brands into the combo box.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void EditProductForm_Load(object sender, EventArgs e)
         {
             if (_product != null)
@@ -41,6 +56,12 @@ namespace POO_25453_TP
         }
         
 
+        /// <summary>
+        /// Handles the save button click event. Updates the product with the modified
+        /// information and saves changes to storage. Shows appropriate success or error messages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
             try

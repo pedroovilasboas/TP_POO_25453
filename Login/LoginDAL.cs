@@ -4,28 +4,48 @@ using System.IO;
 
 namespace POO_25453_TP.DAL
 {
+    /// <summary>
+    /// Handles authentication and validation of user credentials.
+    /// Provides methods for validating both client and account logins.
+    /// </summary>
     public static class Login
     {
-        // Validate login for a client using their username and password
+        /// <summary>
+        /// Validates client login credentials against stored client data
+        /// </summary>
+        /// <param name="username">Client's username</param>
+        /// <param name="password">Client's password</param>
+        /// <returns>True if credentials are valid, false otherwise</returns>
         public static bool ValidateClientLogin(string username, string password)
         {
-            
+            // Validate login for a client using their username and password
             string filePath = @"C:\PROGRAM_CS\TP_POO_25453\Client\clients.txt";
             return ValidateCredentials(username, password, filePath);
         }
 
-        // Validate login for an account using the username and password
+        /// <summary>
+        /// Validates account login credentials against stored account data
+        /// </summary>
+        /// <param name="username">Account's username</param>
+        /// <param name="password">Account's password</param>
+        /// <returns>True if credentials are valid, false otherwise</returns>
         public static bool ValidateAccountLogin(string username, string password)
         {
-            
+            // Validate login for an account using the username and password
             string filePath = @"C:\PROGRAM_CS\TP_POO_25453\Account\accounts.txt";
             return ValidateCredentials(username, password, filePath);
         }
 
-        // General method to validate credentials for both clients and accounts
+        /// <summary>
+        /// General method to validate credentials for both clients and accounts
+        /// </summary>
+        /// <param name="username">Username to validate</param>
+        /// <param name="password">Password to validate</param>
+        /// <param name="filePath">Path to the credentials file</param>
+        /// <returns>True if credentials are valid, false otherwise</returns>
         private static bool ValidateCredentials(string username, string password, string filePath)
         {
-            
+            // Check if the file exists
             if (!File.Exists(filePath))
             {
                 return false; // Return false instead of throwing exception
@@ -35,7 +55,7 @@ namespace POO_25453_TP.DAL
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines)
             {
-               
+                // Split the line into parts
                 var parts = line.Split(',');
 
                 // Check if the file is for accounts or clients
