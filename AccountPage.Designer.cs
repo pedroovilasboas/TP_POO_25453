@@ -40,163 +40,193 @@
             campaignToolStripMenuItem = new ToolStripMenuItem();
             manageCampaignsToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
-
             menuStrip1.SuspendLayout();
             SuspendLayout();
-
-            // Context Menu Strips
+            // 
+            // contextMenuStrip1
+            // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
-
+            // 
+            // contextMenuStrip2
+            // 
             contextMenuStrip2.ImageScalingSize = new Size(20, 20);
             contextMenuStrip2.Name = "contextMenuStrip2";
             contextMenuStrip2.Size = new Size(61, 4);
-
+            // 
+            // contextMenuStrip3
+            // 
             contextMenuStrip3.ImageScalingSize = new Size(20, 20);
             contextMenuStrip3.Name = "contextMenuStrip3";
             contextMenuStrip3.Size = new Size(61, 4);
-
-            // Menu Strip
+            // 
+            // menuStrip1
+            // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { 
-                accountToolStripMenuItem, 
-                clientToolStripMenuItem, 
-                productToolStripMenuItem, 
-                productToolStripMenuItem1, 
-                categoryToolStripMenuItem, 
-                ordersToolStripMenuItem, 
-                warrantyToolStripMenuItem,
-                campaignToolStripMenuItem
-            });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem, clientToolStripMenuItem, productToolStripMenuItem, productToolStripMenuItem1, categoryToolStripMenuItem, ordersToolStripMenuItem, campaignToolStripMenuItem, warrantyToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1723, 35);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(1340, 24);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
-
-            // Account Menu
+            // 
+            // accountToolStripMenuItem
+            // 
             accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addAccountToolStripMenuItem, manageAccountToolStripMenuItem });
             accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            accountToolStripMenuItem.Size = new Size(93, 29);
+            accountToolStripMenuItem.Size = new Size(64, 20);
             accountToolStripMenuItem.Text = "Account";
-
+            // 
+            // addAccountToolStripMenuItem
+            // 
             addAccountToolStripMenuItem.Name = "addAccountToolStripMenuItem";
-            addAccountToolStripMenuItem.Size = new Size(248, 34);
+            addAccountToolStripMenuItem.Size = new Size(165, 22);
             addAccountToolStripMenuItem.Text = "Add Account";
-            addAccountToolStripMenuItem.Click += new EventHandler(addAccountToolStripMenuItem_Click);
-
+            addAccountToolStripMenuItem.Click += addAccountToolStripMenuItem_Click;
+            // 
+            // manageAccountToolStripMenuItem
+            // 
             manageAccountToolStripMenuItem.Name = "manageAccountToolStripMenuItem";
-            manageAccountToolStripMenuItem.Size = new Size(248, 34);
+            manageAccountToolStripMenuItem.Size = new Size(165, 22);
             manageAccountToolStripMenuItem.Text = "Manage Account";
-            manageAccountToolStripMenuItem.Click += new EventHandler(manageAccountToolStripMenuItem_Click);
-
-            // Client Menu
+            manageAccountToolStripMenuItem.Click += manageAccountToolStripMenuItem_Click;
+            // 
+            // clientToolStripMenuItem
+            // 
             clientToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addClientToolStripMenuItem, manageClientToolStripMenuItem });
             clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            clientToolStripMenuItem.Size = new Size(72, 29);
+            clientToolStripMenuItem.Size = new Size(50, 20);
             clientToolStripMenuItem.Text = "Client";
-
+            // 
+            // addClientToolStripMenuItem
+            // 
             addClientToolStripMenuItem.Name = "addClientToolStripMenuItem";
-            addClientToolStripMenuItem.Size = new Size(227, 34);
+            addClientToolStripMenuItem.Size = new Size(151, 22);
             addClientToolStripMenuItem.Text = "Add Client";
-            addClientToolStripMenuItem.Click += new EventHandler(addClientToolStripMenuItem_Click);
-
+            addClientToolStripMenuItem.Click += addClientToolStripMenuItem_Click;
+            // 
+            // manageClientToolStripMenuItem
+            // 
             manageClientToolStripMenuItem.Name = "manageClientToolStripMenuItem";
-            manageClientToolStripMenuItem.Size = new Size(227, 34);
+            manageClientToolStripMenuItem.Size = new Size(151, 22);
             manageClientToolStripMenuItem.Text = "Manage Client";
-            manageClientToolStripMenuItem.Click += new EventHandler(manageClientToolStripMenuItem_Click);
-
-            // Brand Menu
+            manageClientToolStripMenuItem.Click += manageClientToolStripMenuItem_Click;
+            // 
+            // productToolStripMenuItem
+            // 
             productToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBrandToolStripMenuItem, manageBandToolStripMenuItem });
             productToolStripMenuItem.Name = "productToolStripMenuItem";
-            productToolStripMenuItem.Size = new Size(74, 29);
+            productToolStripMenuItem.Size = new Size(50, 20);
             productToolStripMenuItem.Text = "Brand";
-
+            // 
+            // addBrandToolStripMenuItem
+            // 
             addBrandToolStripMenuItem.Name = "addBrandToolStripMenuItem";
-            addBrandToolStripMenuItem.Size = new Size(223, 34);
+            addBrandToolStripMenuItem.Size = new Size(151, 22);
             addBrandToolStripMenuItem.Text = "Add Brand";
-            addBrandToolStripMenuItem.Click += new EventHandler(addBrandToolStripMenuItem_Click);
-
+            addBrandToolStripMenuItem.Click += addBrandToolStripMenuItem_Click;
+            // 
+            // manageBandToolStripMenuItem
+            // 
             manageBandToolStripMenuItem.Name = "manageBandToolStripMenuItem";
-            manageBandToolStripMenuItem.Size = new Size(223, 34);
+            manageBandToolStripMenuItem.Size = new Size(151, 22);
             manageBandToolStripMenuItem.Text = "Manage Brand";
-            manageBandToolStripMenuItem.Click += new EventHandler(manageBandToolStripMenuItem_Click);
-
-            // Product Menu
+            manageBandToolStripMenuItem.Click += manageBandToolStripMenuItem_Click;
+            // 
+            // productToolStripMenuItem1
+            // 
             productToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { addProductToolStripMenuItem, manageProductToolStripMenuItem });
             productToolStripMenuItem1.Name = "productToolStripMenuItem1";
-            productToolStripMenuItem1.Size = new Size(90, 29);
+            productToolStripMenuItem1.Size = new Size(61, 20);
             productToolStripMenuItem1.Text = "Product";
-
+            // 
+            // addProductToolStripMenuItem
+            // 
             addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
-            addProductToolStripMenuItem.Size = new Size(245, 34);
+            addProductToolStripMenuItem.Size = new Size(162, 22);
             addProductToolStripMenuItem.Text = "Add Product";
-            addProductToolStripMenuItem.Click += new EventHandler(addProductToolStripMenuItem_Click);
-
+            addProductToolStripMenuItem.Click += addProductToolStripMenuItem_Click;
+            // 
+            // manageProductToolStripMenuItem
+            // 
             manageProductToolStripMenuItem.Name = "manageProductToolStripMenuItem";
-            manageProductToolStripMenuItem.Size = new Size(245, 34);
+            manageProductToolStripMenuItem.Size = new Size(162, 22);
             manageProductToolStripMenuItem.Text = "Manage Product";
-            manageProductToolStripMenuItem.Click += new EventHandler(manageProductToolStripMenuItem_Click);
-
-            // Category Menu
+            manageProductToolStripMenuItem.Click += manageProductToolStripMenuItem_Click;
+            // 
+            // categoryToolStripMenuItem
+            // 
             categoryToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addCategoryToolStripMenuItem, manageCategoryToolStripMenuItem });
             categoryToolStripMenuItem.Name = "categoryToolStripMenuItem";
-            categoryToolStripMenuItem.Size = new Size(100, 29);
+            categoryToolStripMenuItem.Size = new Size(67, 20);
             categoryToolStripMenuItem.Text = "Category";
-
+            // 
+            // addCategoryToolStripMenuItem
+            // 
             addCategoryToolStripMenuItem.Name = "addCategoryToolStripMenuItem";
-            addCategoryToolStripMenuItem.Size = new Size(255, 34);
+            addCategoryToolStripMenuItem.Size = new Size(168, 22);
             addCategoryToolStripMenuItem.Text = "Add Category";
-            addCategoryToolStripMenuItem.Click += new EventHandler(addCategoryToolStripMenuItem_Click);
-
+            addCategoryToolStripMenuItem.Click += addCategoryToolStripMenuItem_Click;
+            // 
+            // manageCategoryToolStripMenuItem
+            // 
             manageCategoryToolStripMenuItem.Name = "manageCategoryToolStripMenuItem";
-            manageCategoryToolStripMenuItem.Size = new Size(255, 34);
+            manageCategoryToolStripMenuItem.Size = new Size(168, 22);
             manageCategoryToolStripMenuItem.Text = "Manage Category";
-            manageCategoryToolStripMenuItem.Click += new EventHandler(manageCategoryToolStripMenuItem_Click);
-
-            // Orders Menu
+            manageCategoryToolStripMenuItem.Click += manageCategoryToolStripMenuItem_Click;
+            // 
+            // ordersToolStripMenuItem
+            // 
             ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            ordersToolStripMenuItem.Size = new Size(82, 29);
+            ordersToolStripMenuItem.Size = new Size(54, 20);
             ordersToolStripMenuItem.Text = "Orders";
-            ordersToolStripMenuItem.Click += new EventHandler(ordersToolStripMenuItem_Click);
-
-            // Warranty Menu
+            ordersToolStripMenuItem.Click += ordersToolStripMenuItem_Click;
+            // 
+            // warrantyToolStripMenuItem
+            // 
             warrantyToolStripMenuItem.Name = "warrantyToolStripMenuItem";
-            warrantyToolStripMenuItem.Size = new Size(99, 29);
-            warrantyToolStripMenuItem.Text = "Warranty";
-
-            // Campaign Menu
+            warrantyToolStripMenuItem.Size = new Size(57, 20);
+            warrantyToolStripMenuItem.Text = "Logout";
+            warrantyToolStripMenuItem.Click += warrantyToolStripMenuItem_Click;
+            // 
+            // campaignToolStripMenuItem
+            // 
             campaignToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageCampaignsToolStripMenuItem });
             campaignToolStripMenuItem.Name = "campaignToolStripMenuItem";
-            campaignToolStripMenuItem.Size = new Size(109, 29);
+            campaignToolStripMenuItem.Size = new Size(74, 20);
             campaignToolStripMenuItem.Text = "Campaign";
-
+            // 
+            // manageCampaignsToolStripMenuItem
+            // 
             manageCampaignsToolStripMenuItem.Name = "manageCampaignsToolStripMenuItem";
-            manageCampaignsToolStripMenuItem.Size = new Size(255, 34);
+            manageCampaignsToolStripMenuItem.Size = new Size(180, 22);
             manageCampaignsToolStripMenuItem.Text = "Manage Campaigns";
-            manageCampaignsToolStripMenuItem.Click += new EventHandler(manageCampaignsToolStripMenuItem_Click);
-
-            // Panel
+            manageCampaignsToolStripMenuItem.Click += manageCampaignsToolStripMenuItem_Click;
+            // 
+            // panel1
+            // 
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 35);
+            panel1.Location = new Point(0, 24);
+            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1723, 918);
+            panel1.Size = new Size(1340, 691);
             panel1.TabIndex = 4;
-
-            // Form
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            // 
+            // AccountPage
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1723, 953);
+            ClientSize = new Size(1340, 715);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AccountPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Account Page";
             WindowState = FormWindowState.Maximized;
-
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

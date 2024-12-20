@@ -223,5 +223,10 @@ namespace POO_25453_TP
         {
 
         }
+
+        private void warrantyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
