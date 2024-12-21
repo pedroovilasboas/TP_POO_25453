@@ -1,1 +1,10 @@
-1,dshge,af
+1;Apple;Apple
+2;LG;Electronics
+3;Xiaomi;SmartPhones
+4;Samsung;Electronics
+5;Sony;Audio and Video
+6;Dell;Computers
+7;Lenovo;Computers
+8;Huawei;Mobile Devices
+9;Asus;Computers
+10;Bose;Audio

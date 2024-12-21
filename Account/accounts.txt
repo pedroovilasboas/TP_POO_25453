@@ -1,1 +1,3 @@
 admin,admin,admin
+jcompostela,1234,Jorge Compostela
+Avieira,,André Vieira

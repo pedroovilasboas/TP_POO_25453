@@ -1,18 +1,10 @@
-1,dshge,,iPhone 15 Pro,Smartphone Apple com chip A17 Pro,Smartphone,1299,24
-2,,,Galaxy S24 Ultra,Smartphone Samsung topo de linha,Smartphone,1199,36
-3,,,MacBook Pro 16,Laptop com chip M3 Max,Laptop,2499,23
-4,,,XPS 15,Laptop Dell premium com Intel i9,Laptop,1899,25
-5,,,iPad Pro 12.9,Tablet Apple M2 com tela mini-LED,Tablet,1099,35
-6,,,Galaxy Tab S9,Tablet Samsung com S Pen,Tablet,899,32
-7,,,ROG Swift PG27UQ,Monitor gaming 4K 144Hz,Monitor,799,20
-8,,,Odyssey G9,Monitor curvo ultrawide 49",Monitor,1499,14
-9,,,Legion Tower 7i,Desktop gaming com RTX 4090,Desktop,3499,6
-10,,,iMac 24,All-in-one com chip M3,Desktop,1499,20
-11,,,AirPods Pro 2,Fones sem fio com cancelamento,Audio,249,50
-12,,,WH-1000XM5,Headphone Sony premium,Audio,399,40
-13,,,Xbox Series X,Console gaming 4K,Gaming,499,30
-14,,,ROG Strix G15,Laptop gaming AMD Ryzen 9,Gaming,1699,25
-15,,,Magic Keyboard,Teclado sem fio Apple,Acessório,99,50
-16,,,MX Master 3S,Mouse premium Logitech,Acessório,99,40
-17,,,OfficeJet Pro,Impressora multifuncional,Impressora,299,30
-18,,,RT-AX88U,Roteador WiFi 6 dual band,Networking,299,25
+1,Apple,Phones,iPhone 15 Pro,Smartphone Apple com chip A17 Pro,Phone,1299,20
+2,Samsung,Phones,Galaxy S23 Ultra,Smartphone Samsung com câmera avançada,Phone,1199,30
+3,Xiaomi,Phones,Redmi Note 12,Smartphone Xiaomi com bateria de longa duração,Phone,299,50
+4,Sony,,WH-1000XM5,Fone de ouvido com cancelamento de ruído da Sony,Headphones,399,15
+5,LG,,OLED C3,TV LG OLED com resolução 4K,Smart TV,999,10
+6,Dell,,XPS 13,Laptop ultrafino Dell com tela InfinityEdge,Laptop,999,20
+7,Lenovo,,ThinkPad X1,Notebook Lenovo com foco em produtividade,Laptop,1299,12
+8,Huawei,Phones,P50 Pro,Smartphone Huawei com câmeras Leica,Phone,899,25
+9,Bose,,SoundLink Revolve,Speaker portátil Bose com som 360°,Speakers,299,18
+10,Asus,,ROG Zephyrus G14,Laptop gamer Asus com desempenho avançado,Laptop,1499,8

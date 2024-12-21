@@ -1,1 +1,10 @@
-1,sad,asf
+1;Phones;Mobile
+2;TV;Smart TVs
+3;Laptops;Computers
+4;Tablets;Mobile Devices
+5;Cameras;Photography
+6;Headphones;Audio
+7;Watches;Wearables
+8;Speakers;Audio Equipment
+9;Printers;Office Supplies
+10;Monitors;Computer Accessories

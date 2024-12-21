@@ -32,7 +32,7 @@ namespace POO_25453_TP
         /// <summary>
         /// File path for storing account data
         /// </summary>
-        private static string accountsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"C:\PROGRAM_CS\25453_TP_POO\Account\accounts.txt");
+        private static string accountsFile = @"C:\PROGRAM_CS\TP_POO_25453\Account\accounts.txt";
 
         /// <summary>
         /// Constructor for creating a new account
@@ -87,6 +87,13 @@ namespace POO_25453_TP
         /// <param name="accounts">List of accounts to save</param>
         public static void SaveAccounts(List<Account> accounts)
         {
+            // Ensure directory exists
+            string directory = Path.GetDirectoryName(accountsFile);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             using (var writer = new StreamWriter(accountsFile))
             {
                 foreach (var account in accounts)

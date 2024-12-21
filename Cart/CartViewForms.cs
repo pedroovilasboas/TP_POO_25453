@@ -27,18 +27,6 @@ namespace POO_25453_TP
             {
                 InitializeComponent();
                 this.cart = Cart.LoadCart(clientID);
-
-                // Initialize and configure the total label
-                lblTotal = new Label
-                {
-                    AutoSize = true,
-                    Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold),
-                    Location = new System.Drawing.Point(dgvCartItems.Right - 300, dgvCartItems.Bottom + 10),
-                    Size = new System.Drawing.Size(280, 25),
-                    TextAlign = System.Drawing.ContentAlignment.MiddleRight
-                };
-                this.Controls.Add(lblTotal);
-
                 LoadCartItems();
             }
             catch (Exception ex)
@@ -104,8 +92,6 @@ namespace POO_25453_TP
                         dgvCartItems.Rows[row].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
                     }
                 }
-
-                UpdateTotalDisplay();
             }
             catch (Exception ex)
             {
@@ -132,19 +118,6 @@ namespace POO_25453_TP
             dgvCartItems.Columns["DiscountedPrice"].Width = 120;
             dgvCartItems.Columns["Savings"].Width = 100;
             dgvCartItems.Columns["TotalPrice"].Width = 100;
-        }
-
-        private void UpdateTotalDisplay()
-        {
-            decimal cartTotal = cart.Items.Sum(item => item.DiscountedPrice * item.Quantity);
-            decimal originalTotal = cart.Items.Sum(item => item.OriginalPrice * item.Quantity);
-            decimal totalSavings = originalTotal - cartTotal;
-
-            lblTotal.Text = $"Total: {cartTotal:C}";
-            if (totalSavings > 0)
-            {
-                lblTotal.Text += $" (You save: {totalSavings:C})";
-            }
         }
 
         /// <summary>

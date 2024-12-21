@@ -97,7 +97,7 @@ namespace POO_25453_TP
                 var lines = File.ReadAllLines(brandsFile);
                 foreach (var line in lines)
                 {
-                    var parts = line.Split(',');
+                    var parts = line.Split(';');
                     if (parts.Length == 3)
                     {
                         int id = int.Parse(parts[0]);
